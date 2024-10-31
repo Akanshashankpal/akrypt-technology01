@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS flexbox cards</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+
+        }
+
+        body{
+            background-color: #fefefe;
+            font-family: sans-serif;
+        }
+
+         .container{
+            width: 70%;
+            margin: 50px auto;
+            background-color: white;
+
+
+        }
+        .head{
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 50px;
+
+        }
+
+        .row{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .card{
+            width: 20%;
+            background: white;
+            border: 1px solid #ccc;margin-bottom: 50px;
+            transition: 0.35;
+        }
+
+        .card-head{text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(to right,#ff416c,#ff4b2b);
+            color: #fff;
+
+        }
+
+
+        .btn{
+            text-decoration: none;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right,#ff416c,#ff4b2b);
+            color: white;
+            margin-top: 30px;
+            padding: 10px 5px;
+            padding-left: 30px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            margin-right: 30px;
+        }
+
+        .card{
+            width: 40%;
+        }
+        .container{
+            width: 90%;
+        }
+
+        .head{
+            padding: 20px;
+            font-size: 20px;
+        }
+        .card{
+            width: 200px;
+        }
+        .card-body{
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .link{
+            text-decoration: none;
+            display: inline-block;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right,black,black);
+            color: white;
+            padding-top: 10px;
+            margin-bottom: 20px;
+            margin-left: 90%;
+            border-radius: 5px;
+            padding-bottom: 10px;
+        }
+        
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+            <div class="head">
+                <h1>CSS Responsive Flexbox Cards</h1>
+
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-head">
+                        <h1>React</h1>
+                    </div>
+                    <div class="card-body">
+                        <p>Lorem ipsum dolor sit <br>amet consectetur <br>adipisicing elit. culpa <br>recusandee. </p>
+                        <a href="#" class="btn"> Read more</a>
+
+                    </div>
+              </div>
+
+              <div class="card">
+                <div class="card-head">
+                    <h1>vue</h1>
+                </div>
+                <div class="card-body">
+                    <p>Lorem ipsum dolor sit <br>amet consectetur <br>adipisicing elit. culpa <br>recusandee. </p>
+
+                    <a href="#" class="btn"> Read more</a>
+
+                </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+                <h1>Angular</h1>
+            </div>
+            <div class="card-body">
+                <p>Lorem ipsum dolor sit <br>amet consectetur <br>adipisicing elit. culpa <br>recusandee. </p>
+
+                <a href="#" class="btn"> Read more</a>
+
+            </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+            <h1> jss</h1>
+        </div>
+        <div class="card-body">
+            <p>Lorem ipsum dolor sit <br>amet consectetur <br>adipisicing elit. culpa <br>recusandee. </p>
+
+            <a href="#" class="btn"> Read more</a>
+
+        </div>
+      </div>
+           
+    </div>
+         <a href="#" class="link"> Open Sandbox</a>
+    </div>
+</body>
+</html>
