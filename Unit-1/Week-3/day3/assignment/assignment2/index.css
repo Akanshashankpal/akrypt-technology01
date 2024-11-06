@@ -1,0 +1,17 @@
+.prt{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    gap: 5px;
+}
+.navigation{
+     background-color: yellow;
+     grid-column: span 2;
+     text-align: center;
+}
+.left{
+    background-color: red;
+}
+.right{
+    background-color: lightgreen;
+} 
