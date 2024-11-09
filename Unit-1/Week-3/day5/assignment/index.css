@@ -1,0 +1,26 @@
+.container{
+    width: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+    gap: 5px;
+
+    
+}
+.btn{
+    background-color: black;
+    color: white;
+}
+.enter{
+    grid-column-start: 11;
+    grid-column-end: 13;
+    background-color: black;
+    color: white;
+}
+.sp{
+    grid-column-start: 5;
+    grid-column-end: 9;
+    background-color: black;
+    color: white;
+}

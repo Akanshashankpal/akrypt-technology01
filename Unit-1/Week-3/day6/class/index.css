@@ -1,0 +1,14 @@
+.container p{
+    color: rgb(224, 129, 12);
+}
+
+.container>p{
+    color: blue;
+}
+
+.child~h1{
+    color: blueviolet;
+}
+.child+h1{
+    color: chartreuse;
+}

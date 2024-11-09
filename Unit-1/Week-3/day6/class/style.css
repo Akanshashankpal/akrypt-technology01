@@ -1,0 +1,42 @@
+.content{
+    border: 1px solid black;
+    width: 400px;
+    height: 500px;
+    background-color: blueviolet;
+    margin: auto;
+}
+img{
+    width: 100%;
+}
+h1{
+    background-color: darkgrey;
+}
+button{
+    border: none;
+    background-color: burlywood;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+}
+h1:hover{
+    color: coral;
+}
+button:hover{
+    cursor: pointer;
+    color: rgb(236, 18, 36);
+}
+.content:hover{
+    background-color: chartreuse;
+    text-align: center;
+}
+
+input[type="email"]{
+    background-color: aqua;
+}
+a[href="https://akrypttechnologies.com/"]{
+    color: rgb(20, 220, 127);
+}
+
+input[type="color"]{
+    background-color: chartreuse;
+}
