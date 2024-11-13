@@ -1,0 +1,382 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+.navbar{
+    display: flex;
+    background-color: #fff;
+    height: 5px;
+
+}
+.logo{
+    width: 60%;
+} 
+.logo h1{
+    font-size: 20px;
+    margin-left: 20px;
+    padding: 20px;
+}
+.bar{
+    width: 40%;
+}
+nav ul{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    padding: 20px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: black;
+
+}
+nav ul li a:hover{
+    background-color: gainsboro;
+    padding: 20px;
+}
+.background{
+         display: block;
+        padding: 40px;
+        margin-top: 70px;
+        width: 100%;
+        height: 600px;
+        background: url(https://c0.wallpaperflare.com/preview/18/442/539/apple-device-computer-dark-electronics-thumbnail.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        font-family: raleway;
+
+
+}
+.media{
+    color: #a19e9e;
+    padding: 40px;
+    margin-top: 160px;
+    font-size: 20px;
+}
+.media:hover{
+    color: #fff;
+}
+.text{
+    width: 800px;
+    margin-top: 100px;
+}
+.background h1{
+    font-size: 50px;
+    padding: 15px;
+    margin-left: 5px;
+    color: #fff;
+}
+.background p{
+    padding: 15px;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: #fff;
+
+}
+.background button{
+    padding: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border: none;
+    font-size: large;
+}
+.background button:hover{
+    cursor: pointer;
+    background-color:lightblue;
+
+}
+.about{ 
+    padding: 100px;
+    font-family: raleway;
+}
+.top{
+    text-align: center;
+}
+.icons{
+    display: flex;
+    gap: 10px;
+}
+.icon{
+    width: 340px;
+    height: 400px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+.icon i{
+    font-size: 70px;
+
+}
+.icon p{
+    margin-top: 20px;
+}
+.icon p~p{
+    margin: auto;
+
+}
+.grey{
+    height: 500px;
+    background-color: rgb(207, 199, 199);
+    display: flex;
+    font-family:raleway ;
+
+}
+.texted{
+    width: 410px;
+    margin-left: 50px;
+}
+.texted h1{
+    margin-top: 150px;
+}
+.texted button{
+    margin-top: 20px;
+    padding: 15px;
+    font-size: large;
+    border: none;
+    background-color: black;
+    color: #fff;
+}
+.texted button:hover{
+    font-size: small;
+    background: lightgrey;
+    color: black;
+}
+
+.pt img{
+    width: 600px;
+    margin-top: 90px;
+    margin-left: 130px;
+}
+.one{
+    text-align: center;
+    margin-top: 90px;
+    font-size: 25px;
+}
+.two{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+.three{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 300px;
+    height: 430px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;    
+}
+.three img{
+    width: 100%;
+    border-radius: 5px 5px;
+}
+.three button{
+    padding: 15px;
+    width: 250px;
+    border: none;
+}
+.three button:hover{
+    background-color: darkgray;
+    cursor: pointer;
+}
+.three p,h1,button{
+    margin-left: 25px;
+}
+
+.num{
+    height:250px;
+    background-color: dimgray;
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+.num1{
+    margin-top: 8%;
+    color: #fff;
+}
+.grid{
+    margin-top: 100px;
+    text-align: center;
+    font-family: raleway;
+}
+.photos{
+    margin-top: 80px;
+}
+.skill{
+    padding:30px ;
+    margin-top: 100px;
+    height: 400px;
+    background-color: rgb(230, 225, 225);
+    font-family: raleway;
+    display: flex;
+    justify-content: space-around;
+}
+.our{
+    margin-top: 70px;
+}
+.para{
+    margin-top: 50px;
+}
+.content{
+    width: 500px;
+}
+.take{
+    display: flex;
+}
+.take p{
+    margin-left: 50px;
+}
+.dg{
+    background-color: rgb(160, 160, 160);
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+.dg p{
+    width: 90%;
+    background-color: dimgrey;
+    margin-top: 20px;
+}
+
+.darkgrey{
+    background-color: dimgray;
+    text-align: center;
+    color: #fff;
+    padding-bottom: 40px;
+    font-family: raleway;
+}
+.red{
+    padding: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+.box{
+    width: 350px;
+    height: 500px;
+    color: black;
+    background-color: beige;
+}
+.box:hover{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;}
+.head{
+    height: 100px;
+    background-color: black;
+    padding: 40px;
+    font-size: 20px;
+    color: #fff;
+}
+.box li{
+    list-style-type: none;
+    padding: 22px;
+}
+.box button{
+    padding: 15px;
+    width: 100px;
+    margin: auto;
+    margin-top: 17px;
+    border: none;
+    background-color: black;
+    color: #fff;
+}
+.box button:hover{
+    cursor:pointer;
+    background-color: gainsboro;
+    color: gray;
+}
+.foot{
+    background-color:rgb(228, 224, 218);
+    height:80px ;
+}
+.pro{
+    background-color: tomato;
+}
+.contact{
+    text-align: center;
+    background-color: gainsboro;
+    height: 1650px;
+    padding: 20px;
+}
+.contact h1{
+    margin-top: 90px;
+}
+.locate{
+    margin-right: 50px;
+    text-align: left;
+    gap: 10px;
+    padding: 20px;
+    margin-top: 30px;
+}
+.in{
+    display: flex;
+    gap: 40px;
+}
+.in i{
+    font-size: 35px;
+}
+.in p{
+    padding: 10px;
+}
+form p input{
+    width: 100%;
+    height: 35px;
+    font-size: 15px;
+    margin-top: 25px;
+}
+
+.btn button{
+    float: left;
+    margin-top: 20px;
+    padding: 15px;
+    border: none;
+    background-color: black;
+    color: #fff;
+    width: 200px;
+    font: message-box;
+}
+.map img{
+    margin-top: 70px;
+    width: 100%;
+}
+.footer{
+    text-align: center;
+    background-color: black;
+}
+.footer button{
+    padding: 10px;
+    width: 130px;
+    font-size: 16px;
+    margin-top: 70px;
+    margin-right: 10px;
+
+}
+.footer button:hover{
+    background-color: rgb(189, 189, 192);
+}
+.social{
+    color: #fff;
+    margin-top: 30px;
+    text-align: center;
+    font-size: 30px;
+    gap: 5px;
+}
+.social i:hover{
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    color: lightgrey;
+}
+.footer p{
+    color: #fff;
+    padding: 10px;
+}
+.footer p a{
+    color: #fff;
+}
+.footer p a:hover{
+    color: green;
+}
+
+
+
+
+
