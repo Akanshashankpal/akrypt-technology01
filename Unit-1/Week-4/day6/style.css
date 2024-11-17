@@ -1,0 +1,56 @@
+/* div{
+    text-align: center;
+    background-color: yellow;
+} */
+.images{
+    background-color: aqua;
+}
+.image{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    
+
+}
+.image img{
+    width: 300px;
+}
+ /* for a small screen text in will in left and bg color is red 
+for medium screen text will go in center and bg color is blue 
+for large screen bg will yellow */
+
+
+/* for medium screen */
+/* @media screen and (max-width:768px){
+    div{
+        text-align: center;
+        background-color: rgb(111, 0, 255);
+    }
+}
+/* for small screen */
+
+/* @media screen and (max-width:480px){
+    div{
+        text-align: left;
+        background-color: red;
+    }
+} */ 
+ /* for medium screen */
+
+ @media  screen and (max-width:768px){
+    .image{
+        grid-template-columns: repeat(2,1fr);
+    
+    }
+    
+ }
+ /* for small screen */
+ @media  screen and (max-width:480px){
+    .image{
+        grid-template-columns: repeat(1,1fr);
+    
+    }
+    
+ }
+
+    
+ 
