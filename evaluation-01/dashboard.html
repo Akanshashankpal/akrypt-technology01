@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web20-C4 - Dashboard</title>
+    <style>
+        /* Global Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Navbar Styling - Flexbox Added */
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        #navbar h2 {
+            margin: 0;
+        }
+
+        #navbar div {
+            display: flex;
+            gap: 15px;
+        }
+
+        #navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+        }
+
+        #navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Filter and Sort Section */
+        #filters {
+            /* display: flex; */
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #filter,
+        #sort {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        h1 {
+            margin: 20px;
+            color: #007BFF;
+        }
+
+        /* Table Styling */
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        thead {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-size: 18px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Button Styling */
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .buy-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .buy-btn:hover {
+            background-color: #218838;
+        }
+
+        .bookmark-btn {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .bookmark-btn:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <div id="navbar">
+        <h2>Akrypt Library</h2>
+        <div style="display: flex;">
+            <a href="./index.html">
+                <h2>Home</h2>
+            </a>
+            <a href="./dashboard.html">
+                <h2>Dashboard</h2>
+            </a>
+            <a href="./buy.html">
+                <h2>My Books</h2>
+            </a>
+            <a href="./bookmark.html">
+                <h2>Bookmark</h2>
+            </a>
+        </div>
+    </div>
+    <!-- Filter and Sort Section -->
+    <div id="filters">
+        <select id="filter">
+            <option value="">Select Category</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Self Help">Self Help</option>
+            <option value="Finance">Finance</option>
+        </select>
+
+        <select id="sort">
+            <option value="">Sort by Price</option>
+            <option value="low-to-high">Low to High</option>
+            <option value="high-to-low">High to Low</option>
+        </select>
+    </div>
+
+    <!-- Book Count Section -->
+    <h1>Total Books: <span id="book-count">0</span></h1>
+
+    <!-- Book Table Section -->
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Added Date</th>
+                <th>Category</th>
+
+                <th>Price</th>
+                <th>Bookmark</th>
+                <th>Buy</th>
+            </tr>
+        </thead>
+        <tbody id="tblbody">
+
+            <!-- Data will be appended here dynamically -->
+        </tbody>
+    </table>
+
+
+</body>
+<script>
+    let storedArr = JSON.parse(localStorage.getItem("book-list"));
+
+    let bookCount = document.getElementById("book-count");
+    let filter = document.getElementById("filter");
+    let sort = document.getElementById("sort")
+    let tableBody = document.getElementById("tblbody")
+
+    function dashboard(){
+        storedArr.forEach((e) => {
+        let tr = document.createElement("tr")
+        tableBody.append(tr)
+
+        let nameTd = document.createElement("td")
+        nameTd.innerText = e.name
+
+        let authorTd = document.createElement("td")
+        authorTd.innerText = e.author
+
+        let descTd = document.createElement("td")
+        descTd.innerText = e.desc
+
+        let dateTd = document.createElement("td")
+        dateTd.innerText = e.date
+
+         let categoryTd=document.createElement("td")
+         categoryTd.innerText=e.category
+
+        let priceTd=document.createElement("td")
+        priceTd.innerText=e.price
+
+        let bookmarkTd=document.createElement("td")
+        bookmarkTd.innerText="Bookmark"
+        bookmarkTd.addEventListener("click",function(i){
+              tableBody.innerText=null;
+             let bmArr=localStorage.setItem("bookmark-list",JSON.stringify(storedArr))
+             remove(i)
+        })
+
+        tr.append(nameTd, authorTd, descTd, dateTd,categoryTd,priceTd,bookmarkTd)
+    })
+
+    }
+    dashboard()
+    
+   
+
+    function remove(index){
+        tableBody.innerText=null;
+        storedArr.splice(index,1)
+        dashboard()
+    }
+
+    // filter.addEventListener("change",function(){
+    //     let selectedAr=filter.value 
+    //     if(selectedAr){
+
+    //     }
+    // })
+
+storedArr.sort((a,b)=>{
+   return a-b
+})
+console.log("l-h",storedArr)
+
+
+
+
+</script>
+
+</html>
