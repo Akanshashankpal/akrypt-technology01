@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Akrypt Technology</h1>
+
+    <div style="width: 500px; height: 200px; border: 2px solid red;">
+       <p id="result">Result</p> 
+    </div>
+    <br>
+    <input type="text" id="name" placeholder="please enter your name">
+    <select name="" id="gender">
+        <option value="">please select</option>
+        <option value="male">male</option>
+        <option value="female">female</option>
+    </select>
+    <br>
+    <br>
+    <button style="color: coral;" id="btn">submit</button>
+
+    <script>
+        let result=document.getElementById("result");
+        let name=document.getElementById("name");
+        let gender=document.getElementById("gender");
+        let btn=document.getElementById("btn");
+
+        btn.addEventListener("click",sumbitData)
+
+        function sumbitData(){
+            result.innerText=`selected name is ${name.value} and gender is ${gender.value}`
+            console.log(name.value)
+            console.log(gender.value)
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sort and Filter Data</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      select {
+        padding: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sort and Filter Data</h1>
+
+
+    <!-- Dropdown for Sorting by Age -->
+    <label for="sortAge">Sort By Age:</label>
+    <select id="sortAge">
+      <option value="">--Select--</option>
+      <option value="ageAsc">Age (Low to High)</option>
+      <option value="ageDesc">Age (High to Low)</option>
+    </select>
+
+
+    <!-- Dropdown for Sorting by Name -->
+    <label for="sortName">Sort By Name:</label>
+    <select id="sortName">
+      <option value="">--Select--</option>
+      <option value="nameAZ">Name (A to Z)</option>
+      <option value="nameZA">Name (Z to A)</option>
+    </select>
+
+
+    <!-- Dropdown for Filtering by Course -->
+    <label for="filterCourse">Filter By Course:</label>
+    <select id="filterCourse">
+      <option value="">--All Courses--</option>
+      <option value="fsw">Full Stack Web</option>
+      <option value="fd">Front-End Development</option>
+      <option value="bd">Back-End Development</option>
+    </select>
+
+
+    <!-- Table to Display Data -->
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Course</th>
+          <th>Joined Date</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+
+
+    <script>
+      //  let arr=[5651,4,8575,3,1,255,9,7,8]
+      // arr.sort((a,b)=>{
+      //     return b-a
+      // })
+      // console.log("L-H",arr)
+
+
+      // let name=["kajal","deepak","prem","akansha","deepak","tejas"]
+      // name.sort((a, b) => {
+      //   if (a.toUpperCase() < b.toUpperCase()) {
+      //     return -1;
+      //   }
+      //   if (a.toUpperCase() > b.toUpperCase()) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // });
+      // console.log("A-H",name)
+      // Array of Objects
+      let sortAge = document.getElementById("sortAge");
+      let sortName = document.getElementById("sortName");
+      let filterCourse = document.getElementById("filterCourse");
+
+
+      let data = [
+        {
+          firstName: "Kajal",
+          lastName: "Patil",
+          age: 27,
+          joinedDate: "December 15, 2017",
+          course: "fsw",
+        },
+        {
+          firstName: "Ritesh",
+          lastName: "Salve",
+          age: 25,
+          joinedDate: "January 15, 2019",
+          course: "fd",
+        },
+        {
+          firstName: "Akansha",
+          lastName: "Shankpal",
+          age: 30,
+          joinedDate: "February 15, 2011",
+          course: "bd",
+        },
+        {
+          firstName: "Tejas",
+          lastName: "Mahajan",
+          age: 50,
+          joinedDate: "February 15, 2011",
+          course: "bd",
+        },
+      ];
+
+
+      let filteredData = [...data]; // To store filtered data for display
+
+
+      // Function to Display Data in the Table
+      function displayData(dataArray) {
+        const tableBody = document.getElementById("tableBody");
+        tableBody.innerHTML = "";
+        dataArray.forEach((person) => {
+          let row = `<tr>
+                    <td>${person.firstName}</td>
+                    <td>${person.lastName}</td>
+                    <td>${person.age}</td>
+                    <td>${person.course}</td>
+                    <td>${person.joinedDate}</td>
+                </tr>`;
+          tableBody.innerHTML += row;
+        });
+      }
+      displayData(filteredData);
+      console.log(data)
+  // Sorting by Name
+      sortName.addEventListener("change", function () {
+        console.log(sortName.value);
+       
+        if (sortName.value == "nameAZ") {
+           
+          data.sort((a, b) => {
+            if (a.firstName.toUpperCase() < b.firstName.toUpperCase()) {
+              return -1;
+            }
+            if (a.firstName.toUpperCase() > b.firstName.toUpperCase()) {
+              return 1;
+            }
+            return 0;
+          });
+          console.log(data)
+          displayData(data);
+        } else if (sortName.value == "nameZA") {
+           
+            data.sort((a, b) => {
+              if (a.firstName.toUpperCase() < b.firstName.toUpperCase()) {
+                return 1;
+              }
+              if (a.firstName.toUpperCase() > b.firstName.toUpperCase()) {
+                return -1;
+              }
+              return 0;
+            });
+            console.log(data)
+            displayData(data);
+          }
+      });
+
+
+
+
+
+
+      // Sorting by Age
+     
+      sortAge.addEventListener("change", function () {
+        console.log(sortAge.value);
+       
+        if (sortAge.value == "ageAsc") {
+           
+          data.sort((a, b) => {
+             return a.age-b.age
+          });
+          console.log(data)
+          displayData(data);
+        } else if (sortAge.value == "ageDesc") {
+           
+            data.sort((a, b) => {
+               return  b.age-a.age
+            });
+            console.log(data)
+            displayData(data);
+          }
+      });
+
+
+ // Filter by Course
+
+
+     filterCourse.addEventListener("change", function () {
+        console.log(filterCourse.value);
+       let filterData=data.filter((e,i)=>{
+            return e.course==filterCourse.value
+       })
+       displayData(filterData)
+      });
+    </script>
+  </body>
+</html>
+
+

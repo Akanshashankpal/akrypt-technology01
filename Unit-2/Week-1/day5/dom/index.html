@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <form action="" id="form">
+
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <input type="email" id="email" placeholder="Enter Your Email">
+        <input type="number" id="pass" placeholder="Enter Your password">
+
+        <input type="submit" id="submit">
+
+    </form>
+    <hr>
+
+</body>
+<script>
+    let form = document.getElementById("form")
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let obj = {
+            name: form.name.value,
+            email: form.email.value,
+            pass: form.pass.value
+        }
+        console.log(obj)
+        localStorage.setItem("formobj", JSON.stringify(obj))
+    })
+ let lsobj=JSON.parse(localStorage.getItem("formobj"))
+ console.log(lsobj)
+</script>
+
+</html>

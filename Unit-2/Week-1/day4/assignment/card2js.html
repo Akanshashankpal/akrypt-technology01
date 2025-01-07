@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Akrypt Employee Records</title>
+</head>
+<style>
+    #card-container{
+        border: 1px solid red;
+        height: 300px;
+    }
+</style>
+
+<body>
+    <!-- Use this form for taking the inputs  -->
+    <form id="form">
+        <input placeholder="Name" type="text" id="name" />
+        <input placeholder="Employee ID" type="text" id="employee_id" />
+        <select id="department">
+            <option value="">Select Department</option>
+            <option value="HR">HR</option>
+            <option value="Finance">Finance</option>
+            <option value="Engineering">Engineering</option>
+        </select>
+        <input placeholder="Experience" type="number" id="experience" />
+        <input placeholder="Email" type="email" id="email" />
+        <input placeholder="Mobile No." type="number" id="mobile" />
+        <input type="submit" value="Submit" />
+    </form>
+
+
+    <!-- Use this select tag for filtering  -->
+    <select id="filter">
+        <option value="">Select Department</option>
+        <option value="HR">HR</option>
+        <option value="Finance">Finance</option>
+        <option value="Engineering">Engineering</option>
+    </select>
+    <div id="card-container"></div>
+</body>
+<script>
+
+    let form = document.getElementById("form");
+    let cardContainer = document.getElementById("card-container");
+    let name = document.getElementById("name");
+    let employee_id = document.getElementById("employee_id");
+    let department = document.getElementById("department");
+    let experience = document.getElementById("experience");
+    let email = document.getElementById("email");
+    let mobile = document.getElementById("mobile");
+    let filter = document.getElementById("filter");
+
+
+    let arr = []
+
+    form.addEventListener("submit", function (e) {
+
+        e.preventDefault()
+
+        cardContainer.innerHTML = null;
+
+        let obj = {
+            name: form.name.value,
+            employee_id:form.employee_id.value,
+            department:form.department.value,
+            experience:form.experience.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            
+        }
+       arr.push(obj)
+        console.log(arr)
+        formData(arr)
+    })
+        function formData(){
+        arr.forEach((e) => {
+            
+            let div = document.createElement("div");
+            div.style.border = "1px solid green";
+
+            cardContainer.append(div)
+
+            let name = document.createElement("h2");
+            // heading.className = "child"
+            name.innerText = `Name:${e.name}`;
+
+            let employee_id = document.createElement("h2");
+           employee_id.innerText = `Employee_id:${e.employee_id}`;
+
+            let department = document.createElement("h2");
+            department.innerText = `Departament:${e.department}`;
+
+            let experience = document.createElement("h2");
+            experience.innerText = `Experience:${e.experience}`;
+
+            let email=document.createElement("h2");
+            email.innerText=` Email:${e.email}`;
+            
+            let phone=document.createElement("h2");
+            phone.innerText=`Phone:${e.phone}`
+
+            div.append(name,employee_id,department,experience,email,phone)
+
+        })
+
+    }
+
+
+
+</script>
+
+</html>

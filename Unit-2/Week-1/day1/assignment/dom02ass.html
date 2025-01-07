@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+</head>
+<body>
+	<input type="text" name="name" id="name">
+	<select id="gender">
+		<option value="">--</option>
+		<option value="male">M</option>
+		<option value="female">F</option>
+	</select>
+	<input type="text" name="email" id="email">
+	<input type="text" name="mobile" id="mobile">
+	<hr>
+	<h1 id="dName">NAME</h1>
+	<h2 id="dGender">GENDER</h2>
+	<h3 id="dEmail">EMAIL</h3>
+	<h4 id="dMobile">MOBILE</h4>
+	<hr>
+	<button onclick="showName()" >NAME</button>
+	<button onclick="showGender()" >GENDER</button>
+	<button onclick="showEmail()" >EMAIL</button>
+	<button onclick="showMobile()" >MOBILE</button>
+	<button onclick="resetForm()" >RESET FORM</button>
+	<button onclick="resetDisplay()" >RESET DISPLAY</button>
+	<script type="text/javascript">
+        let name=document.getElementById("name")
+        let gender=document.getElementById("gender")
+        let email=document.getElementById("email")
+        let mobile=document.getElementById("mobile")
+        let head1=document.getElementById("dName")
+        let head2=document.getElementById("dGender")
+        let head3=document.getElementById("dEmail")
+        let head4=document.getElementById("dMobile")
+        let btn=document.getElementById("btn")
+        let btn1=document.getElementById("btn1")
+        let btn2=document.getElementById("btn2")
+        let btn3=document.getElementById("btn3")
+        let btn4=document.getElementById("btn4")
+        let btn5=document.getElementById("btn5")
+
+
+		function showName() {
+			// Show filled name inside h1
+            let name = document.getElementById("name").value;
+            head1.innerText = name ? name : "NAME";
+		}
+        // showName()
+
+		function showGender() {
+			// Show the selected gender inside h2
+        let gender=document.getElementById("gender").value;
+            head2.innerText=gender
+           
+        }
+
+		function showEmail() {
+			// Show the filled email inside h3
+            let email = document.getElementById("email").value;
+           head3.innerText = email ? email : "EMAIL";
+		}
+
+		function showMobile() {
+			// Show the filled mobile inside h4
+            var mobile = document.getElementById("mobile").value;
+            head4.innerText = mobile ? mobile : "MOBILE";
+		}
+
+		function resetForm() {
+			// Reset all the form elements to default values (blank "")
+            name.value = "";
+            gender.value = "";
+            email.value = "";
+            mobile.value = "";
+		}
+
+		function resetDisplay() {
+			// Reset all the headings (h1, h2, h3, h4) to blank values
+            head1.innerText = "name:";
+            head2.innerText = "gender:";
+            head3.innerText = "email:";
+            head4.innerText = "mobile:";
+
+           
+		}
+	</script>
+</body>
+</html>
+

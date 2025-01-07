@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>like & dislike</title>
+    <style>
+        img{
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://cdn.pixabay.com/photo/2014/12/10/05/50/english-bulldog-562723_960_720.jpg"/> <br>
+    <button  onclick="increment()">Like</button>
+    <button  onclick="decrement()">Dislike</button>
+    <h1 id="like">0</h1>
+    <h1 id="dislike">0</h1>
+</body>
+<script>
+    let like=document.getElementById("like");
+    let disLike=document.getElementById("dislike");
+
+let count=localStorage.getItem("counter");
+if(count===null){
+    count=0
+}else{
+    like.innerText=count
+}
+function increment(){
+    count++;
+    localStorage.setItem("counter",count)
+    like.innerText=count
+}
+
+let dcount=localStorage.getItem("dcounter")
+if(dcount===null){
+    dcount=0
+}else{
+    dislike.innerText=dcount
+}
+function decrement(){
+    dcount++;
+    localStorage.setItem("dcounter",dcount)
+    dislike.innerText=dcount
+
+}
+</script>
+</html>

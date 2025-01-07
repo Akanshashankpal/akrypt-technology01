@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn{
+            padding: 15px;
+            background-color: chocolate;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading">i am heading</h1>
+    <button id="btn">click me</button>
+
+    <script>
+        let button=document.getElementById("btn")
+        let heading=document.getElementById("heading")
+      
+        button.addEventListener("click",function(){
+            heading.style.color="blue"
+            heading.style.backgroundColor="coral"
+            button.style.backgroundColor="yellow"
+            button.style.color="black"
+        })
+
+    </script>
+</body>
+</html>

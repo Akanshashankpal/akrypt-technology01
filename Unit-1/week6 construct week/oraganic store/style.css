@@ -98,53 +98,6 @@ input:hover{
     cursor: pointer;
     color: green;
 }
-
-/* for a nav bar  */
-/* for a medium screen */
-@media screen and (max-width:800px){
-    body{
-        width: 1000px;
-    }
-    nav{
-        width: 100%;
-    }
-    .opt{
-        display: none;
-    }
-    .menu{
-         margin-left: 75%;
-    }
-    select{
-        display: none;
-    }
-    .home{
-        display: none;
-    }
-    .in{
-        display: none;
-
-    }
-}
-    /* for a small screen */
-    @media screen and (max-width:500px){
-        .opt{
-            display: none;
-        }
-        .menu{
-             margin-left: 75%;
-        }
-        select{
-            display: none;
-        }
-        .home{
-            display: none;
-        }
-        .in{
-            display: none;
-    
-        }
-}
-
 .head{
     margin-left: 70px;
     margin-top: 50px;
@@ -219,39 +172,11 @@ margin-top: 25px;
 .text p{
     color: white;
 }
-/* for a head section */
-/* for a medium screen */
-@media screen and (max-width:800px) {
-    .head{
-        text-align: center;
-    }
-    .num{
-        margin-left: 160px;
-    }
-    body{
-        height: 168vh;
-    }
-    
-    
-}
-/* for a small screen */
-@media screen and (max-width:500px) {
-    .head{
-        text-align: center;
-    }
-    .num{
-        margin-left: 160px;
-    }
-    body{
-        height: 168vh;
-    }
-    
-    
-}
 .box1 i{
     font-size: 50px;
     margin-top: 40px;
 }
+
 
 .cate{
     margin-top: 150px;
@@ -293,23 +218,6 @@ margin-top: 25px;
     cursor: pointer;
     background-color: orangered;
 }
-/* for a slider secction */
-/* for a medium screen */
-@media screen  and (max-width:800px){
-
-    .cate{
-        gap: 60%;
-    }
-    
-}
-/* for a small screen */
-@media screen  and (max-width:500px){
-
-    .cate{
-        gap: 60%;
-    }
-    
-}
 .produce{
     display: flex;
     justify-content: space-around;
@@ -323,29 +231,6 @@ margin-top: 25px;
 }
 .pd img{
     border-radius: 80px;
-}
-/* for a slider image section */
-/* for a medium screen */
-@media screen  and (max-width:800px){
-
-    .produce{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        text-align: center;
-        row-gap: 10px;
-    }
-    
-}
-/* for a small screen */
-@media screen  and (max-width:500px){
-
-    .produce{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        text-align: center;
-        row-gap: 10px;
-    }
-    
 }
 .selling{
     position: relative;
@@ -407,30 +292,6 @@ margin-top: 25px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
-/* for a selling section */
-/* for a medium screen */
-@media screen  and (max-width:800px){
-
-    .catee{
-        gap: 50%;
-    }
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-}
-}
-/* for a small screen */
-@media screen  and (max-width:500px){
-
-    .catee{
-        gap: 50%;
-    }
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-}
-    
-}
 .photo{
     margin-top: 120px;
     display: grid;
@@ -491,69 +352,6 @@ margin-top: 25px;
     color: #fff;
     width: 250px;
 }
-/* for a photo section */
-/* for a medium screen */
-@media screen  and (max-width:800px){
-   
-    .baneer{
-        width: 500px;
-       
-    }
-    
-    .banner{
-    
-        width: 300px;
-       
-    }
-    
-    .bannerr{
-        width: 300px;
-        
-    }
-    .text2{
-        position: relative;
-       
-        left: 650px;
-       
-    }
-    .text3{
-        position: relative;
-        left: 650px;
-      
-    }
-   
-}
-/* for a small screen */
-@media screen  and (max-width:500px){
-
-    .baneer{
-        width: 500px;
-       
-    }
-    
-    .banner{
-    
-        width: 300px;
-       
-    }
-    
-    .bannerr{
-        width: 300px;
-        
-    }
-    .text2{
-        position: relative;
-       
-        left: 650px;
-       
-    }
-    .text3{
-        position: relative;
-        left: 650px;
-      
-    }
-    
-}
 .feature{
     position: relative;
     bottom: 330px;
@@ -566,15 +364,6 @@ margin-top: 25px;
 .product{
     position: relative;
     bottom: 300px;
-}
-/* for a featured section */
-/* for a small screen */
-@media  screen and (max-width:500px) {
-    .product{
-        display: grid;
-        grid-template-columns: repeat(2,2fr);
-    }
-    
 }
 .container{
     position: relative;
@@ -623,38 +412,7 @@ form button{
 form button:hover{
     background-color: #444;
 }
-/* for a medium screen */
-@media  screen and (max-width:800px){
-    .container img{
-        width: 820px;
-    }
-    .content{
-        width: 320px;
-    }
-    form input{
-        width: 200px;
-    }
-    form button{
-        width: 200px;
-    }
-    
 
-}
-/* for a small screen */
-@media  screen and (max-width:500px) {
-    .container img{
-        width: 820px;
-    }
-    .content{
-        width: 320px;
-    }
-    form input{
-        width: 200px;
-    }
-    form button{
-        width: 200px;
-    }
-}
 
 .maindiv{
     position: relative;
@@ -684,28 +442,7 @@ form button:hover{
     display: flex;
     justify-content: space-around;
 }
-/* for a post section */
-/* for a medium screen */
-@media screen and (max-width:800px){
-    .post{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-    }
-    .blog{
-        margin: auto;
-    }
-}
-/* for a small screen */
-@media screen and (max-width:500px){
-    .post{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-        row-gap: 30px;
-    }
-    .blog{
-        margin: auto;
-    }
-}
+
 .poster{
     background-color: gold;
     width: 1100px;
@@ -729,47 +466,6 @@ form button:hover{
     width: 500px;
 }
 
-/* for a medium screen */
-@media screen and (max-width:800px){
-    .poster{
-        width: 700px;
-        margin: auto;
-    }
-    .phone img{
-        width: 300px;
-        margin-top: 50px;
-        position: relative;
-        top: 100px;
- 
-     }
-    
-    .divv2{
-        position: relative;
-        margin-top: 70px;
-    }
-   
-    
-}
-/* for a small screen */
-@media screen and (max-width:500px){
-    .poster{
-        width: 700px;
-        margin: auto;
-    }
-    .phone img{
-        width: 400px;
-        margin-top: 50px;
-        position: relative;
-        top: 120px;
- 
-     }
-    
-    .divv2{
-        position: relative;
-        margin-top: 90px;
-    }
-   
-}
 .iconn h1{
     margin-left: 60px;
     margin-top: 50px;
@@ -793,20 +489,7 @@ form button:hover{
 .buttons button:hover{
     background-color: rgb(250, 201, 141);
 }
-/* for a medium screen */
-@media screen and (max-width:800px){
-    .buttons{
-        display: grid;
-        grid-template-columns: repeat(2,2fr);
-    }
-}
-/* for a small screen */
-@media screen and (max-width:500px){
-    .buttons{
-        display: grid;
-        grid-template-columns: repeat(2,2fr);
-    }
-}
+
 
 #maindiv5{
     width: 100%;
@@ -835,20 +518,6 @@ form button:hover{
      color: gray;
   }
   
-  /* for a medium screen */
-@media screen and (max-width:800px){
-    .div51{
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-    }
-}
-/* for a small screen */
-@media screen and (max-width:500px){
-    .div51{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-    }
-}
 #maindiv6{
     width: 100%;
     height: 230px;
@@ -871,12 +540,12 @@ form button:hover{
    
     
  }
- .btnn{
+ .btnn1{
     background-color: white;
     border: none;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
  }
- .btnn:hover{
+ .btnn1:hover{
     background-color: rgb(209, 202, 202);
  }
  #fdiv{
@@ -921,30 +590,16 @@ form button:hover{
     margin-top: 7px;
 
  }
-  /* for a medium screen */
-@media screen and (max-width:800px){
-    #fdiv{
-        display: grid;
-        grid-template-columns: repeat(2,2fr);
-    }
-}
-/* for a small screen */
-@media screen and (max-width:500px){
-    #fdiv{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-    }
-}
 #lastdiv{
     margin-top: 120px;
     margin-left: 20px;
-    width: 100%;
+    margin-right: 20px;
     height: 40px;
     display: flex;
     font-size: large;
     color: gray;
- }
- #html{
+}
+#html{
     margin-left: 60px;
     width: 50%;
  }

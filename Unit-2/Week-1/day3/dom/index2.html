@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .child {
+        color: red;
+    }
+</style>
+
+<body>
+    <div id="cont" style="border: 1px solid red; height: 600px; display: flex; gap: 20px; text-align: center;">
+
+    </div>
+    <script>
+        let employee = [
+            { name: "alice", role: "devloper", salary: "50,000" },
+            { name: "Bob", role: "Designer", salary: "45,000" },
+            { name: "Charlie", role: "Manager", salary: "60,000" }
+
+        ]
+
+
+        employee.forEach((e) => {
+            let image = document.createElement("img");
+            image.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_dSygMWbKQFzgP20rLq6crx3itm6mnQ5hcA&s")
+
+            let div = document.createElement("div");
+            div.style.border = "1px solid green";
+
+            cont.append(div)
+
+
+            let heading = document.createElement("h1");
+            heading.className = "child"
+            heading.innerText = `name:${e.name}`;
+
+            let heading2 = document.createElement("h3");
+            heading2.innerText = `role:${e.role}`;
+
+            let p = document.createElement("p");
+            p.innerText = `salary:${e.salary}`;
+            div.append(image, heading, heading2, p)
+
+        })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

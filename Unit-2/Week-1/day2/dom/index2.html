@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day2</title>
+    <style>
+        #heading{
+            background-color: cornflowerblue;
+            color: white;
+        }
+        .keypad .btn{
+            background-color: black;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="heading"> day2</h1>
+    <div class="keypad">
+    <button class="btn">1</button>
+    <button class="btn">1</button>
+    <button class="btn">2</button>
+    <button class="btn">3</button>
+    <button class="btn">4</button>
+    <button class="btn">5</button>
+    <button class="btn">6</button>
+    <button class="btn">7</button>
+    <button class="btn">8</button>
+    <button class="btn">9</button>
+    <button class="btn">0</button>
+    </div>
+<script>
+    let heading=document.getElementById("heading")
+    let submit=document.getElementById("sub")
+    // let buttons=document.getElementsByClassName("btn")
+    //  console.log(buttons)
+let buttons=document.querySelectorAll(".keypad .btn")
+console.log(buttons)
+
+buttons.forEach(function(e,i){
+    e.addEventListener("click",function(){
+        console.log(e.innerText)
+    })
+ 
+})
+    //  for(let i=0;i<buttons.length;i++){
+    //     console.log(buttons[i])
+        
+    //     buttons[i].addEventListener("click",function(event){
+    //         console.log(event.target.innerText)
+    //         // console.log(event.)
+            
+    //     })
+    //  }
+    
+</script>
+</body>
+</html>

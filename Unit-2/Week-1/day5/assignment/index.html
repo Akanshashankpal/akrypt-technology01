@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up Page</title>
+    <style>
+        
+        body {
+            background-color: cornflowerblue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+       
+        .nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .nav a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 0 10px;
+            border-radius: 5px;
+           
+        }
+
+        .nav a:hover {
+            background-color: #575757;
+        }
+
+        /* Signup box styling */
+        #signup {
+            width: 350px;
+            height: 350px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            
+        }
+
+        #signup h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            border: none;
+            background-color: forestgreen;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="nav">
+        <a href="index.html">Signup</a>
+        <a href="signin.html">Signin</a>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signup">
+        <h1>Please Enter Your Details</h1>
+        <form id="form">
+            <input type="text" id="name" placeholder="Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <input type="submit" value="Submit"  />
+        </form>
+    </div>
+
+</body>
+<script>
+    let signUp = document.getElementById("signup");
+    let signupForm = document.getElementById("form")
+
+    signupForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+          
+        let obj = {
+            name:signupForm.name.value,
+            email:signupForm.email.value,
+            pass:signupForm.password.value
+        }
+        console.log(obj)
+
+        localStorage.setItem("account-Data", JSON.stringify(obj))
+        alert("signUp successfully")
+
+    })
+</script>
+
+</html>

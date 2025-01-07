@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="cont" style="border: 1px solid red; height: 400px;">
+
+    </div>
+
+
+    <script>
+        //reateElement("h1")
+        //text
+        //perent class
+        //append
+        let arr = ["I am heading1", "I am heading2", "I am heading3", "I am heading4"]
+        let cont = document.getElementById("cont");
+
+        let h1 = document.createElement("h1")
+        h1.style.color = "red"
+        h1.innerText = "I am heading"
+        cont.append(h1)
+
+        arr.forEach((e) => {
+            let cont = document.getElementById("cont");
+
+            let h1 = document.createElement("h1")
+            h1.style.color = "green"
+            h1.innerText = e
+            cont.append(h1)
+        })
+
+
+        let div=document.createElement("div")
+        div.style.border="1px solid black"
+        div.innerText="i am heading1"
+        
+        let h2=document.createElement("")
+        // let h1 = document.createElement("h1")
+        //     h1.style.color = "green"
+        //     h1.innerText = e
+        //     div.append(h1)
+     cont.append(div)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #cont {
+        border: 0px solid red;
+        height: 500px;
+        background-color:rgb(243, 242, 242);
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .child {
+        border: 0px solid green;
+        margin: 0 10px;
+        height: 430px;
+        width: 300px;
+        background-color: white;
+        border-radius: .5rem;
+    }
+
+    .image {
+        height: 150px;
+        width: 150px;
+        padding-right: 40px;
+        margin-top: 10px;
+        background-color: #3c72fc;
+    }
+    .btn{
+        display:block;
+        margin-left: 110px;
+        margin-top: 20px;
+        background-color: rgb(57, 219, 57);
+        color: white;
+        border: none;
+        padding: 15px;
+    }
+    .btn:hover{
+        background-color: lawngreen;
+    }
+</style>
+
+<body>
+    <div id="cont"></div>
+
+    <script>
+
+        let product = [
+            {
+                item: "PS4 Pro",
+                original: 399.99,
+                discount: 10,
+                stock: 3,
+                total: 1199.97,
+                image: "https://akrypttechnologies.com/_next/static/media/Akrypt%20Technologies%20Logo%20Full%20Transparent%20White.fb8c32d4.svg",
+            },
+            {
+                discount: 10,
+                item: "Xbox One X",
+                original: 499.99,
+                stock: 1,
+                total: 449.991,
+                image: "https://akrypttechnologies.com/_next/static/media/Akrypt%20Technologies%20Logo%20Full%20Transparent%20White.fb8c32d4.svg",
+
+            },
+            {
+                item: "Nintendo Switch",
+                original: 299.99,
+                stock: 4,
+                total: 1199.96,
+                image: "https://akrypttechnologies.com/_next/static/media/Akrypt%20Technologies%20Logo%20Full%20Transparent%20White.fb8c32d4.svg",
+
+            },
+
+        ]
+
+        let cont = document.getElementById("cont")
+        product.forEach((e) => {
+
+            let div = document.createElement("div");
+            div.className = "child"
+            cont.append(div)
+
+            let image = document.createElement("img");
+            image.className = "image"
+            image.setAttribute("src", e.image)
+
+            let heading = document.createElement("h2");
+            // heading.className = "child"
+            heading.innerText = `${e.item}`;
+
+            let original = document.createElement("p");
+            original.innerText = `Original price:${e.original}`;
+
+            let discount = document.createElement("p");
+            discount.innerText = `Discount:${e.discount}`;
+
+            let stock = document.createElement("p");
+            stock.innerText = `Stock:${e.stock}`;
+
+            let total = document.createElement("h");
+            total.innerText = `Total:${e.total}`;
+            total.style.color="#1350eb"
+
+            let button = document.createElement("button");
+            button.className = "btn"
+            button.innerText = "BUY NOW"
+
+            div.append(image, heading, original, discount, stock, total, button)
+        })
+    </script>
+</body>
+
+</html>

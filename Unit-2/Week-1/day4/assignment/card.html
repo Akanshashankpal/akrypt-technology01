@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Akrypt Employee Records</title>
+    <style>
+        #card-container{
+            border: 2px solid red;
+            display: flex;
+            
+        }
+        
+        .btn{
+            background-color: red;
+            color: white;
+        }
+        
+    </style>
+  </head>
+  <body>
+    <!-- Use this form for taking the inputs  -->
+    <form id="form">
+      <input placeholder="Name" type="text" id="name" />
+      <input placeholder="Employee ID" type="text" id="employee_id" />
+      <select id="department">
+        <option value="">Select Department</option>
+        <option value="HR">HR</option>
+        <option value="Finance">Finance</option>
+        <option value="Engineering">Engineering</option>
+      </select>
+      <input placeholder="Experience" type="number" id="experience" />
+      <input placeholder="Email" type="email" id="email" />
+      <input placeholder="Mobile No." type="number" id="mobile" />
+      <input type="submit" value="Submit" />
+    </form>
+
+
+    <!-- Use this select tag for filtering  -->
+    <select id="filter">
+      <option value="">Select Department</option>
+      <option value="HR">HR</option>
+      <option value="Finance">Finance</option>
+      <option value="Engineering">Engineering</option>
+    </select>
+  <div id="card-container"></div>
+    <!-- Append  here using JS & DOM  -->
+  </body>
+  <script>
+    let form=document.getElementById("form")
+    let filter=document.getElementById("filter")
+    let con=document.getElementById("card-container")
+    
+    // con.className="con"
+    let div=document.createElement("div")
+    div.className="div1"
+    con.append(div)
+
+    let arr=[]
+    form.addEventListener("submit",function(e){
+        e.preventDefault();
+        div.innerText=null;
+        let obj={
+            name:form.name.value,
+            employee_id:form.employee_id.value,
+            department:form.department.value,
+            experience:form.experience.value,
+            email:form.email.value,
+            mobile:form.mobile.value,
+        }
+        arr.push(obj)
+      formData(arr)
+    })
+    function formData(arr){
+        arr.forEach((e,i)=>{
+            let h1=document.createElement("h3")
+            h1.innerHTML=e.name
+
+            let h2=document.createElement("h3")
+            h2.innerHTML=e.employee_id
+
+            let h3=document.createElement("h3")
+            h3.innerHTML=e.department
+
+            let h4=document.createElement("h3")
+            if(e.experience>5){
+               h4.innerText="senior"
+            }
+            else if(e.experience>2 && e.experience<=5)
+            {
+            h4.innerText="junior"
+            }
+            else if(e.experience<=1)
+            {
+                h4.innerText="trainer"
+            }
+            else{
+                h4.innerText="N/A"
+            }
+           
+
+            let h5=document.createElement("h3")
+            h5.innerHTML=e.email
+
+            let h6=document.createElement("h3")
+            h6.innerHTML=e.mobile
+
+            let h7=document.createElement("h3")
+            h7.innerHTML="fresher"
+
+            let btn=document.createElement("button")
+            // btn.style.backgroundColor="red"
+            // btn.style.color="white"
+            btn.className="btn"
+            btn.innerText="Delete"
+            div.append(h1,h2,h3,h4,h5,h6,h7,btn)
+        })
+    }
+   
+    filter.addEventListener("change",function(){
+   div.innerText=null;
+    let selectedId=filter.value;
+    console.log(" selectedId")
+    if(selectedId){
+        let filter=arr.filter((item)=>{
+            return item.department==selectedId
+        });
+        console.log(filter)
+        formData(filter);
+
+        }
+        else{
+            formData(arr);
+        }
+    
+})
+
+</script>
+</html>

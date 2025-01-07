@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Mathematical Operations</h1>
+    <div style="width: 500px; height: 200px ;border: 2px solid red;">
+        <p id="result">Result</p>
+    </div>
+    <br>
+    <input type="number" placeholder="enter first number" id="num1">
+    <input type="number" placeholder="enter second number" id="num2">
+    <select id="calcu">
+        <option value="Select one">select one</option>
+        <option value="add">add</option>
+        <option value="sub">sub</option>
+        <option value="pro">pro</option>
+        <option value="div">div</option>
+    </select>
+    <br><br>
+    <button id="btn1" style="margin: 10px;">click me</button>
+</body>
+<script>
+
+    let num1=document.getElementById("num1")
+    let num2=document.getElementById("num2")
+    let result=document.getElementById("result")
+    let btn1=document.getElementById("btn1")
+    let calcu=document.getElementById("calcu")
+    console.log(calcu)
+
+    btn1.addEventListener("click", sum)
+
+    function sum()
+    {
+        if(calcu.value=="add"){
+            result.innerText= `Result is:- ${Number(num1.value)+Number(num2.value)}`
+            
+        }
+         else if(calcu.value=="sub")
+         {
+             result.innerText=`Result is:- ${Number(num1.value)-Number(num2.value)}`
+         }
+         else if(calcu.value=="pro")
+         {
+             result.innerText=`Result is:- ${Number(num1.value)*Number(num2.value)}`
+         }
+         else if(calcu.value=="div")
+         {
+             result.innerText=`Result is:- ${Number(num1.value)/Number(num2.value)}`
+         }
+         else{
+            alert("please give valid input")
+         }
+    }
+
+    
+
+</script>
+</html>

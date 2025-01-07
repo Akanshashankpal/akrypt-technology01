@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Registration</h1>
+   
+<table border="1" style= "border: 2px solid rgb(25, 0, 255);border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Fees</th>
+        <th>Registration</th>
+      </tr>
+    </thead>
+    <tbody id="tablebody">
+    </tbody>
+  </table>
+</body>
+<script>
+    let registrationData=JSON.parse(localStorage.getItem("regArr"))
+    console.log(registrationData)
+    let tablebody = document.getElementById("tablebody");
+   
+    registrationData.forEach((e,i)=>{
+     let tr=document.createElement("tr")
+     tablebody.append(tr)
+
+
+     let snTd=document.createElement("td")
+     snTd.innerText=i+1
+
+
+     let nameTd=document.createElement("td")
+     nameTd.innerText=e.name
+
+
+     let emailTd=document.createElement("td")
+     emailTd.innerText=e.email
+
+
+     let courseTd=document.createElement("td")
+     courseTd.innerText=e.course
+
+
+     let feesTd=document.createElement("td")
+    //  feesTd.innerText="Rs.9999"
+    e.course=="fswd"?feesTd.innerText="Rs.9999":e.course=="fd"?feesTd.innerText="Rs.5999":feesTd.innerText="Rs.3999"
+   
+     tr.append(snTd,nameTd,emailTd,courseTd,feesTd)
+
+
+ })
+
+
+
+
+</script>
+</html>

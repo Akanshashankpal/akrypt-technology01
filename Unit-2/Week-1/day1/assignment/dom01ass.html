@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arthimatic operation</title>
+</head>
+
+<body>
+    <h1>Akrypt Technology</h1>
+
+    <div style="width: 500px; height: 200px; border: 2px solid red;">
+        <p id="result">Result</p>
+    </div>
+    <br>
+    <input type="number" id="input1" placeholder="input1">
+    <input type="number" id="input2" placeholder="input2">
+    <br>
+    <br>
+    <button style="color:white; padding: 10px; background-color: black;" id="btn1">addition</button>
+    <button style="color: white;padding: 10px; background-color: black;" id="btn2">substraction</button>
+    <button style="color:white ;padding: 10px; background-color: black;" id="btn3">product</button>
+    <button style="color: white; padding: 10px; background-color: black;" id="btn4">divide</button>
+
+
+    <script>
+        let result = document.getElementById("result");
+        let input1 = document.getElementById("input1");
+        let input2 = document.getElementById("input2");
+        let method = document.getElementById("method");
+        let btn1 = document.getElementById("btn1");
+        let btn2 = document.getElementById("btn2")
+        let btn3 = document.getElementById("btn3")
+        let btn4 = document.getElementById("btn4")
+
+
+        btn1.addEventListener("click", sumbitData);
+        btn2.addEventListener("click", sub)
+        btn3.addEventListener("click", product)
+        btn4.addEventListener("click", divide)
+
+
+        function sumbitData() {
+            let addition = Number(input1.value) + Number(input2.value)
+
+            if (addition == 0) {
+                alert("please take input")
+            } else (
+                result.innerText = `result is ${addition}`
+            )
+
+        }
+        function sub() {
+            let substraction = Number(input1.value) - Number(input2.value)
+            if (substraction == 0) {
+                alert("please take input")
+            } else (
+                result.innerText = `result is ${substraction} `
+            )
+        }
+        function product() {
+            let product = Number(input1.value) * Number(input2.value)
+            if (product == 0) {
+                alert("please take input")
+            } else (
+                result.innerText = `result is ${product} `
+            )
+
+        }
+        function divide() {
+            let divide = Number(input1.value) / Number(input2.value)
+            if (divide == 0) {
+                alert("please take input")
+            } else (
+                result.innerText = `result is ${divide} `
+            )
+
+        }
+    </script>
+</body>
+
+</html>

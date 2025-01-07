@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child {
+            width: 200px;
+            height: 200px;
+            color: aqua;
+        }
+
+        .heading {
+            color: red;
+        }
+
+        .image {
+            width: 200px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="" id="form">
+
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <input type="email" id="email" placeholder="Enter Your Email">
+
+        <select id="course">
+            <option value="">Select Course</option>
+            <option value="fswd">FSWD</option>
+            <option value="fd">FD</option>
+            <option value="bd">BD</option>
+        </select>
+        <input type="submit" id="submit">
+        <br>
+        <select id="filter">
+            <option value="">Select Course</option>
+            <option value="fswd">FSWD</option>
+            <option value="fd">FD</option>
+            <option value="bd">BD</option>
+        </select>
+
+    </form>
+    <hr>
+    
+    <table border="1" style="border: 1px solid blue; border-collapse: collapse;">
+        <tr>
+            <th>S.NO.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>fees</th>
+        </tr>
+        <tbody id="tableBody">
+
+        </tbody>
+
+    </table>
+
+    <script>
+        let form = document.getElementById("form");
+        let filter = document.getElementById("filter");
+        let tableBody = document.getElementById("tableBody");
+        let arr = [];
+
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Collect form data into an object
+            let obj = {
+                name: form.name.value,
+                email: form.email.value,
+                course: form.course.value,
+            };
+
+            // Add the object to the array
+            arr.push(obj);
+
+            // Call function to populate the table
+            formData(arr);
+
+
+        });
+
+       function formData(arr) {
+
+            tableBody.innerHTML = "";
+
+            arr.forEach((e, i) => {
+                let tr = document.createElement("tr");
+                tableBody.append(tr);
+
+                let snTd = document.createElement("td");
+                snTd.innerText = i + 1;
+
+                let nameTd = document.createElement("td");
+                nameTd.innerText = e.name;
+
+                let emailTd = document.createElement("td");
+                emailTd.innerText = e.email;
+
+                let courseTd = document.createElement("td");
+                courseTd.innerText = e.course;
+
+                let feesTd = document.createElement("td");
+
+                // Assign fee based on course type
+                if (e.course === "fswd") {
+                    feesTd.innerText = "9999/-";
+                } else if (e.course === "fd") {
+                    feesTd.innerText = "5999/-";
+                } else if (e.course === "bd") {
+                    feesTd.innerText = "3999/-";
+                } else {
+                    feesTd.innerText = "N/A";
+                }
+
+                tr.append(snTd, nameTd, emailTd, courseTd, feesTd);
+                
+            });
+        }
+        
+        filter.addEventListener("change", function() {
+            tablebody.innerHTML=null;
+            let selectedCourse = filter.value;
+            console.log(selectedCourse)
+            if (selectedCourse) {
+                let filteredData = arr.filter((item )=> {
+                    return item.course == selectedCourse
+                });
+                console.log(filteredData)
+                formData(filteredData);
+            } else {
+                formData(arr);
+            }
+});
+
+
+
+    </script>
+
+</body>
+
+</html>

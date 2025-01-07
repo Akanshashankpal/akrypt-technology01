@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child {
+        width: 200px;
+        height: 200px;
+        color: aqua;
+      }
+      .heading {
+        color: red;
+      }
+      .image {
+        width: 200px;
+       
+      }
+    </style>
+</head>
+<body>
+    <a href="registration.html">Registration</a>
+    <br><br>
+    <form action="" id="form">
+
+
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <input type="email" id="email" placeholder="Enter Your Email">
+     
+        <select  id="course">
+            <option value="">Select Course</option>
+            <option value="fswd">FSWD</option>
+            <option value="fd">FD</option>
+            <option value="bd">BD</option>
+        </select>
+       <input type="submit" id="submit">
+
+
+    </form>
+<br>
+    <select  id="filter">
+        <option value="">Select Course</option>
+        <option value="fshbbwd">FSWD</option>
+        <option value="fd">FD</option>
+        <option value="bd">BD</option>
+    </select>
+<hr>
+<div id="cont" style="display: flex; border: 2px solid red"> </div>
+
+
+<table border="1" style= "border: 2px solid rgb(25, 0, 255);border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Fees</th>
+        <th>Registration</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="tablebody">
+    </tbody>
+  </table>
+
+
+</body>
+<script>
+ let form=document.getElementById("form")
+ let cont = document.getElementById("cont");
+ let filter = document.getElementById("filter");
+ let tablebody = document.getElementById("tablebody");
+let arr=JSON.parse(localStorage.getItem("formArr"));
+console.log(arr)
+if(arr===null){
+    arr=[]
+}else{
+    kuchBhi()
+}
+
+
+let regArray=JSON.parse(localStorage.getItem("regArr"));
+console.log(arr)
+if(regArray===null){
+    regArray=[]
+}
+
+
+form.addEventListener("submit",function(e){
+e.preventDefault();
+let obj={
+    name:form.name.value,
+    email:form.email.value,
+    course:form.course.value
+}
+    arr.push(obj)
+    localStorage.setItem("formArr",JSON.stringify(arr))
+    console.log(arr)
+    tablebody.innerHTML=null
+ kuchBhi()
+
+
+})
+
+
+function kuchBhi(){
+
+
+    arr.forEach((e,i)=>{
+     let tr=document.createElement("tr")
+     tablebody.append(tr)
+
+
+     let snTd=document.createElement("td")
+     snTd.innerText=i+1
+
+
+     let nameTd=document.createElement("td")
+     nameTd.innerText=e.name
+
+
+     let emailTd=document.createElement("td")
+     emailTd.innerText=e.email
+
+
+     let courseTd=document.createElement("td")
+     courseTd.innerText=e.course
+     
+     let feesTd=document.createElement("td")
+    //  feesTd.innerText="Rs.9999"
+    e.course=="fswd"?feesTd.innerText="Rs.9999":e.course=="fd"?feesTd.innerText="Rs.5999":feesTd.innerText="Rs.3999"
+    let deleteTd=document.createElement("td")
+     deleteTd.innerText="Registration"
+     deleteTd.addEventListener("click",function(){
+        regArray.push(e)
+        localStorage.setItem("regArr",JSON.stringify(regArray))
+        remove(i)
+        // console.log(regArray)
+     })
+    let ddeleteTd=document.createElement("td")
+     ddeleteTd.innerText="Delete"
+     ddeleteTd.addEventListener("click",function(){
+     
+        remove(i)
+       
+     })
+
+
+     tr.append(snTd,nameTd,emailTd,courseTd,feesTd,deleteTd,ddeleteTd)
+
+
+ })
+
+
+
+
+}
+
+
+filter.addEventListener("change", function() {
+            tablebody.innerHTML=null;
+            let selectedCourse = filter.value;
+            console.log(selectedCourse)
+            if (selectedCourse) {
+                let filteredData = arr.filter((item )=> {
+                    console.log(item)
+                    return item.course == selectedCourse
+                });
+                console.log(filteredData)
+                arr=filteredData
+                // formData(filteredData);
+                kuchBhi()
+
+
+
+
+            } else {
+                // form.ata(arr);
+                kuchBhi()
+
+
+            }
+});
+
+
+function remove(index){
+    tablebody.innerHTML=null;
+    arr.splice(index,1)
+    localStorage.setItem("formArr",JSON.stringify(arr))
+    kuchBhi()
+}
+ 
+</script>
+</html>

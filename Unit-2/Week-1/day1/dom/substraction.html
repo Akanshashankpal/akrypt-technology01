@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>substraction</title>
+</head>
+<body>
+    <h1>Akrypt Technology</h1>
+
+    <div style="width: 500px; height: 200px; border: 2px solid red;">
+       <p id="result">Result</p> 
+    </div>
+    <br>
+    <input type="number" id="input1" placeholder="input1">
+    <input type="number" id="input2" placeholder="input2">
+
+   
+    <br> 
+    <button style="color: coral;" id="btn">submit</button>
+
+    <script>
+        let result=document.getElementById("result");
+        let input1=document.getElementById("input1");
+        let input2=document.getElementById("input2");
+        let btn=document.getElementById("btn");
+
+        btn.addEventListener("click",sumbitData)
+
+        function sumbitData(){
+            let sub = Number(input1.value)-Number(input2.value)
+            if(sub==0){
+                alert("please enter a input")
+            }else{
+                 result.innerText=`result is ${sub} `
+            }
+           
+           
+           
+            // console.log(gender.value)
+        }
+
+    </script>
+</body>
+</html>

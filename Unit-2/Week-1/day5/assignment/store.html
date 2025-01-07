@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up Page</title>
+    <style>
+        /* Write all necessary css here  */
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        h1 {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <button id="store-name">Store name to LS</button>
+    <button id="get-name">Get name from LS</button>
+    <h1 id="show-name">
+        <!-- Here Show the Name  -->
+    </h1>
+
+
+    <button id="store-mob">Store Mobile Num to LS</button>
+    <button id="get-mob">Get Mobile Number from LS</button>
+    <h1 id="show-mob">
+        <!-- Here show the mobile No  -->
+    </h1>
+
+
+    <button id="store-hobbies">Store Hobbies to LS</button>
+    <button id="get-hobbies">Get Hobbies from LS</button>
+    <h1 id="show-hobbies">
+        <!-- Here show the hobbies  -->
+    </h1>
+
+
+    <button id="store-students">Store Students to LS</button>
+    <button id="get-students">Get Students from LS</button>
+    <h1 id="show-students">
+        <!-- Here show students  -->
+    </h1>
+</body>
+<script>
+    // Write all necessary JS here
+    //<---------part1---------->
+
+    let btn = document.getElementById("store-name");
+    let btn2 = document.getElementById("get-name");
+    let showName = document.getElementById("show-name");
+
+    btn.addEventListener("click", function () {
+        localStorage.setItem("username", "school")
+        alert(" name is store in LS")
+    })
+
+    btn2.addEventListener("click", function () {
+        // showName.innerHTML=null;
+        let name = localStorage.getItem("username")
+        showName.innerText = name ? name : "not found name"
+    })
+
+    //<-------------part-2--------------->
+    let mobile = document.getElementById("store-mob")
+    let getMob = document.getElementById("get-mob")
+    let showMob = document.getElementById("show-mob")
+
+    mobile.addEventListener("click", function () {
+        localStorage.setItem("mobile", "9999999999")
+        alert(" Mobile Num is store in LS")
+    })
+
+    getMob.addEventListener("click", function () {
+        let mob = localStorage.getItem("mobile")
+        showMob.innerText = mob ? mob : "mob not found"
+    })
+
+    //<-------------part3------------->
+    let hobbie = document.getElementById("store-hobbies");
+    let getHobbies = document.getElementById("get-hobbies");
+    let showHobbies = document.getElementById("show-hobbies")
+
+    let hobbies = ["cricket", "music"]
+    // console.log(hobby)
+    hobbie.addEventListener("click", function () {
+
+        localStorage.setItem("my_hobbies", JSON.stringify(hobbies))
+
+        alert("hobbies store in a LS")
+
+    })
+
+    getHobbies.addEventListener("click", function () {
+        let gHobbies = JSON.parse(localStorage.getItem("my_hobbies"))
+
+        if (showHobbies) {
+            showHobbies.innerText = gHobbies.join("/")
+        } else {
+            showHobbies.innerText = "no hobbies found"
+        }
+
+    })
+//<----------part-4-------->
+    let storeStudents = document.getElementById("store-students")
+    let getStudents = document.getElementById("get-students")
+    let showStudents = document.getElementById("show-students")
+
+    storeStudents.addEventListener("click", function () {
+        
+    let students = [
+        { name: "Nrupul", place: "Banglore" },
+        { name: "Prateek", place: "Mumbai" }
+
+    ]
+    // console.log(students)
+        localStorage.setItem("students",JSON.stringify(students))
+        alert("student name are store in LS")
+    })
+
+    getStudents.addEventListener("click",function(){
+        let storeStudents = JSON.parse(localStorage.getItem("students"))
+
+        if (storeStudents) {
+            let studentName=storeStudents.map(student=>student.name)
+            showStudents.innerText = studentName.join("/")
+        } else {
+            showStudents.innerText = "no student found"
+        }
+    })
+
+</script>
+
+</html>

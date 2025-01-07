@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Masai Games</title>
+  </head>
+  <body>
+    <div id="min">min</div>
+    <div id="max">max</div>
+    <div id="score">
+    </div>
+    <div id="keypad">
+      <button>0</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+    </div>
+    <button id="enter">ENTER</button>
+  </body>
+  <script>
+let score=document.getElementById("score")
+let min=document.getElementById("min")
+let max=document.getElementById("max")
+let enter=document.getElementById("enter")
+let buttons=document.querySelectorAll("#keypad button")
+console.log(buttons)
+buttons.forEach((el,i)=>{
+   console.log(el)
+   el.addEventListener=("click",function(){
+    console.log(el.innerText)
+    // score.innerText+=el.innerText
+    score.innerText+=el.innerText
+   })
+   
+})
+let max_value=-Infinity
+let min_value=Infinity
+enter.addEventListener("click",function(){
+  if(min_value>Number(score.innerText)){
+    min.innerText=`Min:${score.innerText}`
+    min_value=Number(score.innerText)
+  }
+  if(maxvalue<Number(score.innerText))
+  {
+    max.innerText=`Max:${score.innerText}`
+    maxvalue=Number(score.innerText)
+  }
+
+  score.innerText=""
+  })
+    
+
+</script>
+</html>
+
+
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child {
+            width: 200px;
+            height: 200px;
+            color: aqua;
+        }
+
+        .heading {
+            color: red;
+        }
+
+        .image {
+            width: 200px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="" id="form">
+
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <input type="email" id="email" placeholder="Enter Your Email">
+
+        <select id="course">
+            <option value="">Select Course</option>
+            <option value="fswd">FSWD</option>
+            <option value="fd">FD</option>
+            <option value="bd">BD</option>
+        </select>
+        <input type="submit" id="submit">
+        <!-- <select id="filter">
+            <option value="">Select Course</option>
+            <option value="fswd">FSWD</option>
+            <option value="fd">FD</option>
+            <option value="bd">BD</option>
+        </select> -->
+
+    </form>
+    <hr>
+    <div id="cont" style="display: flex; border: 2px solid red"> </div>
+    <table border="1" style="border: 1px solid blue; border-collapse: collapse;">
+        <tr>
+            <th>S.NO.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>fees</th>
+        </tr>
+        <tbody id="tableBody">
+
+        </tbody>
+
+    </table>
+
+
+</body>
+<script>
+    let form = document.getElementById("form");
+    let cont = document.getElementById("cont");
+    let tableBody = document.getElementById("tableBody");
+    let arr = []
+    console.log(cont.innerHTML)
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        cont.innerHTML = null;
+        tableBody.innerHTML = null;
+
+        let obj = {
+            name: form.name.value,
+            email: form.email.value,
+            course: form.course.value,
+        }
+        console.log(obj)
+
+        arr.push(obj)
+        console.log(arr)
+
+        formData(arr)
+
+    })
+
+
+    function formData() {
+        arr.forEach((e, i) => {
+            let tr = document.createElement("tr")
+            tableBody.append(tr)
+
+            let snTd = document.createElement("td")
+            snTd.innerText = i + 1
+
+
+            let nameTd = document.createElement("td")
+            nameTd.innerText = e.name
+
+            let emailTd = document.createElement("td")
+            emailTd.innerText = e.email
+
+
+            let courseTd = document.createElement("td")
+            courseTd.innerText = e.course
+
+            let feesTd = document.createElement("td")
+           
+            e.course === "fswd"? feesTd.innerText = "9999/-": e.course === "fd"? feesTd.innerText = "5999/-": e.course === "bd"? feesTd.innerText = "3999/-": null;
+
+             tr.append(snTd, nameTd, emailTd, courseTd, feesTd)
+        })
+
+
+
+    }
+
+
+
+
+</script>
+
+</html>

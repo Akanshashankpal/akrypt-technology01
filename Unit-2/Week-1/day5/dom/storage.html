@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+</head>
+<body>
+    <h1>local storage</h1>
+    <h2 id="heading">0</h2>
+    <button onclick="increment()">increment</button>
+</body>
+<script>
+    let heading=document.getElementById("heading");
+
+    let count=localStorage.getItem("counter");
+    if(count===null){
+        count=0
+    }else{
+        heading.innerText=count
+    }
+    function increment(){
+        count++;
+        localStorage.setItem("counter",count)
+        heading.innerText=count
+    }
+</script>
+</html>
