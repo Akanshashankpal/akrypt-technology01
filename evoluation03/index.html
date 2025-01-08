@@ -15,6 +15,7 @@
             color: #333;
         }
 
+
         /* Navbar styling */
         #navbar {
             display: flex;
@@ -26,9 +27,11 @@
             height: 50px;
         }
 
+
         #navbar h2 {
             margin: 0;
         }
+
 
         #navbar a {
             text-decoration: none;
@@ -36,9 +39,11 @@
             margin: 0 10px;
         }
 
+
         #navbar a:hover {
             text-decoration: underline;
         }
+
 
         /* Form container styling */
         #create {
@@ -48,9 +53,11 @@
             padding: 20px;
         }
 
+
         h1 {
             color: #007BFF;
         }
+
 
         /* Form styling */
         form {
@@ -65,11 +72,13 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
+
         input, select {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
 
         input[type="submit"] {
             background-color: #007BFF;
@@ -78,9 +87,11 @@
             cursor: pointer;
         }
 
+
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
 
         label {
             font-weight: bold;
@@ -98,6 +109,7 @@
             <a href="./bookmark.html"><h2>Bookmark</h2></a>
         </div>
     </div>
+
 
     <!-- Form Section -->
     <div id="create">
@@ -119,31 +131,32 @@
         </form>
     </div>
 
+
 </body>
 <script>
-  let form=document.getElementById("form")
-  let books=JSON.parse(localStorage.getItem("book-list"))
-  if(books===null){
-    books=[]
-  }
-  
-  form.addEventListener("submit",function(e){
-      e.preventDefault();
-      let obj={
-        name:form.name.value,
-        author:form.author.value,
-        desc:form.desc.value,
-        date:form.added.value,
-        category:form.category.value,
-        price:form.price.value
-      }
-     console.log(obj)
-     books.push(obj)
-     console.log(books)
+    // Selecting the form
+    const form = document.getElementById('form');
+    let books = JSON.parse(localStorage.getItem('book-list'))
+    if(books===null){
+        books = [];
+    };
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-     localStorage.setItem("book-list",JSON.stringify(books))
-    alert("book added successfully!")
-  })
-  
+
+        const newBook = {
+            bookName: form.name.value,
+            author: form.author.value,
+            description: form.desc.value,
+            addedDate: form.added.value,
+            category: form.category.value,
+            price: form.price.value
+        };
+       
+        books.push(newBook);
+        localStorage.setItem('book-list', JSON.stringify(books));
+        alert('Book added successfully!');
+        // form.reset();
+    });
 </script>
 </html>

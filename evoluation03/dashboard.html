@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@
             color: #333;
         }
 
+
         /* Navbar Styling - Flexbox Added */
         #navbar {
             display: flex;
@@ -26,14 +28,17 @@
             color: white;
         }
 
+
         #navbar h2 {
             margin: 0;
         }
+
 
         #navbar div {
             display: flex;
             gap: 15px;
         }
+
 
         #navbar a {
             text-decoration: none;
@@ -41,9 +46,11 @@
             font-size: 18px;
         }
 
+
         #navbar a:hover {
             text-decoration: underline;
         }
+
 
         /* Filter and Sort Section */
         #filters {
@@ -53,6 +60,7 @@
             padding: 20px;
         }
 
+
         #filter,
         #sort {
             padding: 10px;
@@ -60,10 +68,12 @@
             border: 1px solid #ccc;
         }
 
+
         h1 {
             margin: 20px;
             color: #007BFF;
         }
+
 
         /* Table Styling */
         table {
@@ -74,10 +84,12 @@
             background: white;
         }
 
+
         thead {
             background-color: #007BFF;
             color: white;
         }
+
 
         th,
         td {
@@ -86,13 +98,16 @@
             border: 1px solid #ddd;
         }
 
+
         th {
             font-size: 18px;
         }
 
+
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
 
         /* Button Styling */
         button {
@@ -102,25 +117,30 @@
             cursor: pointer;
         }
 
+
         .buy-btn {
             background-color: #28a745;
             color: white;
         }
 
+
         .buy-btn:hover {
             background-color: #218838;
         }
+
 
         .bookmark-btn {
             background-color: #ffc107;
             color: white;
         }
 
+
         .bookmark-btn:hover {
             background-color: #e0a800;
         }
     </style>
 </head>
+
 
 <body>
     <!-- Navbar Section -->
@@ -150,15 +170,18 @@
             <option value="Finance">Finance</option>
         </select>
 
+
         <select id="sort">
             <option value="">Sort by Price</option>
-            <option value="low-to-high">Low to High</option>
-            <option value="high-to-low">High to Low</option>
+            <option value="lToH">Low to High</option>
+            <option value="hTol">High to Low</option>
         </select>
     </div>
 
+
     <!-- Book Count Section -->
     <h1>Total Books: <span id="book-count">0</span></h1>
+
 
     <!-- Book Table Section -->
     <table>
@@ -182,115 +205,115 @@
     </table>
 
 
+
 </body>
 <script>
-    let books = JSON.parse(localStorage.getItem("book-list"))
+    let books = JSON.parse(localStorage.getItem('book-list'))
     if (books === null) {
-        books = []
-    }
+        books = [];
+    };
 
-    let bookmarkArr = JSON.parse(localStorage.getItem("bookmark-list"))
-    if (bookmarkArr === null) {
-        bookmarkArr = []
-    }
 
-    let buyArr = JSON.parse(localStorage.getItem("buy-list"))
-    if (buyArr === null) {
-        buyArr = []
-    }
+    let bookMarkArr = JSON.parse(localStorage.getItem('bookmark-list'))
+    if (bookMarkArr === null) {
+        bookMarkArr = [];
+    };
+
+    let buyAr = JSON.parse(localStorage.getItem('buy-list'))
+    if (buyAr == null) {
+        buyAr = []
+    };
+
     console.log(books.length)
-    let bookCount = document.getElementById("book-count");
-    let filter = document.getElementById("filter");
-    let sort = document.getElementById("sort")
-    let tableBody = document.getElementById("tblbody")
+    let tblbody = document.getElementById('tblbody')
+    let bookcount = document.getElementById('book-count')
+    let filter = document.getElementById('filter')
+    let sortBook = document.getElementById('sort')
 
-    function dashboard(book) {
-        bookCount.innerText = books.length
+
+    function setTableData(book) {
+        bookcount.innerText = books.length
         book.forEach((e, i) => {
             let tr = document.createElement("tr")
-            tableBody.append(tr)
+            tblbody.append(tr)
 
             let nameTd = document.createElement("td")
-            nameTd.innerText = e.name
-
+            nameTd.innerText = e.bookName
             let authorTd = document.createElement("td")
             authorTd.innerText = e.author
-
-            let descTd = document.createElement("td")
-            descTd.innerText = e.desc
-
-            let dateTd = document.createElement("td")
-            dateTd.innerText = e.date
-
+            let descriptionTd = document.createElement("td")
+            descriptionTd.innerText = e.description
+            let addedDateTd = document.createElement("td")
+            addedDateTd.innerText = e.addedDate
             let categoryTd = document.createElement("td")
             categoryTd.innerText = e.category
-
             let priceTd = document.createElement("td")
             priceTd.innerText = e.price
-
-            let bookmarkTd = document.createElement("td")
-            bookmarkTd.innerText = "Bookmark"
-            bookmarkTd.addEventListener("click", function () {
-                tableBody.innerText = null;
-                bookmarkArr.push(e)
-                localStorage.setItem("bookmark-list", JSON.stringify(bookmarkArr))
-                remove(i)
+            let bookMarkTd = document.createElement("td")
+            bookMarkTd.innerText = "Bookmark"
+            bookMarkTd.addEventListener("click", function () {
+                bookMarkArr.push(e)
+                console.log(bookMarkArr)
+                localStorage.setItem("bookmark-list", JSON.stringify(bookMarkArr))
+                removedBook(i)
             })
-
             let buyTd = document.createElement("td")
             buyTd.innerText = "Buy"
             buyTd.addEventListener("click", function () {
-                tableBody.innetext = null;
-                buyArr.push(e)
-                localStorage.setItem("buy-list", JSON.stringify(buyArr))
-                remove(i)
+                buyAr.push(e)
+                console.log(buyAr)
+                localStorage.setItem("buy-list", JSON.stringify(buyAr))
+                removedBook(i)
             })
 
-            tr.append(nameTd, authorTd, descTd, dateTd, categoryTd, priceTd, bookmarkTd, buyTd)
+
+            tr.append(nameTd, authorTd, descriptionTd, addedDateTd, categoryTd, priceTd, bookMarkTd, buyTd)
         })
 
-    }
-    dashboard(books)
 
-      function remove(index) {
-        tableBody.innerText = null;
+    }
+    setTableData(books)
+
+
+    function removedBook(index) {
+        tblbody.innerHTML = null
         books.splice(index, 1)
-        dashboard(books)
+        console.log(books)
+        setTableData(books)
         localStorage.setItem("book-list", JSON.stringify(books))
     }
 
-    filter.addEventListener("change",function(){
-        tableBody.innerText=null;
-        let filterValue=filter.value 
-        let filterData=books.filter((e,i)=>{
-            let filterValue=filter.value 
-            return e.category==filterValue
+    filter.addEventListener("change", function () {
+        tblbody.innerHTML = null
+        let filterValue = filter.value
+        let filterData = books.filter((e, i) => {
+            let filterValue = filter.value
+            return e.category == filterValue
         })
-        dashboard(filterData)
+        setTableData(filterData)
     })
 
-    sort.addEventListener("change",function(){
-        tableBody.innerHTML=null;
-         let sortValue=sort.value
-         console.log(sortValue)
 
-         if(sortValue=="low-to-high"){
+    sortBook.addEventListener("change", function () {
+        //   alert("Sort")
+        tblbody.innerHTML = null
+        let sortValue = sortBook.value
+        console.log(sortValue)
+      
+        if (sortValue == "lToH") {
             books.sort((a, b) => a.price - b.price)
             console.log(books)
-            dashboard(books)
-         }else if (sortValue == "high-to-low") {
+            setTableData(books)
+        } else if (sortValue == "hTol") {
             books.sort((a, b) => b.price - a.price)
             console.log(books)
-            dashboard(books)
+            setTableData(books)
         } else {
-            dashboard(books)
+            setTableData(books)
         }
 
 
-        
     })
-
-
 
 
 </script>

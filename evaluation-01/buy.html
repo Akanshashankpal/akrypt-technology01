@@ -127,6 +127,78 @@
     
 </body>
 <script>
-  
+let buyAr=JSON.parse(localStorage.getItem('buy-list'))
+    if(buyAr==null){
+        buyAr=[]
+    };  
+    let tableBody=document.getElementById("tblbody")
+    let sort=document.getElementById("sort")
+
+  function dashboard(book){
+    tableBody.innerHTML=null;
+        book.forEach((e) => {
+        let tr = document.createElement("tr")
+        tableBody.append(tr)
+
+        let nameTd = document.createElement("td")
+        nameTd.innerText = e.name
+
+        let authorTd = document.createElement("td")
+        authorTd.innerText = e.author
+
+        let descTd = document.createElement("td")
+        descTd.innerText = e.desc
+
+        let dateTd = document.createElement("td")
+        dateTd.innerText = e.date
+
+         let categoryTd=document.createElement("td")
+         categoryTd.innerText=e.category
+
+        let priceTd=document.createElement("td")
+        priceTd.innerText=e.price
+
+        
+        tr.append(nameTd, authorTd, descTd, dateTd,categoryTd,priceTd,)
+    })
+
+    }
+    dashboard(buyAr)
+
+
+    sort.addEventListener("change", function () {
+        // tableBody.innerHTML=null;
+        console.log(sort.value);
+       
+        if (sort.value == "AtoZ") {
+           
+          buyAr.sort((a, b) => {
+            if (a.name.toUpperCase() < b.name.toUpperCase()) {
+              return -1;
+            }
+            if (a.name.toUpperCase() > b.name.toUpperCase()) {
+              return 1;
+            }
+            return 0;
+          });
+          console.log(buyAr)
+          dashboard(buyAr)
+        } else if (sort.value == "ZtoA") {
+           
+            buyAr.sort((a, b) => {
+              if (a.name.toUpperCase() < b.name.toUpperCase()) {
+                return 1;
+              }
+              if (a.name.toUpperCase() > b.name.toUpperCase()) {
+                return -1;
+              }
+              return 0;
+            });
+            console.log(buyAr)
+          dashboard(buyAr)
+            
+          }
+      });
+
 </script>
 </html>

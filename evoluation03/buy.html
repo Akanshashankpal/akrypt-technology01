@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akrypt Library - Bookmark</title>
+    <title>Web20-C4 - Buy Books</title>
     <style>
         /* Global Styling */
         body {
@@ -74,21 +74,18 @@
             background-color: #f2f2f2;
         }
 
-        /* Consistent Button Styling */
-        button {
-            padding: 10px 15px;
-            border: none;
+        #filters {
+            /* display: flex; */
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #filter,
+        #sort {
+            padding: 10px;
             border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .remove-btn {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .remove-btn:hover {
-            background-color: #c82333;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
@@ -112,8 +109,15 @@
             </a>
         </div>
     </div>
-    <h2 style="margin-left: 20px;">Total Book Price:- <span id="total">0</span></h2>
-    <!-- Bookmarked Books Table Section -->
+    <div id="filters">
+        <select id="sort">
+            <option value="">Sort by Name</option>
+            <option value="AtoZ">A to Z</option>
+            <option value="ZtoA">Z to A</option>
+        </select>
+    </div>
+
+    <!-- Book Table Section -->
     <table>
         <thead>
             <tr>
@@ -123,77 +127,48 @@
                 <th>Added Date</th>
                 <th>Category</th>
                 <th>Price</th>
-                <th>Remove</th>
             </tr>
         </thead>
         <tbody id="tblbody">
             <!-- Data will be dynamically inserted here -->
         </tbody>
     </table>
+
+
 </body>
 <script>
-    let bookmarkArr = JSON.parse(localStorage.getItem("bookmark-list"))
-    if (bookmarkArr === null) {
-        bookmarkArr = []
-    }
-    let tableBody = document.getElementById("tblbody")
-    let total = document.getElementById("total")
+    let buyAr = JSON.parse(localStorage.getItem('buy-list'))
+    if (buyAr == null) {
+        buyAr = []
+    };
+    let tablebody = document.getElementById("tblbody")
 
-    function dashboard(book) {
+    function setTableData(book) {
+
         book.forEach((e, i) => {
             let tr = document.createElement("tr")
-            tableBody.append(tr)
-
+            tblbody.append(tr)
             let nameTd = document.createElement("td")
-            nameTd.innerText = e.name
-
+            nameTd.innerText = e.bookName
             let authorTd = document.createElement("td")
             authorTd.innerText = e.author
-
-            let descTd = document.createElement("td")
-            descTd.innerText = e.desc
-
-            let dateTd = document.createElement("td")
-            dateTd.innerText = e.date
-
+            let descriptionTd = document.createElement("td")
+            descriptionTd.innerText = e.description
+            let addedDateTd = document.createElement("td")
+            addedDateTd.innerText = e.addedDate
             let categoryTd = document.createElement("td")
             categoryTd.innerText = e.category
-
             let priceTd = document.createElement("td")
             priceTd.innerText = e.price
 
-            let removeTd = document.createElement("td")
-            removeTd.innerText = "Remove"
-            removeTd.addEventListener("click", function () {
-                remove(i)
-            })
-
-            tr.append(nameTd, authorTd, descTd, dateTd, categoryTd, priceTd, removeTd)
+           tr.append(nameTd, authorTd, descriptionTd, addedDateTd, categoryTd, priceTd,)
         })
 
     }
-    dashboard(bookmarkArr)
 
-    function totalPrice(bookmarkArr) {
-        let totalPrice1 = 0
-        for (var i = 0; i < bookmarkArr.length; i++) {
-            console.log(bookmarkArr[i].price)
-            totalPrice1 += Number(bookmarkArr[i].price)
-        }
-        console.log("total", totalPrice1)
-        total.innerText = totalPrice1
-    }
+    setTableData(buyAr)
 
 
-    totalPrice(bookmarkArr)
-
-    function remove(index) {
-        tableBody.innerText = null;
-        bookmarkArr.splice(index, 1)
-        dashboard(bookmarkArr)
-        totalPrice(bookmarkArr)
-        localStorage.setItem("book-list", JSON.stringify(bookmarkArr))
-    }
 
 
 </script>
