@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,11 +70,12 @@
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
 
-        input, select {
+        input,
+        select {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -98,15 +100,24 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar Section -->
     <div id="navbar">
         <h2>Akrypt Library</h2>
         <div style="display: flex;">
-            <a href="./index.html"><h2>Home</h2></a>
-            <a href="./dashboard.html"><h2>Dashboard</h2></a>
-            <a href="./buy.html"><h2>My Books</h2></a>
-            <a href="./bookmark.html"><h2>Bookmark</h2></a>
+            <a href="./index.html">
+                <h2>Home</h2>
+            </a>
+            <a href="./dashboard.html">
+                <h2>Dashboard</h2>
+            </a>
+            <a href="./buy.html">
+                <h2>My Books</h2>
+            </a>
+            <a href="./bookmark.html">
+                <h2>Bookmark</h2>
+            </a>
         </div>
     </div>
 
@@ -115,12 +126,11 @@
     <div id="create">
         <h1>Library Management System</h1>
         <form id="form">
+            <input type="text" name="image" id="image"  placeholder="bookImage" required>
             <input id="name" placeholder="Book Name" type="text" required />
             <input id="author" placeholder="Author Name" type="text" required />
             <input id="desc" placeholder="Book Description" type="text" required />
-            <label for="added">Adding Date:</label>
-            <input type="date" id="added" required />
-            <select id="category" required>
+             <select id="category" required>
                 <option value="">Select Category</option>
                 <option value="Fiction">Fiction</option>
                 <option value="Self Help">Self Help</option>
@@ -137,26 +147,26 @@
     // Selecting the form
     const form = document.getElementById('form');
     let books = JSON.parse(localStorage.getItem('book-list'))
-    if(books===null){
+    if (books === null) {
         books = [];
     };
     form.addEventListener('submit', function (event) {
         event.preventDefault();
-
-
-        const newBook = {
+         const newBook = {
+            bookImage:form.image.value,
             bookName: form.name.value,
             author: form.author.value,
             description: form.desc.value,
-            addedDate: form.added.value,
+           
             category: form.category.value,
             price: form.price.value
         };
-       
+
         books.push(newBook);
         localStorage.setItem('book-list', JSON.stringify(books));
         alert('Book added successfully!');
         // form.reset();
     });
 </script>
+
 </html>

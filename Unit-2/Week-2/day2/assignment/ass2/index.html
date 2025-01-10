@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+
+        #timer {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+
+        .start-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+
+        .pause-btn {
+            background-color: #ffc107;
+            color: white;
+        }
+
+
+        .reset-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+
+    <h1>Timer</h1>
+    <div id="timer">
+        <span id="hour">00</span> :
+        <span id="min">00</span> :
+        <span id="sec">00</span>
+    </div>
+
+
+    <button class="start-btn" onclick="startTimer()">Start</button>
+    <button class="pause-btn" onclick="pauseTimer()">Pause</button>
+    <button class="reset-btn" onclick="resetTimer()">Reset</button>
+
+
+   
+</body>
+<script src="script.js"></script>
+
+</html>
+
+

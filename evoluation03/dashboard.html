@@ -74,38 +74,31 @@
             color: #007BFF;
         }
 
-
-        /* Table Styling */
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            background: white;
-        }
-
-
-        thead {
-            background-color: #007BFF;
-            color: white;
-        }
-
-
-        th,
-        td {
-            padding: 15px;
+        /* card styling */
+        #card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             text-align: center;
-            border: 1px solid #ddd;
+            justify-items: center;
+
         }
 
+        #card-container div {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 300px;
+            font-size: 10px;
 
-        th {
-            font-size: 18px;
         }
 
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .bookmark-btn,
+        .buy-btn {
+            margin-top: 10px;
+            padding: 8px;
+            width: 100px;
         }
 
 
@@ -115,6 +108,8 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-left: 30px;
+
         }
 
 
@@ -183,26 +178,8 @@
     <h1>Total Books: <span id="book-count">0</span></h1>
 
 
-    <!-- Book Table Section -->
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Description</th>
-                <th>Added Date</th>
-                <th>Category</th>
-
-                <th>Price</th>
-                <th>Bookmark</th>
-                <th>Buy</th>
-            </tr>
-        </thead>
-        <tbody id="tblbody">
-
-            <!-- Data will be appended here dynamically -->
-        </tbody>
-    </table>
+    <!-- Book card Section -->
+    <div id="card-container"></div>
 
 
 
@@ -225,40 +202,49 @@
     };
 
     console.log(books.length)
-    let tblbody = document.getElementById('tblbody')
+    let cardContainer = document.getElementById('card-container')
     let bookcount = document.getElementById('book-count')
     let filter = document.getElementById('filter')
     let sortBook = document.getElementById('sort')
 
 
-    function setTableData(book) {
+    function setCardData(book) {
         bookcount.innerText = books.length
         book.forEach((e, i) => {
-            let tr = document.createElement("tr")
-            tblbody.append(tr)
+            let div = document.createElement("div")
+            cardContainer.append(div)
 
-            let nameTd = document.createElement("td")
+            let image = document.createElement("img")
+            image.src = e.bookImage
+            image.style.width="100%"
+
+            let nameTd = document.createElement("h2")
             nameTd.innerText = e.bookName
-            let authorTd = document.createElement("td")
-            authorTd.innerText = e.author
-            let descriptionTd = document.createElement("td")
-            descriptionTd.innerText = e.description
-            let addedDateTd = document.createElement("td")
-            addedDateTd.innerText = e.addedDate
-            let categoryTd = document.createElement("td")
-            categoryTd.innerText = e.category
-            let priceTd = document.createElement("td")
-            priceTd.innerText = e.price
-            let bookMarkTd = document.createElement("td")
+
+            let authorTd = document.createElement("h2")
+            authorTd.innerText = ` Author:- ${e.author}`
+
+            let descriptionTd = document.createElement("h2")
+            descriptionTd.innerText = `Description:- ${e.description}`
+
+            let categoryTd = document.createElement("h2")
+            categoryTd.innerText = `Category:-${e.category}`
+
+            let priceTd = document.createElement("h2")
+            priceTd.innerText = `Price:-${e.price}`
+
+            let bookMarkTd = document.createElement("button")
             bookMarkTd.innerText = "Bookmark"
+            bookMarkTd.className = "bookmark-btn"
             bookMarkTd.addEventListener("click", function () {
                 bookMarkArr.push(e)
                 console.log(bookMarkArr)
                 localStorage.setItem("bookmark-list", JSON.stringify(bookMarkArr))
                 removedBook(i)
             })
-            let buyTd = document.createElement("td")
+            let buyTd = document.createElement("button")
             buyTd.innerText = "Buy"
+            buyTd.className = "buy-btn"
             buyTd.addEventListener("click", function () {
                 buyAr.push(e)
                 console.log(buyAr)
@@ -267,49 +253,49 @@
             })
 
 
-            tr.append(nameTd, authorTd, descriptionTd, addedDateTd, categoryTd, priceTd, bookMarkTd, buyTd)
+            div.append(image, nameTd, authorTd, descriptionTd, categoryTd, priceTd, bookMarkTd, buyTd)
         })
 
 
     }
-    setTableData(books)
+    setCardData(books)
 
 
     function removedBook(index) {
-        tblbody.innerHTML = null
+        cardContainer.innerHTML = null
         books.splice(index, 1)
         console.log(books)
-        setTableData(books)
+        setCardData(books)
         localStorage.setItem("book-list", JSON.stringify(books))
     }
 
     filter.addEventListener("change", function () {
-        tblbody.innerHTML = null
+        cardContainer.innerHTML = null
         let filterValue = filter.value
         let filterData = books.filter((e, i) => {
             let filterValue = filter.value
             return e.category == filterValue
         })
-        setTableData(filterData)
+        setCardData(filterData)
     })
 
 
     sortBook.addEventListener("change", function () {
         //   alert("Sort")
-        tblbody.innerHTML = null
+        cardContainer.innerHTML = null
         let sortValue = sortBook.value
         console.log(sortValue)
-      
+
         if (sortValue == "lToH") {
             books.sort((a, b) => a.price - b.price)
             console.log(books)
-            setTableData(books)
+            setCardData(books)
         } else if (sortValue == "hTol") {
             books.sort((a, b) => b.price - a.price)
             console.log(books)
-            setTableData(books)
+            setCardData(books)
         } else {
-            setTableData(books)
+            setCardData(books)
         }
 
 

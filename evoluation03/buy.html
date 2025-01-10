@@ -45,35 +45,28 @@
             text-decoration: underline;
         }
 
-        /* Table Styling */
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            background: white;
-        }
 
-        thead {
-            background-color: #007BFF;
-            color: white;
-        }
-
-        th,
-        td {
-            padding: 15px;
+         /* card styling */
+         #card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             text-align: center;
-            border: 1px solid #ddd;
+            justify-items: center;
+
         }
 
-        th {
-            font-size: 18px;
+        #card-container div {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 300px;
+            font-size: 10px;
+
         }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
+      
         #filters {
             /* display: flex; */
             justify-content: space-between;
@@ -117,22 +110,8 @@
         </select>
     </div>
 
-    <!-- Book Table Section -->
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Author</th>
-                <th>Description</th>
-                <th>Added Date</th>
-                <th>Category</th>
-                <th>Price</th>
-            </tr>
-        </thead>
-        <tbody id="tblbody">
-            <!-- Data will be dynamically inserted here -->
-        </tbody>
-    </table>
+    <!-- Book cardSection -->
+    <div id="card-container"></div>
 
 
 </body>
@@ -141,66 +120,68 @@
     if (buyAr == null) {
         buyAr = []
     };
-    let tablebody = document.getElementById("tblbody")
-    let sort=document.getElementById("sort")
+    let cardContainer = document.getElementById('card-container')
+    let sort = document.getElementById("sort")
 
-    function setTableData(book) {
+    function setCardData(book) {
 
         book.forEach((e, i) => {
-            let tr = document.createElement("tr")
-            tblbody.append(tr)
-            let nameTd = document.createElement("td")
+            let div = document.createElement("div")
+            cardContainer.append(div)
+            
+            let image = document.createElement("img")
+            image.src = e.bookImage
+            image.style.width="100%"
+            let nameTd = document.createElement("h2")
             nameTd.innerText = e.bookName
-            let authorTd = document.createElement("td")
-            authorTd.innerText = e.author
-            let descriptionTd = document.createElement("td")
-            descriptionTd.innerText = e.description
-            let addedDateTd = document.createElement("td")
-            addedDateTd.innerText = e.addedDate
-            let categoryTd = document.createElement("td")
-            categoryTd.innerText = e.category
-            let priceTd = document.createElement("td")
-            priceTd.innerText = e.price
-
-           tr.append(nameTd, authorTd, descriptionTd, addedDateTd, categoryTd, priceTd,)
+            let authorTd = document.createElement("h2")
+            authorTd.innerText = ` Author:- ${e.author}`
+            let descriptionTd = document.createElement("h2")
+            descriptionTd.innerText = `Description:- ${e.description}`
+            let categoryTd = document.createElement("h2")
+            categoryTd.innerText = `Category:-${e.category}`
+            let priceTd = document.createElement("h2")
+            priceTd.innerText = `Price:-${e.price}`
+            div.append(image,nameTd, authorTd, descriptionTd, categoryTd, priceTd,)
         })
 
     }
 
-    setTableData(buyAr)
+    setCardData(buyAr)
     sort.addEventListener("change", function () {
         // tableBody.innerHTML=null;
+        cardContainer.innerHTML=null;
         console.log(sort.value);
-       
+
         if (sort.value == "AtoZ") {
-           
-          buyAr.sort((a, b) => {
-            if (a.name.toUpperCase() < b.name.toUpperCase()) {
-              return -1;
-            }
-            if (a.name.toUpperCase() > b.name.toUpperCase()) {
-              return 1;
-            }
-            return 0;
-          });
-          console.log(buyAr)
-          setTableData(buyAr)
-        } else if (sort.value == "ZtoA") {
-           
+
             buyAr.sort((a, b) => {
-              if (a.name.toUpperCase() < b.name.toUpperCase()) {
-                return 1;
-              }
-              if (a.name.toUpperCase() > b.name.toUpperCase()) {
-                return -1;
-              }
-              return 0;
+                if (a.bookName.toUpperCase() < b.bookName.toUpperCase()) {
+                    return -1;
+                }
+                if (a.bookName.toUpperCase() > b.bookName.toUpperCase()) {
+                    return 1;
+                }
+                return 0;
             });
             console.log(buyAr)
-            setTableData(buyAr)
-            
-          }
-      });
+            setCardData(buyAr)
+        } else if (sort.value == "ZtoA") {
+
+            buyAr.sort((a, b) => {
+                if (a.bookName.toUpperCase() < b.bookName.toUpperCase()) {
+                    return 1;
+                }
+                if (a.bookName.toUpperCase() > b.bookName.toUpperCase()) {
+                    return -1;
+                }
+                return 0;
+            });
+            console.log(buyAr)
+            setCardData(buyAr)
+
+        }
+    });
 
 
 
