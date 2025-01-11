@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promises</title>
+</head>
+
+<body>
+    <h1>promises</h1>
+    <input type="text" id="otp" placeholder="enter your otp">
+</body>
+<script>
+
+    let otp = document.getElementById("otp")
+    let mainOtp = "1234"
+    let promises = new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            if (otp.value === mainOtp) {
+                resolve()
+            } else {
+                reject()
+            }
+        }, 5000)
+    })
+    promises.then(() => {
+        alert("your otp has been successfully submitted")
+    })
+
+
+        .catch(() => {
+            alert("please your otp check")
+
+        })
+    //promise are a async function 
+    //     let isCalling=true;
+    //     //syntax of promises
+    //     let promises=new Promise(function(resolve,reject){
+    //         setTimeout(()=>{
+    //             if(isCalling){
+    //                 resolve("promise are resolved")
+    //             }else{
+    //                 reject("promise are rejected")
+    //             }
+    //         },2000)
+    //     })
+    //     console.log(promises)
+    // //variable.then are  print to a resolve value
+    //     promises.then((res)=>{
+    //         console.log(res)
+    //         // console.log(promises)
+    //     })
+    // //.catch is print a rejected value
+    //     .catch((err)=>{
+    //         console.log(err)
+    //         // console.log(promises)
+    //     })
+</script>
+
+</html>

@@ -1,27 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        #slideshow{
+        #slideshow {
             width: 80%;
             height: 400px;
             margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
         }
-        #slideshow img{
-            width: 400px;
+
+        #slideshow img {
+            width: 100%;
             height: 400px;
+
         }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="slideshow">
-       
+
     </div>
-  </body>
-  <script src="script.js"></script>
-  
+</body>
+<!-- <script src="script.js"></script> -->
+<!-- <script>
+    let images = ["https://images.indianexpress.com/2022/06/major-movie-review-1200.jpg",
+        "https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/2607/1062607-h-fa693eabb41d",
+        "https://myhotposters.com/cdn/shop/products/mL3081_1024x1024.jpg?v=1571445679",
+        "https://staticimg.amarujala.com/assets/images/2023/08/09/tha-ltal-maramada_1691520589.jpeg?w=1200"
+    ]
+    let imageDiv = document.getElementById("slideshow")
+    let currentIndex = 0;
+    function slidershow() {
+        images.forEach((src, index) => {
+            let img = document.createElement("img")
+            img.src = src;
+
+            img.classList.add(index === currentIndex ? "active" : "");
+            imageDiv.appendChild(img)
+            // alert("slider")
+        })
+        // console.log(imageDiv)
+    }
+    
+    // function changeImage(){
+    //     let imgs=document.querySelectorAll("#slideshow img");
+    //     imgs[currentIndex].classList.remove("active");
+    //     currentIndex=(currentIndex+1)% images.length
+    //     imgs[currentIndex].classList.add("active");
+
+    // }
+    slidershow()
+
+    // setInterval(changeImage,3000)
+</script> -->
+<script>
+    let images = [
+        "https://images.indianexpress.com/2022/06/major-movie-review-1200.jpg",
+        "https://img1.hotstarext.com/image/upload/f_auto,t_web_m_1x/sources/r1/cms/prod/2607/1062607-h-fa693eabb41d",
+        "https://myhotposters.com/cdn/shop/products/mL3081_1024x1024.jpg?v=1571445679",
+        "https://staticimg.amarujala.com/assets/images/2023/08/09/tha-ltal-maramada_1691520589.jpeg?w=1200"
+    ];
+    let imageDiv = document.getElementById("slideshow");
+
+    let count = 0
+    setInterval(function () {
+       
+        imageDiv.innerHTML = null;
+        images.forEach((e, i) => {
+            if (count == i) {
+                let image = document.createElement("img")
+                image.setAttribute("src", e)
+                imageDiv.append(image)
+            }
+        })
+        count++
+        if (count == images.length) {
+            count = 0
+        }
+    }, 2000)
+</script>
+
 </html>
