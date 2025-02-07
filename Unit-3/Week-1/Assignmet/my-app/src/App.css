@@ -13,6 +13,9 @@
   color: white;
   background-color: black;
 }
+.App button:hover{
+  background-color: #444;
+}
 .card{
   width: 300px;
   height: 400px;

@@ -13,7 +13,7 @@ function App() {
     setShowNonFiction(!showNonFiction); 
   };
 
-  const booksToDisplay = showNonFiction ? nonFiction : fiction; 
+  const bookShow = showNonFiction ? nonFiction : fiction; 
 
   return (
     <div className="App">
@@ -25,7 +25,7 @@ function App() {
         <h2>{showNonFiction ? 'Non-Fictional Books' : 'Fictional Books'}</h2>
       </div>
       <div className='cards-info'>
-        {booksToDisplay.map((book) => {
+        {bookShow.map((book) => {
           return <BookCard key={book.id} Book={book} />
         })}
       </div>
