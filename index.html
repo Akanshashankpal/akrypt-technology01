@@ -1,0 +1,719 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #maindiv{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 30px;
+            justify-content: space-around;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .div2{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            width: 300px;
+            text-align: center;
+        }
+        .image{
+            width: 100%;
+           
+        }
+        #nav{
+             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            display: flex;
+            /* border: 1px solid black; */
+            height: 80px;
+            
+        }
+        #imgDiv{
+            width: 17%;
+        }
+        #img{
+             /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+             height: 70px;
+            width: 200px;
+        }
+        #nav2{
+            display: flex;
+            justify-content: space-around;
+            width: 43%;
+            /* border: 1px solid red; */
+            margin-top: 15px;
+        }
+        #nav3{
+           
+            width: 20%;
+            /* border: 1px solid blue; */
+            padding: 30px;
+        }
+        #input{
+           margin-top: 7px;
+           padding: 3px;
+           width: 200px;
+           margin-right: 8px;
+           border-radius: 13px;
+           background-color: rgb(250, 228, 231) ;
+           
+        }
+        #border{
+            border-radius: 3px;
+            /* border: 1px solid rgb(30, 30, 82); */
+        }
+        #nav4{
+            width: 20%;
+            /* border: 1px solid orange; */
+
+        }
+        .image2{
+            width: 30px;
+            margin-top: 31px;
+            margin-left: 30px;
+
+        }
+        .name{
+            text-align: center;
+        }
+       
+        #a{
+            margin-right: 40px;
+        }
+        #select{
+          margin-top: 20px;
+        margin-left: 70px;
+        }
+       
+    </style>
+</head>
+<body>
+    
+    <div id="nav">
+     <div id="imgDiv">
+        <img id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9n_xjGOc3vy7abp4OuXS17GZUAnzJv21eCA&s" alt="Ajio">
+     </div>
+     <div id="nav2">
+        <h2>Men</h2>
+        <h2>Women</h2>
+        <h2>Kids</h2>
+        <h2>Beauty</h2>
+        <h2>Home&Kitchen</h2>
+     </div>
+     <div id="nav3">
+        <input id="input" type="text" placeholder="search AJio">
+       <!-- <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/768px-Magnifying_glass_icon.svg.png"></a> -->
+     <!-- </div>
+     <div id="nav4">
+        <a href="favorite.html"><img class="image2" src="https://icons.veryicon.com/png/o/commerce-shopping/fine-edition-mall-icon/wishlist-1.png" alt="wishlist"></a>
+       
+        <a href="cart.html"><img class="image2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThpsQ82Z38IfrKbSO1vgaLNCpe2QoAXD8pSA&s" alt=""></a>
+     </div>
+    </div>
+    <select name="select" id="select">
+        <option value="">select price</option>
+        <option value="price(LtoH)">price(LtoH)</option>
+        <option value="price(HtoL)">price(HtoL)</option>
+        <option value="AtoZ">AtoZ</option>
+        <option value="ZtoA">ZtoA</option>
+       </select>
+
+       <select name="filter" id="filter">
+        <option value="">select type</option>
+        <option value="frozen">frozen</option>
+        <option value="rubber">rubber</option>
+        <option value="plastic">plastic</option>
+        <option value="soft">soft</option>
+        <option value="fresh">fresh</option>
+        <option value="frozen">frozen</option>
+        <option value="concrete">concrete</option>
+        <option value="bronze">bronze</option>
+        <option value="metal">metal</option>
+        <option value="cotton">cotton</option>
+        <option value="wooden">wooden</option>
+        <option value="steel">steel</option>
+        <option value="granite">granite</option>
+       </select>
+
+    <div id="maindiv">
+
+    </div>
+</body> -->
+<!-- <script>
+    let maindiv=document.getElementById("maindiv")
+    let select=document.getElementById("select")
+    let filter=document.getElementById("filter")
+    let arr;
+  
+    let dataFetch=fetch("https://67877c85c4a42c916106f15f.mockapi.io/card/card")
+    // console.log(dataFetch)
+   .then(function(response)
+    {
+        console.log(response)
+        return response.json()
+    })
+    .then(function(res)
+    {
+        console.log(res)
+        arr=res
+        fetchData(res)
+    })
+    .catch(function(err)
+    {
+    console.log(err)
+    })
+
+   function fetchData(res)
+   {
+    res.forEach((e,i)=>
+{
+    let div2=document.createElement("div")
+    div2.className="div2"
+    div2.addEventListener("click",function()
+{
+    localStorage.setItem("selectedData",JSON.stringify(e))
+    window.location.href="details.html"
+})
+    maindiv.append(div2)
+    
+   
+let img=document.createElement("img")
+img.src=e.image 
+img.className="image"
+let name=document.createElement("h2")
+name.innerText=e.name
+name.className="name"
+let desc=document.createElement("p")
+desc.innerText=e.description
+// let rating = document.createElement("p")
+//  btn.className = "btn"
+// rating.innerText = ${e.rating}
+let material=document.createElement("p")
+material.innerText=`Type:${e.material}`
+let offer=document.createElement("s")
+offer.innerText=`$${e.offerprice}`
+let price=document.createElement("p")
+price.innerText=`$${e.price}`
+price.style.color="red"
+
+div2.append(img,name,desc,material,offer,price)
+})
+   }
+
+   select.addEventListener("change",function()
+{
+    maindiv.innerHTML=null
+    let selecteData=[...arr]
+   if(select.value==="price(LtoH)")
+   {
+    selecteData.sort((a,b)=>
+{
+    return a.price-b.price
+})
+console.log(selecteData)
+fetchData(selecteData)
+   }
+   else if(select.value==="price(HtoL)")
+   {
+   selecteData.sort((a,b)=>
+{
+    return b.price-a.price
+})
+console.log(selecteData)
+fetchData(selecteData)
+
+   }
+
+   //sort by name-----------------------
+   else if(select.value=="AtoZ")
+   {
+    selecteData.sort((a,b)=>
+{
+    let nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  let nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+})
+console.log(selecteData)
+fetchData(selecteData)
+   }
+
+   else if(select.value=="ZtoA")
+   {
+    selecteData.sort((a,b)=>
+{
+    let nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  let nameB = b.name.toUpperCase(); // ignore upper and lowercase
+  if (nameA < nameB) {
+    return 1;
+  }
+  if (nameA > nameB) {
+    return -1;
+  }
+  return 0;
+})
+console.log(selecteData)
+fetchData(selecteData)
+   }
+})
+
+
+
+</script> -->
+<!-- </html> --> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         #maindiv{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 30px;
+            justify-content: space-around;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+        .div2{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            width: 300px;
+            text-align: center;
+        }
+        .image{
+            width: 100%;
+           
+        }
+        #nav{
+             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            display: flex;
+            /* border: 1px solid black; */
+            height: 80px;
+            
+        }
+        #imgDiv{
+            width: 15%;
+        }
+        #img{
+             /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+             height: 70px;
+            width: 200px;
+        }
+        #nav2{
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            /* border: 1px solid red; */
+            margin-top: 15px;
+        }
+        #nav3{
+           
+            width: 20%;
+            /* border: 1px solid blue; */
+            padding: 30px;
+        }
+        #input{
+           margin-top: 7px;
+           padding: 3px;
+           width: 200px;
+           margin-right: 8px;
+           border-radius: 13px;
+           background-color: rgb(250, 228, 231) ;
+           
+        }
+        #border{
+            border-radius: 3px;
+            /* border: 1px solid rgb(30, 30, 82); */
+        }
+        #nav4{
+            width: 20%;
+            /* border: 1px solid orange; */
+
+        }
+        .image2{
+            width: 30px;
+            margin-top: 31px;
+            margin-left: 30px;
+
+        }
+        .name{
+            text-align: center;
+        }
+        .user-card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .user-card h4 {
+        margin: 0;
+        color: #333;
+      }
+      .user-card p {
+        margin: 5px 0;
+      }
+      .user-card .email {
+        color: rgb(0, 162, 255);
+      }
+    </style>
+</head>
+<body>
+    
+    <div id="nav">
+        <div id="imgDiv">
+           <img id="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9n_xjGOc3vy7abp4OuXS17GZUAnzJv21eCA&s" alt="Ajio">
+        </div>
+        <div id="nav2">
+           <h2>Men</h2>
+           <h2>Women</h2>
+           <h2>Kids</h2>
+           <h2>Beauty</h2>
+           <h2>Home&Kitchen</h2>
+           <a href="addProduct.html"><h2>AddProduct</h2></a>
+        </div>
+        <div id="nav3">
+           <input id="input" type="text" placeholder="search AJio">
+          <!-- <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/768px-Magnifying_glass_icon.svg.png"></a> -->
+        </div>
+        <div id="nav4">
+           <a href="favorite.html"><img class="image2" src="https://icons.veryicon.com/png/o/commerce-shopping/fine-edition-mall-icon/wishlist-1.png" alt="wishlist"></a>
+          
+           <a href="cart.html"><img class="image2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThpsQ82Z38IfrKbSO1vgaLNCpe2QoAXD8pSA&s" alt=""></a>
+        </div>
+       </div>
+
+       <div class="container">
+        <div class="row">
+          <div class="column">
+            <h1>Akrypt User App</h1>
+            <p>Akrypt App</p>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="columns four sidebar-one" id="sidebar-one">
+            <h4>Actions</h4>
+            <button id="fetchUser" class="u-full-width button button-primary">
+              Fetch Users
+            </button>
+            <hr />
+            <h4>Add User</h4>
+           
+            <input
+              type="text"
+              id="name"
+              class="u-full-width"
+              placeholder="Name"
+            />
+            <input
+              type="text"
+              id="email"
+              class="u-full-width"
+              placeholder="Email"
+            />
+            <input
+              type="number"
+              id="mobile"
+              class="u-full-width"
+              placeholder="Mobile Number"
+            />
+            <input
+              type="number"
+              id="salary"
+              class="u-full-width"
+              placeholder="Salary"
+            />
+            <button id="addUser" class="u-full-width button button-primary">
+              Add User
+            </button>
+            <hr />
+          </div>
+  
+         
+        </div>
+        <div class="columns four sidebar-one" id="sidebar-one">
+        <h4>Update User</h4>
+        <input
+          type="number"
+          id="userId"
+          class="u-full-width"
+          placeholder="UserId"
+        />
+        <input
+          type="text"
+          id="nameUpdate"
+          class="u-full-width"
+          placeholder="Name"
+        />
+        <input
+          type="text"
+          id="emailUpdate"
+          class="u-full-width"
+          placeholder="Email"
+        />
+        <input
+          type="number"
+          id="mobileUpdate"
+          class="u-full-width"
+          placeholder="Mobile Number"
+        />
+        <input
+          type="number"
+          id="salaryUpdate"
+          class="u-full-width"
+          placeholder="Salary"
+        />
+        <button id="updateUser" class="u-full-width button button-primary">
+          Update User
+        </button>
+        <hr />
+      </div>
+      </div>
+  
+      <div>
+        <h4>Delete User</h4>
+        <input
+        type="number"
+        id="userId"
+        class="u-full-width"
+        placeholder="userId"
+      />
+      <button id="deleteUser" class="u-full-width button button-primary">
+        Delete User
+      </button>
+      </div>
+  
+      <div class="columns eight main">
+        <div class="notifications-wrapper" id="userDiv"></div>
+        <div id="pagination" style="border: 2px solid red;"></div>
+      </div>
+      <div>
+       
+      </div>
+      </div>
+
+
+      <table  border="1" style="border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Salary</th>
+            <th>Add</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+      </table>
+</body>
+
+<script>
+
+    const tbody=document.getElementById("tbody")
+    // const pagination=document.getElementById("pagination")
+    const userDiv = document.getElementById("userDiv");
+    const fetchUser = document.getElementById("fetchUser");
+    const addUser = document.getElementById("addUser");
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const mobile = document.getElementById("mobile");
+    const salary = document.getElementById("salary");
+   
+    const nameUpdate = document.getElementById("nameUpdate");
+    const emailUpdate = document.getElementById("emailUpdate");
+    const mobileUpdate = document.getElementById("mobileUpdate");
+    const salaryUpdate = document.getElementById("salaryUpdate");
+    const userId = document.getElementById("userId");
+    const updateUser = document.getElementById("updateUser");
+    const deleteUser = document.getElementById("deleteUser");
+
+    
+
+    
+    updateUser.addEventListener("click",function()
+  {
+    const updateTask={
+          name:nameUpdate.value,
+          email:emailUpdate.value,
+          mob:mobileUpdate.value,
+          salary:salaryUpdate.value
+      };
+      console.log(updateTask)
+
+      fetch(`https://67877c85c4a42c916106f15f.mockapi.io/users/${userId.value}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body:JSON.stringify(updateTask),
+      })
+      .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Failed to update user");
+          }
+        })
+        .then((result) => {
+          getUsers(result)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+ 
+  })
+
+ 
+
+ 
+
+    function getUsers(){
+    //   console.log(pageNumber)
+      fetch(`https://67877c85c4a42c916106f15f.mockapi.io/users`, {
+    method: "GET",
+        headers: { "content-type": "application/json" },
+      })
+        .then((res) => {
+          if (res.ok) {
+           
+            return res.json();
+          }
+        })
+        .then((result) => {
+          renderUser(result)
+         
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+
+
+
+    fetchUser.addEventListener("click",function()  {
+ 
+      getUsers()
+    });
+
+    // Function to render users as cards
+
+    function renderUser(users) {
+    //   userDiv.innerHTML = "";
+      users.forEach((user) => {
+       let tr=document.createElement("tr")
+       tbody.append(tr)
+       let idTd=document.createElement("td")
+       idTd.innerText=`${user.id}`
+       let nameTd=document.createElement("td")
+       nameTd.innerText=`${user.name}`
+       let emailTd=document.createElement("td")
+       emailTd.innerText=`${user.email}`
+       let mobTd=document.createElement("td")
+       mobTd.innerText=`${user.mob}`
+       let salaryTd=document.createElement("td")
+       salaryTd.innerText=`${user.salary}`
+       let add=document.createElement("td")
+       add.innerText="Add Data"
+       add.addEventListener("click")
+       {
+        window.location.href="addData.html"
+       }
+       let update=document.createElement("td")
+       update.innerText="Update Data"
+
+       tr.append(idTd,nameTd,emailTd,mobTd,salaryTd,add,update)
+      });
+    }
+
+//     addUser.addEventListener("click",function()
+//   {
+//       const newTask={
+//           name:name.value,
+//           email:email.value,
+//           mob:mobile.value,
+//           salary:salary.value
+//       };
+//       console.log(newTask)
+
+//       fetch("https://67877c85c4a42c916106f15f.mockapi.io/users", {
+//         method: "POST",
+//         headers: { "content-type": "application/json" },
+//         body:JSON.stringify(newTask),
+//       })
+//         .then((res) => {
+//           if (res.ok) {
+//             return res.json();
+//           }
+//         })
+//         .then((result) => {
+//           getUsers()
+//         })
+//         .catch((err) => {
+//           console.log(err);
+//         });
+//   })
+
+//   deleteUser.addEventListener("click", function () {
+    
+//     fetch(https://67877c85c4a42c916106f15f.mockapi.io/users, {
+//       method: "DELETE", 
+//     })
+//       .then((res) => {
+//         if (res.ok) {
+//           return res.json();
+//         } 
+//       })
+//       .then((task1) => {
+//         getUsers();
+//         // renderUser(result)
+//         console.log(task1);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   });
+
+//  function tablePagination()
+//  {
+//     pagination.innerHTML=null
+//  for(let i=1;i<=4;i++)
+//  {
+//   let pageBtn=document.createElement("button")
+//   pageBtn.innerText=i
+
+//   pageBtn.style.backgroundColor="blue"
+//   pageBtn.style.color="white"
+//   pageBtn.style.marginLeft="5px"
+//   pageBtn.style.padding="5px"
+
+//   pageBtn.addEventListener("click",function()
+// {
+//   // alert(i)
+//   getUsers(i)
+
+// })
+//   pagination.append(pageBtn)
+//  }
+//  }
+ 
+//  tablePagination(i)
+
+  </script>
+</html>

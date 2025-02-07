@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<style>
+    #num{
+        padding:8px;
+        
+    }
+    #btn{
+        padding: 10px;
+        border: none;
+        background-color: green;
+        color: white;
+    }
+    #btn:hover{
+        background-color: orange;
+    }
+</style>
+
+<body>
+    <h1>Promises</h1>
+    <input type="text" name="" id="num">
+    <button id="btn">submit</button>
+</body>
+<!-- ## Description
+
+
+- You need to complete the ```getData``` function such that it fulfills the below criteria:
+ 1. Your function must always return a promise
+ 2. If data is not a number, return a promise rejected instantly and give the data "error" (in a string)
+ 3. If data is an odd number, return a promise resolved 2 seconds later and give the data "odd" (in a string)
+ 4. If data is an even number, return a promise resolved 4 seconds later and give the data "even" (in a string) -->
+<script>
+    let num = document.getElementById("num");
+    let btn = document.getElementById("btn");
+
+    //console all data
+    function getData(data) {
+        let promises = new Promise(function (resolve, reject) {
+            if (isNaN(data)) {
+                alert("error")
+              return  reject("error")
+            }
+            else {
+                let number = Number(data)
+                if (number % 2 === 0) {
+                    setTimeout(() => {
+                        alert("even")
+                        return resolve("even")
+                    }, 4000)
+
+                } else {
+                    setTimeout(() => {
+                        alert("odd")
+                       return resolve("odd")
+                    }, 2000)
+
+                    
+                }
+            }
+
+        })
+         
+        promises.then((res) => {
+            console.log(res)
+        })
+            .catch((err) => {
+                console.log(err)
+            })
+
+    }
+    
+    btn.addEventListener("click",function(){
+        let inputValue=num.value
+        getData(inputValue)
+    })
+   
+</script>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/skeleton.css" />
+    <link rel="stylesheet" href="styles/style.css" /> -->
+    <title>Akrypt App</title>
+    <style>
+        .user-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-card h4 {
+            margin: 0;
+            color: #333;
+        }
+
+        .user-card p {
+            margin: 5px 0;
+        }
+
+        .user-card .email {
+            color: rgb(0, 162, 255);
+        }
+
+        #fetchUser{
+            padding: 10px;
+            background-color: rgb(0, 162, 255);
+            border: none;
+            color: #fff;
+        }
+        #addUser{
+            padding: 10px;
+            background-color: rgb(0, 162, 255);
+            border: none;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <h1>Akrypt User App</h1>
+                <p>Akrypt App</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="columns four sidebar-one" id="sidebar-one">
+                <h4>Actions</h4>
+                <button id="fetchUser" class="u-full-width button button-primary">
+                    Fetch Users
+                </button>
+                <hr />
+                <h4>Add User</h4>
+                <input type="text" id="name" class="u-full-width" placeholder="Name" />
+                <input type="text" id="email" class="u-full-width" placeholder="Email" />
+                <input type="number" id="mobile" class="u-full-width" placeholder="Mobile Number" />
+                <input type="number" id="salary" class="u-full-width" placeholder="Salary" />
+                <button id="addUser" class="u-full-width button button-primary">
+                    Add Employee
+                </button>
+                <hr />
+            </div>
+
+            <div class="columns eight main">
+                <div class="notifications-wrapper" id="userDiv"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const userDiv = document.getElementById("userDiv");
+        const fetchUser = document.getElementById("fetchUser");
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const mobile = document.getElementById("mobile");
+        const salary = document.getElementById("salary");
+        const addUser = document.getElementById("addUser");
+
+
+
+        function getUsers() {
+
+            fetch("https://67873c14c4a42c916105efce.mockapi.io/users", {
+                method: "GET",
+                headers: { "content-type": "application/json" },
+            })
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                })
+                .then((result) => {
+                    renderUser(result)
+                    console.log(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+
+
+
+
+        fetchUser.addEventListener("click", () => {
+            getUsers()
+        });
+
+        addUser.addEventListener("click", () => {
+            let obj = {
+                name: name.value,
+                email: email.value,
+                mobile: mobile.value,
+                salary: salary.value
+            }
+            console.log(addUser)
+
+            const newTask = {
+                content: 'Check out mockapi.io',
+                completed: false,
+            };
+            //post method ----------->
+            fetch("https://67873c14c4a42c916105efce.mockapi.io/users", {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                // Send your data in the request body as JSON
+                body: JSON.stringify(obj)
+            }).then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+            })
+                .then((task) => {
+                    getUsers()
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        })
+
+
+        //put method------------->
+
+
+        // Function to render users as cards
+
+        function renderUser(users) {
+            userDiv.innerHTML = "";
+            users.forEach((user) => {
+                const userCard = document.createElement("div");
+                userCard.classList.add("user-card");
+                userCard.innerHTML = `
+                    <h4 class="email">${user.name}</h4>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Phone:</strong> ${user.mobile}</p>
+                    <p><strong>Salary:</strong> $${user.salary}</p>
+                `;
+                userDiv.appendChild(userCard);
+            });
+        }
+    </script>
+</body>
+
+</html>

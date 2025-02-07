@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJIO</title>
+    <link rel="stylesheet" href="/Unit-2/Week-2/day5/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    .edit {
+        display: inline;
+        background-color: #caa229;
+        border: none;
+        width: 100px;
+        height: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <!-- <a href="wishlist.html"></a>
+    <a href="cart.html"></a> -->
+    <!-- header section -->
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header-logo">
+                    <a href="#"><img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt=""></a>
+                </div>
+                <div class="header-nav">
+                    <nav class="header_nav_menu">
+                        <ul>
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="#">MEN</a></li>
+                            <li><a href="#">WOMEN</a></li>
+                            <li><a href="#">KIDS</a></li>
+                            <li><a href="#">BEAUTY</a></li>
+                            <li><a href="#">KITCHEN</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-search">
+                    <input type="text" name="" id="search" placeholder="search AJIO">
+                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+                <div class="header_icon">
+                    <div class="icon">
+                        <a href="wishlist.html"><i class="fa-regular fa-heart"></i></a>
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="addPrioduct.html"><i class="fa-brands fa-product-hunt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- header section end -->
+
+    <!-- sort section  -->
+    <label for="sortPrice">Sort By price:</label>
+    <select id="sortprice">
+        <option value="">--Select--</option>
+        <option value="LtoH">Price (low to high)</option>
+        <option value="HtoL">Price (high to low)</option>
+    </select>
+    <!-- filter section -->
+    <select id="filter">
+        <option value="">Filter by material</option>
+        <option value="Soft">Soft</option>
+        <option value="Fresh">Fresh</option>
+        <option value="Granite">Granite</option>
+        <option value="Metal">Metal</option>
+        <option value="Bronze">Bronze</option>
+        <option value="Frozen">Frozen</option>
+        <option value="Wooden">Wooden</option>
+        <option value="Cotton">Cotton</option>
+        <option value="Concrete">Concrete</option>
+    </select>
+    <hr>
+    <br>
+    <div id="Container" style="display: none;">
+        <h3>Edit Product</h3>
+        <form id="form">
+            <label for="Name">Name:</label>
+            <input type="text" id="Name" name="name" required><br>
+    
+            <label for="Description">Description:</label>
+            <input id="Description" name="Description" required></input><br>
+    
+            <label for="Material">Material:</label>
+            <input type="text" id="Material" name="material" required><br>
+    
+            <label for="Price">Price:</label>
+            <input type="number" id="Price" name="price" required><br>
+    
+            <button type="submit">Submit</button>
+            <button type="button" id="cancelEdit">Cancel</button>
+        </form>
+    </div>
+    <table border="2" style="border: 1px solid black; border-collapse: collapse;">
+        <thead style="text-align: center; ">
+            <tr>
+                <td>S.No</td>
+                <td>Image</td>
+                <td>name</td>
+                <td>Description</td>
+                <td>Material</td>
+                <td>Price</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody id="tableBody" style="text-align: center;">
+
+        </tbody>
+    </table>
+</body>
+<script>
+    let form=document.getElementById("form")
+    let cont=document.getElementById("Container")
+    let name=document.getElementById("Name")
+    let desc=document.getElementById("Description")
+    let material=document.getElementById("Material")
+    let price=document.getElementById("Price")
+    let cancle=document.getElementById("cancelEdit")
+    let tblBody = document.getElementById("tableBody")
+    let sort = document.getElementById("sortprice")
+    let filter = document.getElementById("filter")
+
+    // let bagArr = JSON.parse(localStorage.getItem("selectData"))
+    // if (bagArr === null) {
+    //     bagArr = [];
+    //     // localStorage.setItem("favourite", JSON.stringify(favourite))
+
+    // }
+    let data = [];
+    let fetchData = fetch("https://67873c14c4a42c916105efce.mockapi.io/product")
+        .then(function (response) {
+            console.log(response)
+            return response.json()
+        })
+        .then(function (res) {
+            console.log(res)
+            data = res
+            tableData(data)
+        })
+        .catch(function (error) {
+            console.log("Error fetching data: ", error);
+        });
+
+    function tableData(data) {
+        data.forEach((e, i) => {
+            let tr = document.createElement("tr")
+            tblBody.append(tr)
+            let snTd = document.createElement("td")
+            snTd.innerText = i + 1
+            let Image = document.createElement("img")
+            Image.style.width = "100px"
+            Image.src = e.image
+            let name = document.createElement("td")
+            name.innerText = e.name
+            let desc = document.createElement("td")
+            desc.innerText = e.Description
+            let material = document.createElement("td")
+            material.innerText = e.material
+            let price = document.createElement("td")
+            price.innerHTML = `<s>$${e.price}</S> <p style="color:red;font-weight:bold">$${e.offerPrize}</p>`
+            let edit = document.createElement("td")
+            edit.innerText = "EDIT"/
+            edit.addEventListener("click",function(){
+                //EditForm(e)
+                window.location.href="updateproduct.html"
+            })
+            let Delete = document.createElement("td")
+            Delete.innerText = "DELETE"
+            Delete.addEventListener("click", function () {
+            deleteProduct(e.id);  // Call function to delete the product
+        });
+            tr.append(snTd, Image, name, desc, material, price, edit, Delete)
+        })
+    }
+
+    sort.addEventListener("change", function () {
+        tblBody.innerHTML = null;
+        console.log(sort.value);
+        let sortData = [...data];
+        if (sort.value === "LtoH") {
+            sortData.sort((a, b) => {
+                return a.offerPrize - b.offerPrize
+            })
+            console.log(sortData)
+            tableData(sortData)
+        }
+        else if (sort.value === "HtoL") {
+            sortData.sort((a, b) => {
+                return b.offerPrize - a.offerPrize
+            })
+            console.log(sortData)
+            tableData(sortData)
+        }
+
+    })
+
+    // filter by material
+
+    filter.addEventListener("change", function () {
+        tblBody.innerHTML = null;
+
+        let selectedId = filter.value;
+        console.log(selectedId)
+        let filterData = data.filter((e, i) => {
+            //console.log(e.material)
+            return e.material == selectedId
+        })
+        console.log(filterData)
+
+        tableData(filterData)
+
+    })
+
+    function EditForm(product) {
+    cont.style.display = "block";
+l̥ō
+      // Pre-fill 
+    name.value = product.name;
+    desc.value = product.Description;
+    material.value = product.material;
+    price.value = product.offerPrize;
+    
+    // form submission
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        submit(product.id);
+        // alert("your sure to change")
+    });
+    
+    // Cancel button functionality
+    cancle.addEventListener("click", function () {
+        cont.style.display = "none";
+
+    });
+}
+function submit(productId){
+    updateProduct.addEventListener("click", function () {
+        let obj1 = {
+            name: name.value,
+        Description: desc.value,
+        material: material.value,
+        offerPrize:price.value
+        };
+        console.log(obj1);
+        fetch(`https://67873c14c4a42c916105efce.mockapi.io/product/${productId}`, {
+          method: "PUT", // or PATCH
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(obj1),
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("Failed to update user");
+            }
+          })
+          .then((task1) => {
+            // cont.style.display="block"
+            tblBody.innerHTML = ''; // Clear the table
+            tableData(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+}
+
+</script>
+
+</html>

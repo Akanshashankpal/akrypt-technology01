@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/skeleton.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <title>Akrypt App</title>
+    <style>
+      .user-card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .user-card h4 {
+        margin: 0;
+        color: #333;
+      }
+      .user-card p {
+        margin: 5px 0;
+      }
+      .user-card .email {
+        color: rgb(0, 162, 255);
+      }
+      .active {
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+      }
+ 
+  /* Navbar styling */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+  }
+  .navbar .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links li {
+    position: relative;
+    margin: 0 10px;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover {
+    color: #d4d4d4;
+  }
+
+  /* Submenu styling */
+  .dropdown .submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 5px;
+  }
+  .dropdown .submenu li {
+    margin: 0;
+  }
+  .dropdown .submenu a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .dropdown .submenu a:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  /* Show submenu on hover */
+  .dropdown:hover .submenu {
+    display: block;
+  }
+
+
+    </style>
+  </head>
+  <body>
+    
+      
+    <div class="container">
+      <div class="row">
+        <div class="column">
+          <h1>Akrypt User App</h1>
+          <p>Akrypt App</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="columns four sidebar-one" id="sidebar-one">
+          <h4>Actions</h4>
+          <button id="fetchUser" class="u-full-width button button-primary">
+            Fetch Users
+          </button>
+          <hr />
+          <h4>Add User</h4>
+          <input
+            type="text"
+            id="name"
+            class="u-full-width"
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            id="email"
+            class="u-full-width"
+            placeholder="Email"
+          />
+          <input
+            type="number"
+            id="mobile"
+            class="u-full-width"
+            placeholder="Mobile Number"
+          />
+          <input
+            type="number"
+            id="salary"
+            class="u-full-width"
+            placeholder="Salary"
+          />
+          <button id="addUser" class="u-full-width button button-primary">
+            Add User
+          </button>
+          <hr />
+          <h4>Update User</h4>
+          <input
+            type="text"
+            id="userID"
+            class="u-full-width"
+            placeholder="User ID"
+          />
+          <input
+            type="text"
+            id="nameUpdate"
+            class="u-full-width"
+            placeholder="Name Update"
+          />
+          <input
+            type="text"
+            id="emailUpdate"
+            class="u-full-width"
+            placeholder="Email Update"
+          />
+          <input
+            type="number"
+            id="mobileUpdate"
+            class="u-full-width"
+            placeholder="Mobile Number Update"
+          />
+          <input
+            type="number"
+            id="salaryUpdate"
+            class="u-full-width"
+            placeholder="Salary Update"
+          />
+          <button id="updateUser" class="u-full-width button button-primary">
+            Update User
+          </button>
+          <hr />
+        </div>
+
+        <div class="columns eight main">
+          <div class="notifications-wrapper" id="userDiv"></div>
+          <div
+            id="pagination"
+            style="
+              border: 2px solid rgb(241, 239, 239);
+              align-items: center;
+              text-align: center;
+              margin-top: 2px;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const userDiv = document.getElementById("userDiv");
+      const fetchUser = document.getElementById("fetchUser");
+      const pagination = document.getElementById("pagination");
+
+      //Post
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const mobile = document.getElementById("mobile");
+      const salary = document.getElementById("salary");
+      const addUser = document.getElementById("addUser");
+      //Update
+      const updateUser = document.getElementById("updateUser");
+      const nameUpdate = document.getElementById("nameUpdate");
+      const emailUpdate = document.getElementById("emailUpdate");
+      const mobileUpdate = document.getElementById("mobileUpdate");
+      const salaryUpdate = document.getElementById("salaryUpdate");
+      const userID = document.getElementById("userID");
+      //pagination
+      let totalPages = 0; // Total number of pages from
+      let currentPage = 1; // Track the current page
+
+      function getUsers(pageNumber = 1) {
+        currentPage = pageNumber;
+        console.log(pageNumber);
+        fetch(
+          `https://6784cad51ec630ca33a5ab8c.mockapi.io/users?page=${pageNumber}&limit=5`,
+          {
+            method: "GET",
+            headers: { "content-type": "application/json" },
+          }
+        )
+          .then((res) => {
+            if (res.ok) {
+              totalPages = Number(res.headers.get("X-Total-Pages")) || 5;
+              return res.json();
+            }
+          })
+          .then((result) => {
+            renderUser(result);
+            // let pages=Math.ceil(result.length/10)
+            // renderPagination(totalPages);
+            renderPage(currentPage);
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      function renderPage(currentPage) {
+        pagination.innerHTML = null;
+        let prevBtn=document.createElement("button")
+        prevBtn.innerText="prev"
+        prevBtn.addEventListener("click",()=>{
+           getUsers(currentPage-1)
+            
+            if(currentPage==1){
+                prevBtn.disabled=true;
+                
+            }
+        })
+        pagination.append(prevBtn)
+        for (let i = 1; i <= totalPages; i++) {
+          console.log(currentPage);
+
+          let pageBtn = document.createElement("button");
+          pageBtn.innerText = i;
+          pageBtn.style.marginLeft = "5px";
+          if (currentPage == i) {
+              pageBtn.style.backgroundColor = "blue";
+              pageBtn.style.color = "white";
+            }
+          pagination.append(pageBtn);
+         
+          pageBtn.addEventListener("click", () => {
+            // alert(i)
+
+           
+            getUsers(i);
+          });
+        }
+        let nextBtn=document.createElement("button")
+       nextBtn.innerText="next"
+       pagination.append(nextBtn)
+        nextBtn.addEventListener("click",()=>{
+            getUsers(currentPage+1)
+            if(currentPage==totalPages){
+                nextBtn.disabled=true
+            }
+        })
+        
+      }
+
+      //pagination
+
+      function renderPagination(totalPages) {
+          pagination.innerHTML = ""; // Clear existing buttons
+          for (let i = 1; i <= totalPages; i++) {
+            const pageBtn = document.createElement("button");
+            pageBtn.innerText = i;
+            pageBtn.style.marginLeft = "5px";
+            // pageBtn.className = i === currentPage ? "active" : ""; // Highlight active page
+            pageBtn.addEventListener("click", function () {
+              getUsers(i);
+            });
+            pagination.appendChild(pageBtn);
+          }
+        }
+
+      /// for Geting Data
+      fetchUser.addEventListener("click", () => {
+        getUsers();
+        renderPage();
+      });
+
+      // for Post data
+
+      addUser.addEventListener("click", () => {
+        const newTask = {
+          nAme: name.value,
+          email: email.value,
+          mob: mobile.value,
+          salary: salary.value,
+        };
+        console.log(newTask);
+        fetch("https://6784cad51ec630ca3a5ab8c.mockapi.io/users", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(newTask),
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+            // handle error
+          })
+          .then((task) => {
+            getUsers();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+
+      // Update User
+
+      updateUser.addEventListener("click", function () {
+        //   const id = userID.value;
+
+        const updatedUser = {
+          name: nameUpdate.value,
+          email: emailUpdate.value,
+          mob: mobileUpdate.value,
+          salary: salaryUpdate.value,
+        };
+
+        fetch(
+          `https://6784cad51ec630ca33a5ab8c.mockapi.io/users/${userID.value}`,
+          {
+            method: "PUT", // Use PUT to update all fields
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedUser),
+          }
+        )
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("Failed to update user");
+            }
+          })
+          .then(() => {
+            alert("User updated successfully");
+            getUsers(); // Refresh the list after update
+          })
+          .catch((error) => console.error("Error:", error));
+      });
+
+      function renderUser(users) {
+        userDiv.innerHTML = "";
+        if (users.length == 0) {
+          const userM = document.createElement("h4");
+          userM.innerText = "No Data Found in This Page";
+          userDiv.appendChild(userM);
+        }
+        users.forEach((user) => {
+          const userCard = document.createElement("div");
+          userCard.classList.add("user-card");
+          userCard.innerHTML = `
+                    <h4 class="email">${user.name}</h4>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Phone:</strong> ${user.mob}</p>
+                    <p><strong>Salary:</strong> $${user.salary}</p>
+                `;
+          userDiv.appendChild(userCard);
+        });
+      }
+    </script>
+  </body>
+</html>

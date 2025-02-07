@@ -1,0 +1,46 @@
+GET https://67873c14c4a42c916105efce.mockapi.io/users?limit=5
+###create a neew element
+post https://67873c14c4a42c916105efce.mockapi.io/users
+Content-Type: application/json
+
+{
+   "name": "akansha",
+    "email": "aakanshashankpal38@gmail.com",
+    "salary": "336.78"
+}
+
+###get method
+GET https://67873c14c4a42c916105efce.mockapi.io/users
+
+###
+POST  https://67873c14c4a42c916105efce.mockapi.io/users
+Content-Type: application/json
+
+{
+   "name": "gayatri",
+    "email": "gayu@gmail.com",
+    "salary": "336.78"
+}
+
+###
+GET https://67873c14c4a42c916105efce.mockapi.io/users
+
+### upadate 
+PATCH https://67873c14c4a42c916105efce.mockapi.io/users/5
+Content-Type: application/json
+
+{
+   "name": "harshita",
+    "email": "harshu@gmail.com"
+    
+}
+### update
+PUT  https://67873c14c4a42c916105efce.mockapi.io/users/5
+Content-Type: application/json
+
+{
+   "salary":"435454"
+    
+}
+###delete 
+DELETE https://67873c14c4a42c916105efce.mockapi.io/users/4

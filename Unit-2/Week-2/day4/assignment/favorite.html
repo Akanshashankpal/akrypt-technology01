@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    #restaurant-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+
+    }
+
+    .child {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin: 10px;
+        width: 250px;
+        height: 350px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .child h3 {
+        margin: 8px;
+    }
+
+    .child p {
+        margin: 8px;
+    }
+
+    .child img {
+        width: 100%;
+        border-radius: 8px 8px 0 0;
+        height: 150px;
+    }
+
+    .child button {
+        padding: 10px;
+        background-color: #f63905;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px;
+        margin-left: 14px;
+       font-size: 14px;
+    }
+
+    select {
+        padding: 10px;
+        margin: 20px;
+        font-size: 16px;
+        border-radius: 5px
+    }
+
+    span {
+        margin-left: 20px;
+    }
+    .num{
+        pointer-events: none;
+    }
+
+    
+</style>
+
+<body>
+
+    <h1>Favorites Data</h1>
+    <span id="total">Total Price:-</span>
+    <!-- Restaurant Container -->
+    <div id="restaurant-container">
+        <!-- Restaurant cards will be appended here using JS -->
+    </div>
+
+</body>
+<script>
+    let div = document.getElementById("restaurant-container");
+    let total = document.getElementById("total")
+    let favArray = JSON.parse(localStorage.getItem("favourite"))
+    if (favArray === null) {
+        favArray = []
+    }
+    console.log(favArray)
+    function fData(data) {
+        // console.log("favrourite",res)
+        // div.innerHTML=null
+        data.forEach((e, i) => {
+            let div1 = document.createElement("div")
+            div1.className = "child"
+            div.append(div1)
+            let image = document.createElement("img")
+            image.src = e.image
+            let name = document.createElement("h3")
+            name.innerText = `${e.name}`
+            let sPrice = document.createElement("p")
+            sPrice.style.color = "blue"
+            sPrice.innerText = `Starting_from:- $${e.price_starts_from}`
+            let rating = document.createElement("p")
+            rating.innerText = ` Rating :- ${e.rating}`
+            let type = document.createElement("p")
+            type.innerText = ` Type:- ${e.type}`
+            let btn = document.createElement("button")
+            btn.className = "btn"
+            btn.innerText = "Delete"
+            btn.addEventListener("click", function () {
+                alert("Delete")
+                removed(i)
+            })
+            
+            let minus = document.createElement("button")
+            minus.innerText = "-"
+            let a=1;
+            minus.addEventListener("click",function(){
+                 if(a>1){
+                    a--;
+                  ( a<10) ? num.innerText=`0${a}` : num.innerText=a
+                  console.log(a)
+                 }
+            })
+            
+            let plus = document.createElement("button")
+            plus.innerText = "+"
+            plus.addEventListener("click",function(){
+                  a++;
+                 ( a<10) ? num.innerText=`0${a}` : num.innerText=a
+                 
+                 console.log(a)
+            })
+
+            let num = document.createElement("button")
+            num.innerText = "01"
+            num.className="num"
+           
+
+            div1.append(image, name, sPrice, type, rating, btn,minus,num,plus)
+        })
+    }
+
+    fData(favArray)
+
+    function removed(index) {
+        div.innerHTML = null
+        favArray.splice(index, 1)
+        console.log(favArray)
+        fData(favArray)
+        localStorage.setItem("favourite", JSON.stringify(favArray))
+    }
+
+
+    function totalPrice(favArray) {
+        let totalPrice1 = 0
+        for (var i = 0; i < favArray.length; i++) {
+            console.log(favArray[i].price_starts_from)
+            totalPrice1 += Number(favArray[i].price_starts_from)
+        }
+        console.log("total", totalPrice1)
+        total.innerText = `Total Price :- ${totalPrice1}`
+    }
+
+
+    totalPrice(favArray)
+
+
+</script>
+
+</html>

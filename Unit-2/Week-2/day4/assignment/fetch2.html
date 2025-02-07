@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masai Restaurant Finder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Global Styling */
+        * {
+            margin: 0%;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        #restaurant-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            justify-items: center;
+
+        }
+
+        .child {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 10px;
+            width: 250px;
+            height: 350px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .child h3 {
+            margin: 8px;
+        }
+
+        .child p {
+            margin: 8px;
+        }
+
+        .child img {
+            width: 100%;
+            border-radius: 8px 8px 0 0;
+            height: 150px;
+        }
+
+        .child button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            margin-left: 60px;
+        }
+
+        select {
+            padding: 10px;
+            margin: 20px;
+            font-size: 16px;
+            border-radius: 5px
+        }
+    </style>
+</head>
+
+
+<body>
+    <a href="fetch2.html">Home</a>
+    <a href="favorite.html">Favorites Data</a>
+    <!-- Navigation -->
+    <div class="nav">
+        <h1>Akrypt Restaurant Finder</h1>
+    </div>
+
+
+    <!-- Filter Section -->
+    <select id="filter">
+        <option value="">Filter By Category</option>
+        <option value="cafe">Cafe</option>
+        <option value="ethnic">Ethnic</option>
+        <option value="fast_food">Fast Food</option>
+    </select>
+
+
+    <!-- Restaurant Container -->
+    <div id="restaurant-container">
+        <!-- Restaurant cards will be appended here using JS -->
+    </div>
+
+
+    <script>
+        let div = document.getElementById("restaurant-container");
+        let filter = document.getElementById("filter")
+        let favArray = JSON.parse(localStorage.getItem("favourite"))
+        if (favArray === null) {
+            favArray = []
+        }
+
+        let data = [];
+        let fetchData = fetch("https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/getrestaurants?limit=30")
+            .then(function (response) {
+                console.log(response)
+                return response.json()
+            })
+            .then(function (res) {
+                console.log(res)
+                data = res.data
+                fData(data)
+            })
+
+        function fData(data) {
+            // console.log("favrourite",res)
+            // div.innerHTML=null
+            data.forEach((e, i) => {
+                let div1 = document.createElement("div")
+                div1.className = "child"
+                div.append(div1)
+                let image = document.createElement("img")
+                image.src = e.image
+                let name = document.createElement("h3")
+                name.innerText = `${e.name}`
+                let sPrice = document.createElement("p")
+                sPrice.style.color = "blue"
+                sPrice.innerText = `Starting_from:- $${e.price_starts_from}`
+                let rating = document.createElement("p")
+                rating.innerText = `Rating :- ${e.rating}`
+                let type = document.createElement("p")
+                type.innerText = `Type:- ${e.type}`
+                let btn = document.createElement("button")
+                btn.className = "btn"
+                btn.innerText = "Add to Favourite"
+                btn.addEventListener("click", function () {
+                    ////////////////using For Loop////////////////
+                    let isAdleadyInCart = false;
+                    for(let i=0;i<favArray.length;i++){
+                      if(favArray[i].id === e.id){
+                        isAdleadyInCart = true;
+                        break;
+                      };
+                    }
+
+                    if(isAdleadyInCart === true){
+                      alert("Product Already in Cart");
+                    }else{
+                        favArray.push(e)
+                        localStorage.setItem("favourite", JSON.stringify(favArray));
+
+                    alert("Product Added To Cart");
+                    }
+
+                    ///////////////////Using Filter////////////////////////////
+                //     if (favArray.length == 0) {
+                //         favArray.push(e)
+                //         localStorage.setItem("favourite", JSON.stringify(favArray));
+                //     } else {
+
+                //         let newArray = favArray.filter((fav) => fav.id == e.id);
+                //         if (newArray.length == 1) {
+                //             alert("allready Adedd");
+                //         } else {
+                //             favArray.push(e)
+                //             localStorage.setItem("favourite", JSON.stringify(favArray));
+                //         }
+                //     }
+
+
+                })
+
+                div1.append(image, name, sPrice, type, rating, btn)
+            })
+        }
+
+        filter.addEventListener("change", function () {
+            let selectedFilter = data.filter((e, i) => {
+                return e.type == filter.value
+                console.log(filter.value)
+            })
+            div.innerHTML = null
+            fData(selectedFilter)
+        })
+
+
+    </script>
+</body>
+
+</html>

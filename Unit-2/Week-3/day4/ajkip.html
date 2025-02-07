@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Akrypt App</title>
+    <style>
+        * {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+.header{
+position: fixed;
+}
+.row{
+display: flex;
+background-color: #fff;
+justify-content: space-around;
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.header-logo {
+width: 8rem;
+margin: 20px;
+} 
+.header-logo a img{
+display: flex;
+justify-items: center;
+margin-top: 7px;
+}
+.header_nav_menu ul{
+display: flex;
+margin-top: 30px;
+}
+.header_nav_menu ul li {
+margin: 20px;
+list-style: none;
+
+}
+
+.header_nav_menu ul li a {
+text-decoration: none;
+color: #2c4152;
+}
+
+.header-search {
+border: 1px solid #2c4152;
+margin: 20px;
+width: 300px;
+border-radius: 40px;
+padding: 7px;
+height: 35px;
+margin-top: 40px;
+display: flex;
+justify-content: space-around;
+background-color: #fffded;
+}
+.header-search input {
+width: 100%;
+outline: none;
+border: none;
+font-weight: 500;
+transition: 0.8s;
+background: transparent;
+}
+.icon i{
+margin-left: 20px;
+margin-top: 40px;
+background-color: #2c4152;
+cursor: pointer;
+color: white;
+padding: 10px;
+border-radius: 40px;
+margin-right: 5px;
+}
+#cards{
+display: grid;
+grid-template-columns: repeat(3,1fr);
+justify-items: center;
+
+}
+
+.card{
+        border: 2px solid red;
+        text-align: center;
+        width: 210px;
+        height: auto;
+        margin: 15px;
+    }
+
+
+  </style>
+    <style>
+      .user-card {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .user-card h4 {
+        margin: 0;
+        color: #333;
+      }
+      .user-card p {
+        margin: 5px 0;
+      }
+      .user-card .email {
+        color: rgb(0, 162, 255);
+      }
+      #fetchUser {
+        background-color: aqua;
+        color: white;
+        border: none;
+        padding: 10px;
+      }
+      .btn {
+        background-color: aqua;
+        color: white;
+        border: none;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header-logo">
+                    <a href="#"><img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt=""></a>
+                </div>
+                <div class="header-nav">
+                    <nav class="header_nav_menu">
+                        <ul>
+                            <li><a href="home.html">HOME</a></li>
+                            <li><a href="addProduct.html">Add Product</a></li>
+                            <li><a href="#">KIDS</a></li>
+                            <li><a href="#">HOME & KITCHEN</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-search">
+                    <input type="text" name="" id="search" placeholder="search AJIO" >
+                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+                <div class="header_icon">
+                    <div class="icon">
+                        <a href="wish list.html"><i class="fa-regular fa-heart"></i></a>
+                        <a href="Add to cart.html"><i class="fa-solid fa-cart-shopping"></i> </a>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <br><br>
+    <div >
+      <div >
+        <div>
+          <h1>AJIO User App</h1>
+         
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <h4>Actions</h4>
+          <button id="fetchUser" class="u-full-width button button-primary">
+            Fetch Users
+          </button>
+          <br>
+          <hr><br><br>
+          <h4>Add Product</h4>
+          <input
+            type="text"
+            id="name"
+            class="u-full-width"
+            placeholder="Name"
+          />
+          <input
+            type="text"
+            id="Description"
+            class="u-full-width"
+            placeholder="Description"
+          />
+          <input
+            type="number"
+            id="price"
+            class="u-full-width"
+            placeholder="Enter price"
+          />
+          <input
+            type="text"
+            id="material"
+            class="u-full-width"
+            placeholder="Enter material type"
+          />
+          <input
+          type="text"
+          id="image"
+          class="u-full-width"
+          placeholder="Give link of image"
+        /><br><br>
+          <button id="addUser" class="btn" class="u-full-width button button-primary">
+            Add User
+          </button>
+          <hr /><br><br>
+
+          <!-- // update id -->
+          <h4>Update User</h4>
+          <input
+          type="number"
+          id="idupdate"
+          class="u-full-width"
+          placeholder="Id"
+        />
+        <input
+          type="text"
+          id="nameupdate"
+          class="u-full-width"
+          placeholder="Name"
+        />
+        <input
+          type="text"
+          id="Descriptionupdate"
+          class="u-full-width"
+          placeholder="Description"
+        />
+        <input
+          type="number"
+          id="priceupdate"
+          class="u-full-width"
+          placeholder="Enter price"
+        />
+        <input
+          type="text"
+          id="materialupdate"
+          class="u-full-width"
+          placeholder="Enter material type"
+        />
+        <input
+        type="text"
+        id="imageupdate"
+        class="u-full-width"
+        placeholder="Give link of image"
+      /><br><br>
+          <button id="updateUser" class="btn">
+            update User
+          </button>
+          <hr><br><br>
+          <input
+            type="number"
+            id="deleteId"
+            class="u-full-width"
+            placeholder="Salary update"
+          /><br><br>
+          <button id="deleteUser" class="btn">
+            Delete User
+          </button>
+
+        </div>
+
+        <div class="columns eight main">
+          <div class="notifications-wrapper" id="userDiv"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const userDiv = document.getElementById("userDiv");
+
+      // fetch Data
+      const fetchUser = document.getElementById("fetchUser");
+      let name = document.getElementById("name");
+      let Description = document.getElementById("Description");
+      let price = document.getElementById("price");
+      let material = document.getElementById("material");
+      let image = document.getElementById("image");
+      let addUser = document.getElementById("addUser");
+
+      // update user
+      let id = document.getElementById("idupdate");
+      let nameupdate = document.getElementById("nameupdate");
+      let  Descriptionupdate = document.getElementById("Descriptionupdate");
+      let priceupdate = document.getElementById("priceupdate");
+      let materialupdate = document.getElementById("materialupdate");
+      let imageupdate = document.getElementById("imageupdate");
+      let updateUser = document.getElementById("updateUser");
+
+      //delete data
+      let deleteUser=document.getElementById("deleteUser")
+      let deleteId=document.getElementById("deleteId")
+    
+      // post data
+      addUser.addEventListener("click", () => {
+        let obj = {
+          name: name.value,
+          material: material.value,
+          Description: Description.value,
+          price: price.value,
+          image:image.value
+        };
+        console.log(obj);
+
+        fetch("https://6789f159dd587da7ac28232e.mockapi.io/Product", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          // Send your data in the request body as JSON
+          body: JSON.stringify(obj),
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+          })
+          .then((task) => {
+            getUsers();
+            // renderUser(result)
+            console.log(task);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+
+      function getUsers() {
+        fetch("https://6789f159dd587da7ac28232e.mockapi.io/Product", {
+          method: "GET",
+          headers: { "content-type": "application/json" },
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+          })
+          .then((result) => {
+            renderUser(result);
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      // Function to render users as cards
+
+      fetchUser.addEventListener("click", () => {
+        getUsers();
+      });
+
+      function renderUser(users) {
+        userDiv.innerHTML = "";
+        users.forEach((user) => {
+          const userCard = document.createElement("div");
+          userCard.classList.add("user-card");
+          let image=document.createElement("img")
+          image.style.width="100px"
+          image.style.height="100px"
+          image.setAttribute("src",user.image)
+          userCard.innerHTML = `
+                    <h4 class="Name">${user.name}</h4>
+                    <p><strong>Description:</strong> ${user.Description}</p>
+                    <p><strong>Price:</strong> $${user.price}</p>
+                    <p><strong>Material:</strong> ${user.material}</p>
+                    <p><strong>Id:</strong> ${user.id}</p>
+                
+                `;
+          userDiv.append(userCard,image);
+        });
+      }
+
+      // update user
+      updateUser.addEventListener("click", function () {
+        let obj1 = {
+          name: nameupdate.value,
+          material: materialupdate.value,
+          Description: Descriptionupdate.value,
+          price: priceupdate.value,
+          image:imageupdate.value
+        };
+        console.log(obj1);
+        fetch(`https://6789f159dd587da7ac28232e.mockapi.io/Product/${id.value}`, {
+          method: "PUT", // or PATCH
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(obj1),
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("Failed to update user");
+            }
+          })
+          .then((task1) => {
+            getUsers();
+            // renderUser(result)
+            console.log(task1);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+
+      // Delete data
+
+      deleteUser.addEventListener("click", function () {
+      
+        fetch(`https://6789f159dd587da7ac28232e.mockapi.io/Product/${deleteId.value}`, {
+          method: "DELETE", 
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } 
+          })
+          .then((task1) => {
+            getUsers();
+            // renderUser(result)
+            console.log(task1);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+  </body>
+</html>

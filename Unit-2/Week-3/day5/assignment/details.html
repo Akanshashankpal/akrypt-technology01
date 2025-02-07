@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJIO</title>
+    <link rel="stylesheet" href="/Unit-2/Week-2/day5/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .header {
+        position: static;
+    }
+
+    .row {
+        display: flex;
+        background-color: #fff;
+        justify-content: space-around;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .header-logo {
+        width: 8rem;
+        margin: 20px;
+    }
+
+    .header-logo a img {
+        display: flex;
+        justify-items: center;
+        margin-top: 7px;
+    }
+
+    .header_nav_menu ul {
+        display: flex;
+        margin-top: 30px;
+    }
+
+    .header_nav_menu ul li {
+        margin: 20px;
+        list-style: none;
+
+    }
+
+    .header_nav_menu ul li a {
+        text-decoration: none;
+        color: #2c4152;
+    }
+
+    .header-search {
+        border: 1px solid #2c4152;
+        margin: 20px;
+        width: 300px;
+        border-radius: 40px;
+        padding: 7px;
+        height: 35px;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-around;
+        background-color: #fffded;
+    }
+
+    .header-search input {
+        width: 100%;
+        outline: none;
+        border: none;
+        font-weight: 500;
+        transition: 0.8s;
+        background: transparent;
+    }
+
+    .icon i {
+        margin-left: 20px;
+        margin-top: 40px;
+        background-color: #2c4152;
+        cursor: pointer;
+        color: white;
+        padding: 10px;
+        border-radius: 40px;
+        margin-right: 5px;
+    }
+
+    #cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
+    }
+
+    .card {
+        border: 1px solid #ddd;
+        margin: 10px;
+        width: 250px;
+        display: inline-block;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+        margin-top: 3rem;
+    }
+
+    .card img {
+        width: 100%;
+        height: 250px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .card h5 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin: 10px 0;
+    }
+
+    .card p {
+        font-size: 14px;
+        color: #666;
+        margin: 10px;
+    }
+
+    .card span {
+        font-size: 14px;
+        color: #333;
+        font-style: italic;
+    }
+
+    .card button {
+        padding: 8px;
+        border: none;
+        background-color: #caa229;
+        color: #fff;
+        margin: 10px;
+    }
+
+    #detail {
+        height: 500px;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 30px;
+    }
+
+    #image {
+        width: 400px;
+        height: 500px;
+    }
+
+    #descri {
+        width: 550px;
+        height: 500px;
+        text-align: center;
+    }
+
+    .offPrice {
+        color: #caa229;
+        font-weight: bold;
+        margin: 15px;
+    }
+
+    .btn {
+        padding: 15px;
+        width: 20rem;
+        display: inline-block;
+        border: none;
+        background-color: #caa229;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bolder;
+    }
+
+    .size {
+        margin: 15px;
+    }
+
+    .size button {
+        margin: 10px;
+        display: inline-block;
+        width: 40px;
+        padding: .6rem;
+        border-radius: 50px;
+        text-align: center;
+        border: 1px solid #333;
+        background-color: #fff;
+    }
+
+    .size button:hover {
+        background-color: #2c4152;
+        color: #fff;
+        border: none;
+    }
+</style>
+
+<body>
+    <!-- <a href="wishlist.html"></a>
+    <a href="cart.html"></a> -->
+    <!-- header section -->
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header-logo">
+                    <a href="#"><img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt=""></a>
+                </div>
+                <div class="header-nav">
+                    <nav class="header_nav_menu">
+                        <ul>
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="#">MEN</a></li>
+                            <li><a href="#">WOMEN</a></li>
+                            <li><a href="#">KIDS</a></li>
+                            <li><a href="#">BEAUTY</a></li>
+                            <li><a href="#">KITCHEN</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-search">
+                    <input type="text" name="" id="search" placeholder="search AJIO">
+                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+                <div class="header_icon">
+                    <div class="icon">
+                        <a href="wishlist.html"><i class="fa-regular fa-heart"></i></a>
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- header section end -->
+
+    <!-- card section  -->
+
+    <h1 style="text-align: center; margin-top: 10px;"> Product Details</h1>
+    <div id="detail">
+        <div id="image">
+
+        </div>
+        <div id="descri"></div>
+    </div>
+
+
+
+</body>
+<script>
+    let bagArr = JSON.parse(localStorage.getItem("selectData"))
+    console.log(bagArr)
+    let details = document.getElementById("detail")
+    let imageDiv = document.getElementById("image")
+    let descriDiv = document.getElementById("descri")
+
+    let favArray = JSON.parse(localStorage.getItem("wishData"))
+    if (favArray === null) {
+        favArray = [];
+    }
+    let bagArray = JSON.parse(localStorage.getItem("bagData"))
+    if (bagArray === null) {
+        bagArray = [];
+    }
+
+    let img = document.createElement("img")
+    img.style.width = "100%"
+    img.style.height = "100%"
+    img.src = bagArr.image
+    imageDiv.append(img)
+
+    let name = document.createElement("h5")
+    name.innerText = bagArr.name
+    name.style.margin = "15px"
+    name.style.fontSize = "20px"
+    name.style.color = "#caa229"
+
+    let price = document.createElement("s")
+    price.innerText = `$${bagArr.price}`
+    price.style.margin = "15px"
+
+    let offerPrice = document.createElement("p")
+    offerPrice.innerText = `MRP $${bagArr.offerPrize}`
+    offerPrice.className = "offPrice"
+
+    let pTax = document.createElement("p")
+    pTax.innerText = "Price inclusive of all taxes"
+    pTax.style.color = "#333"
+    pTax.style.margin = "15px"
+
+    let desc = document.createElement("p")
+    desc.innerText = bagArr.Description
+    desc.style.margin = "15px"
+
+    let material = document.createElement("span")
+    material.innerText = bagArr.material
+    material.style.display = "block"
+    material.style.margin = "15px"
+
+    let bag = document.createElement("button")
+    bag.className = "btn"
+    bag.innerText = "Add To Bag"
+
+    let size = document.createElement("p")
+    size.innerText = "Select Size"
+    let sizeDiv = document.createElement("div")
+    sizeDiv.className = "size"
+    let btn1 = document.createElement("button")
+    btn1.innerText = "XXL"
+    btn1.addEventListener("click", function () {
+        btn1.style.backgroundColor = "#caa229"
+        bag.addEventListener("click", () => {
+            alert("added")
+            bagArray.push(bagArr)
+            console.log(bagArray)
+            localStorage.setItem("bagData", JSON.stringify(bagArray))
+        })
+    })
+    let btn2 = document.createElement("button")
+    btn2.innerText = "XL"
+    btn2.addEventListener("click", function () {
+        btn2.style.backgroundColor = "#caa229"
+        bag.addEventListener("click", () => {
+            alert("added")
+            bagArray.push(bagArr)
+            console.log(bagArray)
+            localStorage.setItem("bagData", JSON.stringify(bagArray))
+        })
+    })
+    let btn3 = document.createElement("button")
+    btn3.innerText = "L"
+    btn3.addEventListener("click", function () {
+        btn3.style.backgroundColor = "#caa229"
+        bag.addEventListener("click", () => {
+            alert("added")
+            bagArray.push(bagArr)
+            console.log(bagArray)
+            localStorage.setItem("bagData", JSON.stringify(bagArray))
+        })
+    })
+    let btn4 = document.createElement("button")
+    btn4.innerText = "M"
+    btn4.addEventListener("click", function () {
+        btn4.style.backgroundColor = "#caa229"
+        bag.addEventListener("click", () => {
+            alert("added")
+            bagArray.push(bagArr)
+            console.log(bagArray)
+            localStorage.setItem("bagData", JSON.stringify(bagArray))
+        })
+    })
+    let btn5 = document.createElement("button")
+    btn5.innerText = "S"
+    btn5.addEventListener("click", function () {
+        btn5.style.backgroundColor = "#caa229"
+        bag.addEventListener("click", () => {
+            alert("added")
+            bagArray.push(bagArr)
+            console.log(bagArray)
+            localStorage.setItem("bagData", JSON.stringify(bagArray))
+        })
+    })
+    sizeDiv.append(btn1, btn2, btn3, btn4, btn5)
+
+    let pdesc = document.createElement("p")
+    pdesc.innerText = "HANDPICKED STYLES | ASSURED QUALITY"
+    pdesc.style.fontSize = "10px"
+    pdesc.style.margin = ".8rem"
+
+
+    let wishList = document.createElement("button")
+    wishList.className = "btn"
+    wishList.innerText = "Add To Wishlist"
+    wishList.addEventListener("click", () => {
+        alert("added")
+        favArray.push(bagArr)
+        console.log(favArray)
+        localStorage.setItem("wishData", JSON.stringify(favArray))
+    })
+
+    descriDiv.append(name, desc, material, price, offerPrice, pTax, size, sizeDiv, bag, pdesc, wishList)
+
+
+
+
+</script>
+
+</html>

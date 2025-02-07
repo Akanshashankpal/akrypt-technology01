@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <style>
+        .container{
+            border:2px solid green;
+            width: 200px;
+            text-align: center;
+
+        }
+        .image{
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>card without using append </h1>
+    <div style="border:2px solid red; display: flex; justify-content: space-between;" id="cont"> 
+        
+        </div>
+    
+</body>
+<script>
+    let cont=document.getElementById("cont")
+
+// fetch("https://6789f159dd587da7ac28232e.mockapi.io/Users")
+
+// .then((res)=>{
+//     console.log(res)
+//     return res.json()
+// })
+// .then((result)=>{
+// console.log(result)
+// })
+// .catch((err)=>{
+// console.log(err)
+// })
+
+//get method
+fetch('https://67873c14c4a42c916105efce.mockapi.io/users', {
+  method: 'GET',
+  headers: {'content-type':'application/json'},
+}).then((res)=>{
+    console.log(res)
+    return res.json()
+})
+.then((result)=>{
+console.log(result)
+})
+.catch((err)=>{
+console.log(err)
+})
+
+    let arr = [
+      {
+        createdAt: "2025-01-16T01:55:09.114Z",
+        name: "Joe O'Connell",
+        email: "Laron39@example.com",
+        mob: "(256) 526-5520 x394",
+        salary: "471.64",
+        id: "1",
+      },
+      {
+        createdAt: "2025-01-16T01:55:09.114Z",
+        name: "Ajay Tayde",
+        email: "Laron39@example.com",
+        mob: "(256) 526-5520 x394",
+        salary: "471.64",
+        id: "2",
+      },
+      {
+        createdAt: "2025-01-16T01:55:09.114Z",
+        name: "Depak Choudhary",
+        email: "Laron39@example.com",
+        mob: "(256) 526-5520 x394",
+        salary: "471.64",
+        id: "3",
+      },
+      {
+        createdAt: "2025-01-16T01:55:09.114Z",
+        name: "Tejas Mahajan",
+        email: "Laron39@example.com",
+        mob: "(256) 526-5520 x394",
+        salary: "471.64",
+        id: "4",
+      },
+ ];
+
+ arr.forEach((e,i)=>{
+let div1=document.createElement("div")
+let div=document.createElement("div")
+        div.classList.add("container")
+        cont.append(div)
+        div.innerHTML=`
+         <img class="image" src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?cs=srgb&dl=pexels-anjana-c-169994-674010.jpg&fm=jpg">
+         <h1>${e.name}</h1>
+         <p>${e.email}</p>
+         `
+        
+ })
+    
+
+    function del(){
+        alert("Delete")
+    }
+</script>
+</html>

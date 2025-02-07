@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/skeleton.css" />
+    <link rel="stylesheet" href="styles/style.css" /> -->
+  <title>Akrypt App</title>
+  <style>
+    .user-card {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .user-card h4 {
+      margin: 0;
+      color: #333;
+    }
+
+    .user-card p {
+      margin: 5px 0;
+    }
+
+    .user-card .email {
+      color: rgb(0, 162, 255);
+    }
+
+    #fetchUser {
+      background-color: aqua;
+      color: white;
+      border: none;
+      padding: 10px;
+    }
+
+    #addUser,
+    #deleteUser,
+    #updateUser {
+      background-color: aqua;
+      color: white;
+      border: none;
+      padding: 10px;
+    }
+
+    input {
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="column">
+        <h1>Akrypt User App</h1>
+        <p>Akrypt App</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns four sidebar-one" id="sidebar-one">
+        <h4>Actions</h4>
+        <button id="fetchUser" class="u-full-width button button-primary">
+          Fetch Users
+        </button>
+        <hr />
+        <h4>Add User</h4>
+        <input type="text" id="name" class="u-full-width" placeholder="Name" />
+        <input type="text" id="email" class="u-full-width" placeholder="Email" />
+        <input type="number" id="mobile" class="u-full-width" placeholder="Mobile Number" />
+        <input type="number" id="salary" class="u-full-width" placeholder="Salary" />
+        <button id="addUser" class="u-full-width button button-primary">
+          Add User
+        </button>
+        <hr />
+
+        <!-- // update id -->
+        <h4>Update User</h4>
+        <input type="text" id="idupdate" class="u-full-width" placeholder="Id update" />
+        <input type="text" id="nameupdate" class="u-full-width" placeholder="Name update" />
+        <input type="text" id="emailupdate" class="u-full-width" placeholder="Email update" />
+        <input type="number" id="mobileupdate" class="u-full-width" placeholder="Mobile Number update" />
+        <input type="number" id="salaryupdate" class="u-full-width" placeholder="Salary update" />
+        <button id="updateUser" class="u-full-width button button-primary">
+          update User
+        </button>
+        <hr>
+        <input type="number" id="deleteId" class="u-full-width" placeholder="delete user" />
+        <button id="deleteUser" class="u-full-width button button-primary">
+          Delete User
+        </button>
+
+      </div>
+
+      <div class="columns eight main">
+        <div class="notifications-wrapper" id="userDiv"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="page" style="border: 1px solid red;"></div>
+  <script>
+    const userDiv = document.getElementById("userDiv");
+
+    // fetch Data
+    const fetchUser = document.getElementById("fetchUser");
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let mobile = document.getElementById("mobile");
+    let salary = document.getElementById("salary");
+    let addUser = document.getElementById("addUser");
+
+    // update user
+    let id = document.getElementById("idupdate");
+    let nameupdate = document.getElementById("nameupdate");
+    let emailupdate = document.getElementById("emailupdate");
+    let mobileupdate = document.getElementById("mobileupdate");
+    let salaryupdate = document.getElementById("salaryupdate");
+    let updateUser = document.getElementById("updateUser");
+
+    //delete data
+    let deleteUser = document.getElementById("deleteUser")
+    let deleteId = document.getElementById("deleteId")
+    //paginatiioon
+    let pagination = document.getElementById("page")
+
+    let totalpage=0
+    let currentPage=1
+    // post data
+    addUser.addEventListener("click", () => {
+      let obj = {
+        name: name.value,
+        email: email.value,
+        mobile: mobile.value,
+        salary: salary.value,
+      };
+      console.log(obj);
+
+      fetch("https://67873c14c4a42c916105efce.mockapi.io/users", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        // Send your data in the request body as JSON
+        body: JSON.stringify(obj),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((task) => {
+          getUsers();
+          // renderUser(result)
+          console.log(task);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+
+    function getUsers(pageNumber) {
+      fetch(`https://67873c14c4a42c916105efce.mockapi.io/users?page=${pageNumber}&limit=5`, {
+        method: "GET",
+        headers: { "content-type": "application/json" },
+      })
+        .then((res) => {
+          if (res.ok) {
+            totalPage=Number(res.headers.get("X Total pages"))||2;
+            return res.json();
+          }
+        })
+        .then((result) => {
+          renderUser(result);
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+function renderPage(){
+  for (let i = 1; i <= totalpage; i++) {
+      let pagebtn = document.createElement("button")
+      pagination.append(pagebtn)
+      pagebtn.innerText = i
+      pagebtn.style.margin = "5px"
+      pagebtn.addEventListener("click", function () {
+        // alert(i)
+        getUsers(i)
+      })
+    }
+}
+    
+
+
+
+    // Function to render users as cards
+
+    fetchUser.addEventListener("click", () => {
+      getUsers();
+    });
+
+    function renderUser(users) {
+      userDiv.innerHTML = "";
+      users.forEach((user) => {
+        const userCard = document.createElement("div");
+        userCard.classList.add("user-card");
+        userCard.innerHTML = `
+                    <h4 class="email">${user.name}</h4>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Phone:</strong> ${user.mobile}</p>
+                    <p><strong>Salary:</strong> $${user.salary}</p>
+                    <p><strong>Id:</strong> ${user.id}</p>
+                `;
+        userDiv.appendChild(userCard);
+      });
+    }
+
+    // update user
+    updateUser.addEventListener("click", function () {
+      let obj1 = {
+        name: nameupdate.value,
+        email: emailupdate.value,
+        mobile: mobileupdate.value,
+        salary: salaryupdate.value
+      };
+      console.log(obj1);
+      fetch(`https://67873c14c4a42c916105efce.mockapi.io/users/${id.value}`, {
+        method: "PUT", // or PATCH
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(obj1),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Failed to update user");
+          }
+        })
+        .then((task1) => {
+          getUsers();
+          // renderUser(result)
+          console.log(task1);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+
+    // Delete data
+
+    deleteUser.addEventListener("click", function () {
+
+      fetch(`https://67873c14c4a42c916105efce.mockapi.io/users/${deleteId.value}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((task1) => {
+          getUsers();
+          // renderUser(result)
+          console.log(task1);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  </script>
+</body>
+</htm

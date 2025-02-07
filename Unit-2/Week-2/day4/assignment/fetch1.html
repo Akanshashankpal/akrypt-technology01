@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>
+        Fetch API
+    </h1>
+    <div id="filters">
+        <select id="sort">
+            <option value="">Sort by Name</option>
+            <option value="AtoZ">A to Z</option>
+            <option value="ZtoA">Z to A</option>
+        </select>
+    </div>
+    <br>
+    <br>
+    <br>
+
+
+    <table border="2" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th> Name</th>
+
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Birth Date</th>
+                <th>Image</th>
+                <th>Blood Group</th>
+                <th>Height</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody id="tblbody" style="text-align: center;"></tbody>
+    </table>
+
+
+
+</body>
+<script>
+    let tblbody = document.getElementById("tblbody");
+    let data=[]
+    let fetchData = fetch("https://dummyjson.com/users")
+        .then(function (response) {
+            console.log(response)
+            return (response.json())
+        })
+
+        .then(function(res){
+            // console.log(res)
+            data=res.users
+            fData(data)
+        })
+
+  function fData(data) {
+         // console.log("function",res)
+        data.forEach((e, i) => {
+            let tr = document.createElement("tr")
+
+            let snTd = document.createElement("td")
+            snTd.innerText = e.id
+            let nameTd = document.createElement("td")
+            nameTd.innerText = e.firstName
+            let ageTd = document.createElement("td")
+            ageTd.innerText = e.age
+            let genderTd = document.createElement("td")
+            genderTd.innerText = e.gender
+            let emailTd = document.createElement("td")
+            emailTd.innerText = e.email
+            let phoneTd = document.createElement("td")
+            phoneTd.innerText = e.phone
+            let userNameTd = document.createElement("td")
+            userNameTd.innerText = e.username
+            let passTd = document.createElement("td")
+            passTd.innerText = e.password
+            let birthDTd = document.createElement("td")
+            birthDTd.innerText = e.birthDate
+            let imageTd = document.createElement("img")
+            imageTd.src = e.image
+            let bloodTd = document.createElement("td")
+            bloodTd.innerText = e.bloodGroup
+            let heightTd = document.createElement("td")
+            heightTd.innerText = e.height
+            let weightTd = document.createElement("td")
+            weightTd.innerText = e.weight
+            tr.append(snTd, nameTd, ageTd, genderTd, emailTd, phoneTd, userNameTd, passTd, birthDTd, imageTd, bloodTd, heightTd, weightTd)
+            tblbody.append(tr)
+        })
+
+
+    }
+
+    // Sorting by Name
+      sort.addEventListener("change", function () {
+        console.log(sort.value);
+        tblbody.innerHTML=null
+       
+        if (sort.value == "AtoZ") {
+           
+          data.sort((a, b) => {
+            if (a.firstName.toUpperCase() < b.firstName.toUpperCase()) {
+              return -1;
+            }
+            if (a.firstName.toUpperCase() > b.firstName.toUpperCase()) {
+              return 1;
+            }
+            return 0;
+          });
+          console.log(data)
+          fData(data)
+        } else if (sort.value == "ZtoA") {
+           
+            data.sort((a, b) => {
+              if (a.firstName.toUpperCase() < b.firstName.toUpperCase()) {
+                return 1;
+              }
+              if (a.firstName.toUpperCase() > b.firstName.toUpperCase()) {
+                return -1;
+              }
+              return 0;
+            });
+          console.log(data)
+          fData(data)
+            
+          }
+      });
+</script>
+
+</html>

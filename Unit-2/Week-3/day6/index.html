@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJIO</title>
+    <link rel="stylesheet" href="/Unit-2/Week-2/day5/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    position: fixed;
+}
+.row{
+    display: flex;
+    background-color: #fff;
+    justify-content: space-around;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+ .header-logo {
+    width: 8rem;
+    margin: 20px;
+} 
+.header-logo a img{
+    display: flex;
+    justify-items: center;
+    margin-top: 7px;
+}
+.header_nav_menu ul{
+    display: flex;
+    margin-top: 30px;
+}
+.header_nav_menu ul li {
+    margin: 20px;
+    list-style: none;
+    
+}
+
+.header_nav_menu ul li a {
+    text-decoration: none;
+   color: #2c4152;
+}
+
+.header-search {
+    border: 1px solid #2c4152;
+    margin: 20px;
+    width: 300px;
+    border-radius: 40px;
+    padding: 7px;
+    height: 35px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+    background-color: #fffded;
+}
+.header-search input {
+    width: 100%;        
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+.icon i{
+    margin-left: 20px;
+    margin-top: 40px;
+    background-color: #2c4152;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    border-radius: 40px;
+    margin-right: 5px;
+}
+        .image{
+            width:100%;
+            padding: 20px;
+            height: 500px;
+        }
+        #detail{
+         /* border: 2px solid red; */
+         padding: 20px;
+         width: 500px;
+         text-align: center;
+
+
+        }
+        .size{
+            padding: 10px;
+            background-color:skyblue;
+            margin: 5px;
+            border: none;
+        }
+        .size:hover{
+            background-color: pink;
+            cursor: pointer;
+        }
+</style>
+
+<body>
+    <!-- <a href="wishlist.html"></a>
+    <a href="cart.html"></a> -->
+    <!-- header section -->
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header-logo">
+                    <a href="#"><img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt=""></a>
+                </div>
+                <div class="header-nav">
+                    <nav class="header_nav_menu">
+                        <ul>
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="#">MEN</a></li>
+                            <li><a href="#">WOMEN</a></li>
+                            <li><a href="#">KIDS</a></li>
+                            <li><a href="#">BEAUTY</a></li>
+                            <li><a href="#">KITCHEN</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-search">
+                    <input type="text" name="" id="search" placeholder="search AJIO">
+                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+                <div class="header_icon">
+                    <div class="icon">
+                        <a href="wishlist.html"><i class="fa-regular fa-heart"></i></a>
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="addPrioduct.html"><i class="fa-brands fa-product-hunt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header><br><br>
+    <!-- sort section  -->
+    <label for="sortPrice">Sort By price:</label>
+    <select id="sortprice">
+        <option value="">--Select--</option>
+        <option value="LtoH">Price (low to high)</option>
+        <option value="HtoL">Price (high to low)</option>
+    </select>
+    <!-- filter section -->
+    <select id="filter">
+        <option value="">Filter by material</option>
+        <option value="Soft">Soft</option>
+        <option value="Fresh">Fresh</option>
+        <option value="Granite">Granite</option>
+        <option value="Metal">Metal</option>
+        <option value="Bronze">Bronze</option>
+        <option value="Frozen">Frozen</option>
+        <option value="Wooden">Wooden</option>
+        <option value="Cotton">Cotton</option>
+        <option value="Concrete">Concrete</option>
+    </select>
+    <a href="addproduct.html"><button style="float: right;background-color: rgb(0, 157, 255);color: white;padding: 5px; margin: 5px;border: none;">Add Product</button></a>
+    <hr>
+    <br>
+    
+    </div>
+    <table border="2" style="border: 1px solid black; border-collapse: collapse;">
+        <thead style="text-align: center; ">
+            <tr>
+                <td>S.No</td>
+                <td>Image</td>
+                <td>name</td>
+                <td>Description</td>
+                <td>Material</td>
+                <td>Price</td>
+                <td>Edit</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody id="tableBody" style="text-align: center;">
+
+        </tbody>
+    </table>
+</body>
+<script>
+    let tblBody = document.getElementById("tableBody")
+    let sort = document.getElementById("sortprice")
+    let filter = document.getElementById("filter")
+   
+    let bagArr = JSON.parse(localStorage.getItem("selectData"))
+    if (bagArr === null) {
+        bagArr = [];
+        // localStorage.setItem("favourite", JSON.stringify(favourite))
+
+    }
+    let data = [];
+    let fetchData = fetch("https://67873c14c4a42c916105efce.mockapi.io/product")
+        .then(function (response) {
+            console.log(response)
+            return response.json()
+        })
+        .then(function (res) {
+            console.log(res)
+            data = res
+            tableData(data)
+        })
+        .catch(function (error) {
+            console.log("Error fetching data: ", error);
+        });
+
+    function tableData(data) {
+        data.forEach((e, i) => {
+            let tr = document.createElement("tr")
+            tblBody.append(tr)
+            let snTd = document.createElement("td")
+            snTd.innerText = i + 1
+            let Image = document.createElement("img")
+            Image.style.width = "100px"
+            Image.src = e.image
+            let name = document.createElement("td")
+            name.innerText = e.name
+            let desc = document.createElement("td")
+            desc.innerText = e.Description
+            let material = document.createElement("td")
+            material.innerText = e.material
+            let price = document.createElement("td")
+            price.innerHTML = `<s>${e.price}</s> <p style="color:red;font-weight:bold">${e.offerPrize}</p>`
+            let edit = document.createElement("td")
+            edit.innerText = "EDIT"
+            edit.addEventListener("click",function(){
+                
+                bagArr.push(e)
+                localStorage.setItem("selectData",JSON.stringify(bagArr))
+                window.location.href="update product.html"
+            })
+            let Delete = document.createElement("td")
+            Delete.innerText = "DELETE"
+            Delete.addEventListener("click", function () {
+                remove(i) // Call function to delete the product
+        });
+            tr.append(snTd, Image, name, desc, material, price, edit, Delete)
+        })
+    }
+
+    sort.addEventListener("change", function () {
+        tblBody.innerHTML = null;
+        console.log(sort.value);
+        let sortData = [...data];
+        if (sort.value === "LtoH") {
+            sortData.sort((a, b) => {
+                return a.offerPrize - b.offerPrize
+            })
+            console.log(sortData)
+            tableData(sortData)
+        }
+        else if (sort.value === "HtoL") {
+            sortData.sort((a, b) => {
+                return b.offerPrize - a.offerPrize
+            })
+            console.log(sortData)
+            tableData(sortData)
+        }
+
+    })
+
+    // filter by material
+
+    filter.addEventListener("change", function () {
+        tblBody.innerHTML = null;
+
+        let selectedId = filter.value;
+        console.log(selectedId)
+        let filterData = data.filter((e, i) => {
+            //console.log(e.material)
+            return e.material == selectedId
+        })
+        console.log(filterData)
+
+        tableData(filterData)
+
+    })
+
+    function remove(index){
+    tblBody.innerHTML=null;
+    data.splice(index,1)
+    localStorage.setItem("favourite",JSON.stringify(data))
+    tableData(data)
+   
+}
+
+</script>
+
+</html>

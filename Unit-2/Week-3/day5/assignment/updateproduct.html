@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #form input{
+        margin: 10px;
+    }
+    #form button{
+        margin: 10px;
+    }
+</style>
+<body>
+    <!-- Edit Product Form -->
+<div id="Container">
+    <h3>Edit Product</h3>
+    <form id="form">
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" name="name" required><br>
+
+        <label for="Description">Description:</label>
+        <input id="Description" name="Description" required></input><br>
+
+        <label for="Material">Material:</label>
+        <input type="text" id="Material" name="material" required><br>
+
+        <label for="Price">Price:</label>
+        <input type="number" id="Price" name="price" required><br>
+
+        <button type="submit">Submit</button>
+        <button type="button" id="cancelEdit">Cancel</button>
+    </form>
+</div>
+<table border="2" style="border: 1px solid black; border-collapse: collapse;">
+    <thead style="text-align: center; ">
+        <tr>
+            <td>S.No</td>
+            <td>Image</td>
+            <td>name</td>
+            <td>Description</td>
+            <td>Material</td>
+            <td>Price</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody id="tableBody" style="text-align: center;">
+
+    </tbody>
+</table>
+</body>
+<script>
+    let form=document.getElementById("form")
+    let cont=document.getElementById("Container")
+    let name=document.getElementById("Name")
+    let desc=document.getElementById("Description")
+    let material=document.getElementById("Material")
+    let price=document.getElementById("Price")
+    let cancle=document.getElementById("cancelEdit")
+    let tblBody = document.getElementById("tableBody")
+
+    let data=[]
+    let fetchData = fetch("https://67873c14c4a42c916105efce.mockapi.io/product")
+        .then(function (response) {
+            console.log(response)
+            return response.json()
+        })
+        .then(function (res) {
+            console.log(res)
+            data = res
+            tableData(data)
+        })
+        .catch(function (error) {
+            console.log("Error fetching data: ", error);
+        });
+
+        function tableData(data) {
+        data.forEach((e, i) => {
+            let tr = document.createElement("tr")
+            tblBody.append(tr)
+            let snTd = document.createElement("td")
+            snTd.innerText = i + 1
+            let Image = document.createElement("img")
+            Image.style.width = "100px"
+            Image.src = e.image
+            let name = document.createElement("td")
+            name.innerText = e.name
+            let desc = document.createElement("td")
+            desc.innerText = e.Description
+            let material = document.createElement("td")
+            material.innerText = e.material
+            let price = document.createElement("td")
+            price.innerHTML = `<s>$${e.price}</S> <p style="color:red;font-weight:bold">$${e.offerPrize}</p>`
+            let edit = document.createElement("td")
+            edit.innerText = "EDIT"
+            edit.addEventListener("click",function(){
+                EditForm(e)
+                // window.location.href="updateproduct.html"
+            })
+            let Delete = document.createElement("td")
+            Delete.innerText = "DELETE"
+            Delete.addEventListener("click", function () {
+            deleteProduct(e.id);  // Call function to delete the product
+        });
+            tr.append(snTd, Image, name, desc, material, price, edit, Delete)
+        })
+    }
+
+   
+function EditForm(product) {
+    cont.style.display = "block";
+      // Pre-fill 
+    name.value = product.name;
+    desc.value = product.Description;
+    material.value = product.material;
+    price.value = product.offerPrize;
+    
+    // form submission
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        submit(product.id);
+    });
+    
+    // Cancel button functionality
+    cancle.addEventListener("click", function () {
+        cont.style.display = "none";
+    });
+}
+
+function submit(productId) {
+    // Get the updated values from the form
+    const updatedProduct = {
+        name: name.value,
+        Description: desc.value,
+        material: material.value,
+        offerPrize:price.value
+    };
+
+    // Update the data array or send the data to the backend to update it (using mock API in this case)
+    fetch(`https://67873c14c4a42c916105efce.mockapi.io/product/${productId}`, {
+        method: "PUT",  // Use PUT method to update the resource
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedProduct)
+    })
+    .then(response => response.json())
+    .then(updatedProduct => {
+        console.log("Updated product: ", updatedProduct);
+        // Close the form and refresh the table
+        document.getElementById("editFormContainer").style.display = "none";
+        tblBody.innerHTML = ''; // Clear the table
+        tableData(data); // Re-render the table
+    })
+    .catch(error => {
+        console.error("Error updating product: ", error);
+    });
+}
+
+</script>
+</html>

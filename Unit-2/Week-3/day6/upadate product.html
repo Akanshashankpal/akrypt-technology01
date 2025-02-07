@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update product</title>
+    <style>
+        input{
+            width: 80%;
+          float: right;
+        }
+        
+    </style>
+</head>
+<body>
+    
+          <!-- // update id -->
+          <h4>Edit Product</h4>
+          <div class="div1">
+            Id: <input
+            type="text"
+            id="idupdate"
+            class="u-full-width"
+            placeholder="Id update"
+          />
+          </div>
+        <br>
+        <div>
+            Name:<input
+            type="text"
+            id="nameupdate"
+            class="u-full-width"
+            placeholder="Name update"
+          />
+        </div>
+         <br>
+         <div>
+            Description: <input
+            type="text"
+            id="description"
+            class="u-full-width"
+            placeholder="Description update"
+          />
+         </div>
+        <br>
+        <div>
+            Material: <input
+            type="text"
+            id="material"
+            class="u-full-width"
+            placeholder="Material  update"
+          />
+        </div>
+        <br>
+        <div>
+            Price:<input
+            type="number"
+            id="price"
+            class="u-full-width"
+            placeholder="Price update"
+          />
+        </div>
+         <br>
+         <div>
+            Offer Price: <input
+            type="number"
+            id="offerPrice"
+            class="u-full-width"
+            placeholder="OfferPrice update"
+          />
+         </div>
+        <br>
+          <button id="updateUser" class="u-full-width button button-primary">
+            update Product
+          </button>
+          <hr>
+          <div class="notifications-wrapper" id="userDiv"></div>
+
+</body>
+<script>
+
+let bagArr = JSON.parse(localStorage.getItem("selectData"))
+    if (bagArr === null) {
+        bagArr = [];
+        // localStorage.setItem("favourite", JSON.stringify(favourite))
+
+    }
+    
+    console.log(bagArr)
+    let userDiv=document.getElementById("userDiv")
+     let id = document.getElementById("idupdate");
+      let nameupdate = document.getElementById("nameupdate");
+      let  description = document.getElementById("description");
+      let material = document.getElementById("material");
+      let price = document.getElementById("price");
+      let offerPrice = document.getElementById("offerPrice");
+      let updateUser = document.getElementById("updateUser");
+
+
+      bagArr.forEach((e,i)=>{
+        id.value=e.id;
+       nameupdate.value=e.name;
+       description.value=e.Description;
+       material.value=e.material;
+       price.value=e.price;
+       offerPrice.value=e.offerPrize
+      })
+     
+
+     updateUser.addEventListener("click", function () {
+        let obj1 = {
+          name: nameupdate.value, 
+          Description:description.value,
+          material: material.value,
+          price: price.value,
+          offerPrize:offerPrice.value
+
+        };
+        console.log(obj1);
+        fetch(`https://67873c14c4a42c916105efce.mockapi.io/product/${id.value}`, {
+          method: "PUT", // or PATCH
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(obj1),
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("Failed to update user");
+            }
+          })
+          .then((task1) => {
+            getUsers();
+            // renderUser(result)
+            console.log(task1);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+
+      function getUsers() {
+        fetch("https://67873c14c4a42c916105efce.mockapi.io/product", {
+          method: "GET",
+          headers: { "content-type": "application/json" },
+        })
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            }
+          })
+          .then((result) => {
+            // renderUser(result);
+            console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      
+
+    //   function renderUser(users) {
+    //     userDiv.innerHTML = "";
+    //     users.forEach((user) => {
+    //       const userCard = document.createElement("div");
+    //       userCard.classList.add("user-card");
+    //       userCard.innerHTML = `
+    //                 <h4 class="email">${user.name}</h4>
+    //                 <p><strong>Description:</strong> ${user.  Description}</p>
+    //                 <p><strong>Material:</strong> ${user.material}</p>
+    //                 <p><strong>Price:</strong> $${user.price}</p>
+    //                 <p><strong>offer Price:</strong> $${user. offerPrize}</p>
+    //             `;
+    //       userDiv.appendChild(userCard);
+    //     });
+    //   }
+</script>
+</html>

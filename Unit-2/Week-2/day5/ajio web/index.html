@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJIO</title>
+    <link rel="stylesheet" href="/Unit-2/Week-2/day5/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- <a href="wishlist.html"></a>
+    <a href="cart.html"></a> -->
+    <!-- header section -->
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header-logo">
+                    <a href="#"><img src="https://assets.ajio.com/static/img/Ajio-Logo.svg" alt=""></a>
+                </div>
+                <div class="header-nav">
+                    <nav class="header_nav_menu">
+                        <ul>
+                            <li><a href="index.html">HOME</a></li>
+                            <li><a href="#">MEN</a></li>
+                            <li><a href="#">WOMEN</a></li>
+                            <li><a href="#">KIDS</a></li>
+                            <li><a href="#">BEAUTY</a></li>
+                            <li><a href="#">KITCHEN</a></li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="header-search">
+                    <input type="text" name="" id="search" placeholder="search AJIO">
+                    <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+                <div class="header_icon">
+                    <div class="icon">
+                        <a href="wishlist.html"><i class="fa-regular fa-heart"></i></a>
+                        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="addPrioduct.html"><i class="fa-brands fa-product-hunt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- header section end -->
+
+    <!-- sort section  -->
+    <label for="sortPrice">Sort By price:</label>
+    <select id="sortprice">
+        <option value="">--Select--</option>
+        <option value="LtoH">Price (low to high)</option>
+        <option value="HtoL">Price (high to low)</option>
+    </select>
+<!-- filter section -->
+<select id="filter">
+    <option value="">Filter by material</option>
+    <option value="Soft">Soft</option>
+    <option value="Fresh">Fresh</option>
+    <option value="Granite">Granite</option>
+    <option value="Metal">Metal</option>
+    <option value="Bronze">Bronze</option>
+    <option value="Frozen">Frozen</option>
+    <option value="Wooden">Wooden</option>
+    <option value="Cotton">Cotton</option>
+    <option value="Concrete">Concrete</option>
+   </select>
+    <div id="cards">
+
+    </div>
+
+
+</body>
+<script>
+    let sortPrice = document.getElementById("sortprice")
+    let cardDiv = document.getElementById("cards")
+    let filter=document.getElementById("filter")
+    let bagArr = JSON.parse(localStorage.getItem("selectData"))
+    if (bagArr === null) {
+        bagArr = [];
+        // localStorage.setItem("favourite", JSON.stringify(favourite))
+
+    }
+    let data = [];
+    let fetchData = fetch("https://67873c14c4a42c916105efce.mockapi.io/product")
+        .then(function (response) {
+            console.log(response)
+            return response.json()
+        })
+        .then(function (res) {
+            console.log(res)
+            data = res
+            cardData(res)
+        })
+        .catch(function (error) {
+            console.log("Error fetching data: ", error);
+        });
+
+    function cardData(res) {
+        res.forEach((e,i) => {
+            let div1 = document.createElement("div")
+            div1.className = "card"
+            div1.addEventListener("click", function () {
+                localStorage.setItem("selectData", JSON.stringify(e))
+                window.location.href = "details.html"
+            })
+            cardDiv.append(div1)
+            let name = document.createElement("h5")
+            name.innerText = e.name
+            let image = document.createElement("img")
+            image.src = e.image
+            let price = document.createElement("s")
+            price.innerText = `$${e.price}`
+            let offerPrice = document.createElement("p")
+            offerPrice.innerText = `$${e.offerPrize}`
+            offerPrice.style.color = "#ff5722"
+            offerPrice.style.fontWeight = "bold"
+            let desc = document.createElement("p")
+            desc.innerText = e.Description
+            let material = document.createElement("span")
+            material.innerText = e.material
+            material.style.display = "block"
+
+            div1.append(image, name, desc, material, price, offerPrice,)
+
+        })
+    }
+
+    sortPrice.addEventListener("change", function () {
+        cardDiv.innerHTML=null;
+        console.log(sortPrice.value);
+        let sortData=[...data];
+        if(sortPrice.value==="LtoH"){
+            sortData.sort((a,b)=>{
+                return a.offerPrize-b.offerPrize
+            })
+            console.log(sortData)
+            cardData(sortData)
+        }
+        else if(sortPrice.value==="HtoL"){
+            sortData.sort((a,b)=>{
+                return b.offerPrize-a.offerPrize
+            })
+            console.log(sortData)
+            cardData(sortData)
+        }
+        
+    })
+
+// filter by material
+
+filter.addEventListener("change",function(){
+    cardDiv.innerHTML=null;
+   
+    let selectedId=filter.value;
+    console.log(selectedId)
+   let filterData=data.filter((e,i)=>{
+    //console.log(e.material)
+    return e.material==selectedId
+   })
+   console.log(filterData)
+   
+   cardData(filterData)
+    
+})
+
+
+</script>
+
+</html>
