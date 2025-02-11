@@ -4,6 +4,7 @@ import Button from './component/Button';
 import Avtar from './component/Avtar';
 import Counter from './useState/Counter';
 import ToDo from './useState/ToDo';
+import UseApi from './apiCall/UseApi';
 
 
 
@@ -11,7 +12,8 @@ import ToDo from './useState/ToDo';
 function App() {
   return (
     // <Counter/>
-    <ToDo/>
+    // <ToDo/>
+    <UseApi/>
   );
 }
 
