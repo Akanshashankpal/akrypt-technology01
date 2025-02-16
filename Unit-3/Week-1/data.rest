@@ -1,0 +1,3 @@
+GET https://api.restful-api.dev/objects
+###
+DELETE https://api.restful-api.dev/objects/1
