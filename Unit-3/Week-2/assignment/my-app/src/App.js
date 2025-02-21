@@ -4,6 +4,7 @@ import Timer from './counter Component/Timer';
 import { useState } from 'react';
 import TodoList from './todoLsit/TodoList';
 import ToDo from './todos/ToDo';
+import SampleComponent from './useref/sampleComponent';
 
 function App() {
   // const[status,setStatus]=useState(true)
@@ -19,8 +20,8 @@ function App() {
      status && <Timer/>
      }
      <button onClick={toggleStatus}>{show ? "show Timer":"hide Timer"}</button> */}
-   <ToDo/>
-     
+   {/* <ToDo/> */}
+     <SampleComponent/>
     </div>
   );
 }

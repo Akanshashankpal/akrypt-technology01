@@ -1,74 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import Pagination from './pagination';
+import React, { useEffect, useState } from "react";
+import Employeecard from "./Employeecard";
 
-const Employeedashboard = () => {
-    const [data,setData] =useState([])
-    const [limit,setLimit]=useState(10)
-    const [page,setPage]=useState(1)
-    
-    const [count,setCount]=useState(1)
+function EmloyeeDashboard() {
+  const [data, setData] = useState([]);
+  const [pageCount, sePageCount] = useState(0);
+  const [currentPage, setCurrentpage] = useState(1);
+
+  const fetchData = () => {
+    fetch(
+      `https://dbioz2ek0e.execute-api.ap-south-1.amazonaws.com/mockapi/get-employees?limit=10&page=${currentPage}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.data);
+        sePageCount(data.totalPages);
+      });
+  };
+
+  console.log(currentPage);
+  // console.log(pageCount)
+
+  useEffect(() => {
+    fetchData();
+  }, [currentPage]);
 
 
-    const handleChange=(pre)=>{
-      if(count<=1){
-        setCount(pre)
-      }
-      return pre+1
-    }
-    const fetchData=()=>{
-        fetch (`http://localhost:3000/data?_limit=${limit}&%page=${page}`)
-        .then((res)=>res.json())
-        .then((response)=>{
-            console.log(response)
-            setData(response)
-        })
-    }
-    useEffect(()=>{
-        fetchData(data)
-        // setLimit(data)
-        // setPage(data)
-    },[])
-    return (
-        <div >
+  useEffect(()=>{
+
+    fetchData2()
+  },[])
+  
+  const fetchData2 = () => {
+    fetch(
+      `https://reqres.in/api/users`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // setData(data.data);
+        // sePageCount(data.totalPages);
+
+        console.log(data)
+      });
+  };
+
+  return (
+    <div>
+      <h1 className="font-medium text-lg"> Employee Dashboard</h1>
+
+      <table border={{}} className="w-full mt-5">
+        <tr className="border-1">
+         <th  className="border-1">S.no.</th>
+          <th  className="border-1">Name</th>
+          <th  className="border-1">Department</th>
+          <th  className="border-1">image</th>
+          <th  className="border-1">Gender</th>
+          <th  className="border-1">Salary</th>
+        </tr>
+
+        {data.map((el,ind) => (
             
-                <table className='m-auto border-1 w-full table-auto'>
-                    <thead className='border-1'>
-                        <tr className='border-1' >
-                        <td className='border-1'>SN No.</td>
+          <Employeecard key={el.id} {...el} ind={ind} currentPage={currentPage} />
+        ))}
+      </table>
 
-                            <td className='border-1'>Name</td>
-                            <td className='border-1'>Department</td>
-                            <td className='border-1'>Image</td>
-                            <td className='border-1'>Gender</td>
-                            <td className='border-1'>Salary</td>
-                            </tr>
-                    </thead>
-                    <tbody className='border-1' >
-                        
-                            {
-                                data.map((el,ind)=>(
-                                    <tr className='border-1' key={el.id}>
-                                    <td className='border-1'>{ind+1}</td>
+      {new Array(pageCount).fill(0).map((el, ind) => (
+        <button
+        className="w-8 mt-5 h-8"
+          disabled={ind + 1 === currentPage}
+          onClick={() => setCurrentpage(ind + 1)}
 
-                                    <td className='border-1'>{el.name}</td>
-                                   <td className='border-1'>{el.department}</td>
-                                   <td className='border-1'>{el.image}</td>
-                                   <td className='border-1'>{el.gender}</td>
-                                   <td className='border-1'>{el.salary}</td>
-                                   </tr>
-                                ))
-                            }
-                       
-                    </tbody>
-                </table>
-             <div>
-                <button onClick={(page)=>handleChange(page-1)}>prev</button>
-                <button>{count}</button>
-                <button onClick={(page)=>handleChange(page+1)}>next</button>
-             </div>
-        </div>
-    );
+          style={ind+1==currentPage? {backgroundColor:"black",color:"white"}:{}}
+        >
+          {ind + 1}
+        </button>
+      ))}
+    </div>
+  );
 }
 
-export default Employeedashboard;
-
+export default EmloyeeDashboard;
