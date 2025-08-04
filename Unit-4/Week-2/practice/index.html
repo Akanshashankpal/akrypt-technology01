@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Login</title>
+</head>
+
+<body class="h-full">
+    <div class="h-screen bg-cover bg-center bg-no-repeat" style="background-image: url('https://img.freepik.com/free-vector/abstract-frame-vector-colorful-modern-memphis-style_53876-111661.jpg?t=st=1742228132~exp=1742231732~hmac=fa53d2a47f051d33cf6ff545ae29270f301d59b43c9439fc95e5f5504f392c5e&w=996');">
+        <div class="flex justify-center items-center h-full">
+            <div class="bg-white w-full max-w-6xl h-[90%] mx-auto rounded-lg shadow-lg flex">
+                <!-- Left side section -->
+                <div class="bg-green-700 w-1/2 text-center p-8 flex flex-col justify-center items-center rounded-l-lg">
+                    <h1 class="text-white font-bold text-3xl mb-4">WELCOME BACK!</h1>
+                    <span class="text-white text-sm mb-4">To keep connected with us, please <br> login with your personal info.</span>
+                    <button class="text-white border-white border w-48 h-10 rounded-full mt-8 hover:bg-green-600 transition">Login</button>
+                </div>
+
+                <!-- Right side section -->
+                <div class="w-1/2 p-8 flex flex-col justify-center items-center">
+                    <h1 class="text-3xl text-green-700 font-bold text-center mb-6">Create an Account</h1>
+                    <div class="w-40 flex justify-around mb-6">
+                        <i class="fa-brands fa-facebook-f border border-pink-300 w-10 h-10 rounded-full p-2.5 cursor-pointer hover:bg-pink-300"></i>
+                        <i class="fa-brands fa-google-plus-g border border-pink-300 w-10 h-10 rounded-full p-2.5 cursor-pointer hover:bg-pink-300"></i>
+                        <i class="fa-brands fa-linkedin-in border border-pink-300 w-10 h-10 rounded-full p-2.5 cursor-pointer hover:bg-pink-300"></i>
+                    </div>
+                    <span class="text-sm text-center mb-4">or use your Email for registration</span>
+                    <!-- Sign-up form inputs -->
+                    <input type="text" name="name" id="name" placeholder="Enter Your Name" class="border-none w-3/4 h-10 mb-4 bg-pink-100 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    <input type="email" name="email" id="email" placeholder="Enter Your Email" class="border-none w-3/4 h-10 mb-4 bg-pink-100 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    <input type="password" name="password" id="password" placeholder="Enter Your Password" class="border-none w-3/4 h-10 mb-4 bg-pink-100 px-3 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    <button class="bg-green-700 text-white w-3/4 h-10 rounded-full mt-4 hover:bg-green-600 transition focus:outline-none focus:ring-2 focus:ring-emerald-500">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

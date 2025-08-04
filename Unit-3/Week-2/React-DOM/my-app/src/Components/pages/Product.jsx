@@ -1,19 +1,28 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useContext, useEffect, useState } from 'react';
+import Login from './Login';
+import { AuthContext } from '../../ContextApi/AuthContexzt/AuthContextProvider';
+import {Navigate} from 'react-router-dom'
+import axios from 'axios';
 const Product = () => {
     const [data, setData] = useState([])
+    const [isAuth,Login,Logout]=useContext(AuthContext)
     const fetchData = () => {
-        fetch(`https://jsonplaceholder.typicode.com/comments?_limit=25`)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data)
-                setData(data)
-            })
+        
+        axios.get(`https://jsonplaceholder.typicode.com/comments?_limit=25`)
+        .then((res)=>{
+            // console.log(res)
+            setData(res.data)
+        })
+        .catch((err)=>console.log(err))
     }
 
     useEffect(() => {
         fetchData()
     }, [])
+
+    if(!isAuth){
+        return <Navigate to={'/login'}/>
+    }
     // console.log(data)
     return (
         <div >

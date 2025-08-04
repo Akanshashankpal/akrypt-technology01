@@ -8,6 +8,8 @@ import Toast from './toastForm/Toast';
 import Form from './react-forms/Form';
 import RountingDom from './routing-component/RountingDom';
 import Navbar from './routing-component/Navbar';
+import WebRoutes from './practice-routing/WebRoutes';
+import WebNavbar from './practice-routing/WebNavbar';
 
 function App() {
   return (
@@ -18,8 +20,10 @@ function App() {
     {/* <NewForm/> */}
     {/* <Toast/> */}
     {/* <Form/> */}
-    <Navbar/>
-   <RountingDom/>
+    {/* <Navbar/>
+   <RountingDom/> */}
+   <WebNavbar/>
+   <WebRoutes/>
     </div>
   );
 }

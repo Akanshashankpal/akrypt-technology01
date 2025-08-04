@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Product from './pages/Product';
 import Contact from './pages/Contact';
+import Login from './pages/Login';
 
 const AllRoutes = () => {
     return (
@@ -13,6 +14,7 @@ const AllRoutes = () => {
             <Route path='/about' element={<About/>}></Route>
             <Route path='/product' element={<Product/>}></Route>
             <Route path='/contact' element={<Contact/>}></Route>
+            <Route path='/login' element={<Login/>}></Route>
            </Routes>
         </div>
     );
